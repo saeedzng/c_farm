@@ -121,7 +121,9 @@ function App() {
       {page_n === 2 && (
         <div>
           <h1>Wallet Contract</h1>
-          {walletData?.wallet_contract_balance && <div className='Hint'>{fromNano(walletData.wallet_contract_balance)} ton</div>}
+          <p>is deployed = {isdeployed.valueOf()}</p>
+          <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{walletData.wallet_contract_address} ton</div>} </p>
+          
           
           
           {/* <div className='Card'>
