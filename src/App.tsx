@@ -54,15 +54,16 @@ function App() {
   useEffect(() =>{
 
       if (isdeployed == 1) {
+        useWalletContract(Address.parse(walletContractAddress));
         // setWalletData (null);
-        const val = useWalletContract(Address.parse(walletContractAddress));
-        setWalletData({
-        w_contract_address : val.wallet_contract_address,
-        w_contract_balance : val.wallet_contract_balance,
-        w_owner_address : val.owner_address,
-        w_referal_address : val.owner_address,
-        w_master_address : val.master_address,
-        });   
+        // const val = useWalletContract(Address.parse(walletContractAddress));
+        // setWalletData({
+        // w_contract_address : val.wallet_contract_address,
+        // w_contract_balance : val.wallet_contract_balance,
+        // w_owner_address : val.owner_address,
+        // w_referal_address : val.owner_address,
+        // w_master_address : val.master_address,
+        // });   
         setcheck(1); 
       } 
   } ,[isdeployed] )
