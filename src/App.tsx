@@ -6,7 +6,7 @@ import { useTonConnect } from "./hooks/useTonConnect";
 import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
-import { get } from "http";
+
 
 declare global {
   interface Window {
@@ -101,7 +101,7 @@ function App() {
               setIsdeployed(true);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress))
+              WebApp.showAlert((wc_addressss + ' -++- ' + walletContractAddress))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
