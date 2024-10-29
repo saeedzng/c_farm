@@ -101,7 +101,7 @@ function App() {
               setIsdeployed(1);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' -++- ' + walletContractAddress + " + " + isdeployed + " + " + check ))
+              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress + " + " + isdeployed + " + " + check ))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
@@ -122,7 +122,7 @@ function App() {
         <div>
           <h1>Wallet Contract</h1>
           <p>is deployed = {isdeployed}</p>
-          {/* <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{walletData.wallet_contract_address} ton</div>} </p> */}
+          <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{1} ton</div>} </p>
           
           
           
