@@ -5,10 +5,16 @@ import { useAsyncInitialize } from "./useAsyncInitialize";
 import { Address, OpenedContract } from 'ton-core';
 import { toNano } from "ton-core";
 import { useTonConnect } from "./useTonConnect";
+import { useMasterContract } from "./useMasterContract";
 
 
-export function useWalletContract(UserAddress: Address | undefined) {
+export function useWalletContract(refAddress: Address) {
+  const { wc_addressss } = useMasterContract(
+    Address.parse("0QDbP6nFnSSS1dk9EHL5G_bYG0cIqPBwv1eje7uOGiVZcno8"),refAddress);
   
+
+
+
   const client = useTonClient();
   const { sender } = useTonConnect();
   // const sleep = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
@@ -25,9 +31,9 @@ export function useWalletContract(UserAddress: Address | undefined) {
 
   
     const walletContract = useAsyncInitialize(async () => {
-      if ( UserAddress == undefined) return ;
+      if ( wc_addressss == undefined) return ;
       if (!client ) return;
-      const contract = new WalletContract(UserAddress);
+      const contract = new WalletContract(wc_addressss);
       return client.open(contract) as OpenedContract<WalletContract>;
     }, [client]);
   
