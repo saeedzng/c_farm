@@ -6,6 +6,7 @@ import { useTonConnect } from "./hooks/useTonConnect";
 import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
+import { get } from "http";
 
 declare global {
   interface Window {
@@ -47,16 +48,20 @@ function App() {
 
   
   useEffect(() =>{
-    if (isdeployed) {
-      const val = (useWalletContract(Address.parse(walletContractAddress)));
-      setWalletData({
-      wallet_contract_address : val.wallet_contract_address,
-      wallet_contract_balance : val.wallet_contract_balance,
-      wallet_owner_address : val.owner_address,
-      wallet_referal_address : val.owner_address,
-      wallet_master_address : val.master_address,
-      });
+    async function getdata(){
+      if (isdeployed == false) return; 
+        setWalletData (null);
+        const val = useWalletContract(Address.parse(walletContractAddress));
+        setWalletData({
+        wallet_contract_address : val.wallet_contract_address,
+        wallet_contract_balance : val.wallet_contract_balance,
+        wallet_owner_address : val.owner_address,
+        wallet_referal_address : val.owner_address,
+        wallet_master_address : val.master_address,
+        });    
     }
+    getdata();
+
   } ,[isdeployed] )
 
   // const { ch_number, eggs_number, wallet_contract_balance, wallet_contract_address, send_buy_chicken_order, wallet_owner_address, wallet_referal_address, wallet_master_address, send_sell_chicken_order, send_recive_eggs_order } = useWalletContract(Address.parse(walletContractAddress));
@@ -96,7 +101,7 @@ function App() {
               setIsdeployed(true);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' + ' + walletContractAddress))
+              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
