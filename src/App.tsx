@@ -1,7 +1,7 @@
 import "./App.css";
 import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 import { useMasterContract } from "./hooks/useMasterContract";
-import { useWalletContract } from "./hooks/useWalletContract";
+// import { useWalletContract } from "./hooks/useWalletContract";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
@@ -21,13 +21,13 @@ function App() {
   const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [walletContractAddress, setWalletContractAddress] = useState<string>("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO");
-  const [walletData , setWalletData] = useState<null |{
-    wallet_contract_address:string | undefined;
-    wallet_contract_balance:number | null;
-    wallet_owner_address: Address | undefined;
-    wallet_referal_address:Address | undefined;
-    wallet_master_address:Address | undefined;
-  } >()
+  // const [walletData , setWalletData] = useState<null |{
+  //   wallet_contract_address:string | undefined;
+  //   wallet_contract_balance:number | null;
+  //   wallet_owner_address: Address | undefined;
+  //   wallet_referal_address:Address | undefined;
+  //   wallet_master_address:Address | undefined;
+  // } >()
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
@@ -52,14 +52,14 @@ function App() {
 
       if (isdeployed == 1) {
         // setWalletData (null);
-        const val = useWalletContract(Address.parse(walletContractAddress));
-        setWalletData({
-        wallet_contract_address : val.wallet_contract_address,
-        wallet_contract_balance : val.wallet_contract_balance,
-        wallet_owner_address : val.owner_address,
-        wallet_referal_address : val.owner_address,
-        wallet_master_address : val.master_address,
-        });   
+        // const val = useWalletContract(Address.parse(walletContractAddress));
+        // setWalletData({
+        // wallet_contract_address : val.wallet_contract_address,
+        // wallet_contract_balance : val.wallet_contract_balance,
+        // wallet_owner_address : val.owner_address,
+        // wallet_referal_address : val.owner_address,
+        // wallet_master_address : val.master_address,
+        // });   
         setcheck(1); 
       } 
   } ,[isdeployed] )
@@ -122,7 +122,7 @@ function App() {
         <div>
           <h1>Wallet Contract</h1>
           <p>is deployed = {isdeployed}</p>
-          <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{1} ton</div>} </p>
+          {/* <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{1} ton</div>} </p> */}
           
           
           
