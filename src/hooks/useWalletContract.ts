@@ -17,7 +17,7 @@ export function useWalletContract(refAddress: Address) {
           
 
   
-          if (wc_addressss) {
+          if (wc_addressss != undefined) {
               clearInterval(intervalId); // Stop the interval when a is greater than zero
               
           }
