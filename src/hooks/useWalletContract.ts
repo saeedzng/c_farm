@@ -24,7 +24,7 @@ export function useWalletContract(UserAddress: Address | undefined) {
 
   
     const walletContract = useAsyncInitialize(async () => {
-      if (!client || !UserAddress) return;
+      if (!client || UserAddress == undefined) return;
       const contract = new WalletContract(UserAddress);
       return client.open(contract) as OpenedContract<WalletContract>;
     }, [client]);

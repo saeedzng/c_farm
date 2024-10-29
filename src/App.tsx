@@ -48,7 +48,9 @@ function App() {
 
   const [check , setcheck] = useState <number>(0);
 
-  const {wallet_contract_address} = useWalletContract(walletContractAddress);
+  const {wallet_contract_address,wallet_contract_balance,wallet_master_address,wallet_owner_address,wallet_referal_address,
+    ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order
+  } = useWalletContract(walletContractAddress);
 
 
   useEffect(() =>{
@@ -122,13 +124,8 @@ function App() {
       )}
       {page_n === 2 && (
         <div>
-          <h1>Wallet Contract</h1>
-          {/* <p>is deployed = {isdeployed}</p> */}
-          {/* <p> wallet address = {walletData?.w_contract_address && <div className='Hint'>{walletData.w_contract_address} ton</div>} </p> */}
-          <p><div><b>Wallet contract address = {wallet_contract_address}</b></div></p>
-          
-          
-          {/* <div className='Card'>
+          <h1>Wallet Contract</h1>      
+          <div className='Card'>
             <div><b>Wallet contract balance</b></div>
             {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
             <div><b>Wallet contract Address</b></div>
@@ -162,7 +159,7 @@ function App() {
                 url: telegramShareUrl,
               });
             }}>Share Wallet Address</button>
-          </div> */}
+          </div>
         </div>
       )}
     </div>
