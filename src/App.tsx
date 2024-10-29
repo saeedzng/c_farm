@@ -49,9 +49,8 @@ function App() {
   const [check , setcheck] = useState <number>(0);
 
   useEffect(() =>{
-    
-    async function getdata(){
-      if (isdeployed == 0) return; 
+
+      if (isdeployed == 1) {
         setWalletData (null);
         const val = useWalletContract(Address.parse(walletContractAddress));
         setWalletData({
@@ -62,9 +61,7 @@ function App() {
         wallet_master_address : val.master_address,
         });   
         setcheck(1); 
-    }
-    getdata();
-
+      } 
   } ,[isdeployed] )
 
   // const { ch_number, eggs_number, wallet_contract_balance, wallet_contract_address, send_buy_chicken_order, wallet_owner_address, wallet_referal_address, wallet_master_address, send_sell_chicken_order, send_recive_eggs_order } = useWalletContract(Address.parse(walletContractAddress));
