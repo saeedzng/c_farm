@@ -47,7 +47,7 @@ export function useWalletContract(UserAddress:Address) {
       // getValue();
     }
     getValue();
-  }, [walletContract]);
+  }, [walletContract , UserAddress]);
 
   return {
     wallet_contract_address: walletContract?.address.toString({bounceable: false, testOnly: true}),

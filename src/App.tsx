@@ -18,7 +18,7 @@ function App() {
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
-  const [isdeployed , setIsdeployed] = useState <number>(0);
+  // const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [walletContractAddress, setWalletContractAddress] = useState<string>("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO");
   // const [walletData , setWalletData] = useState<null |{
@@ -46,27 +46,26 @@ function App() {
     }
   }, [wc_addressss]);
 
-  const [check , setcheck] = useState <number>(0);
+  // const [check , setcheck] = useState <number>(0);
 
-  const {wallet_contract_balance} = useWalletContract(Address.parse(walletContractAddress));
+  const {wallet_contract_address} = useWalletContract(Address.parse(walletContractAddress));
 
 
-  useEffect(() =>{
+  // useEffect(() =>{
 
-      if (isdeployed == 1) {
-        useWalletContract(Address.parse(walletContractAddress));
-        // setWalletData (null);
-        // const val = useWalletContract(Address.parse(walletContractAddress));
-        // setWalletData({
-        // w_contract_address : val.wallet_contract_address,
-        // w_contract_balance : val.wallet_contract_balance,
-        // w_owner_address : val.owner_address,
-        // w_referal_address : val.owner_address,
-        // w_master_address : val.master_address,
-        // });   
-        setcheck(1); 
-      } 
-  } ,[isdeployed] )
+  //     if (isdeployed == 1) {
+  //       // setWalletData (null);
+  //       const val = useWalletContract(Address.parse("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"));
+  //       setWalletData({
+  //       w_contract_address : val.wallet_contract_address,
+  //       w_contract_balance : val.wallet_contract_balance,
+  //       w_owner_address : val.owner_address,
+  //       w_referal_address : val.owner_address,
+  //       w_master_address : val.master_address,
+  //       });   
+  //       setcheck(1); 
+  //     } 
+  // } ,[isdeployed] )
 
 
   return (
@@ -95,16 +94,16 @@ function App() {
               <label>Referral address: {referal_address}</label><br /><br />
               <button className='button' onClick={() => { 
                 sendDeployByMaster(address(referal_address));
-                setIsdeployed(1);
+                // setIsdeployed(1);
               }}>Create Wallet Contract</button><br />
               <div>
                 <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
               </div>
               <button onClick={() => {
-              setIsdeployed(1);
+              // setIsdeployed(1);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress + " + " + isdeployed + " + " + check ))
+              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress + " + " +   + " + "   ))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
@@ -124,9 +123,9 @@ function App() {
       {page_n === 2 && (
         <div>
           <h1>Wallet Contract</h1>
-          <p>is deployed = {isdeployed}</p>
+          {/* <p>is deployed = {isdeployed}</p> */}
           {/* <p> wallet address = {walletData?.w_contract_address && <div className='Hint'>{walletData.w_contract_address} ton</div>} </p> */}
-          <p><div><b>Wallet contract balance = {wallet_contract_balance}</b></div></p>
+          <p><div><b>Wallet contract address = {wallet_contract_address}</b></div></p>
           
           
           {/* <div className='Card'>
