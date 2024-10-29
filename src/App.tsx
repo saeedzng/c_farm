@@ -46,7 +46,7 @@ function App() {
     }
   }, [wc_addressss]);
 
-  
+  let check :number = 0;
   useEffect(() =>{
     async function getdata(){
       if (isdeployed == 0) return; 
@@ -58,7 +58,8 @@ function App() {
         wallet_owner_address : val.owner_address,
         wallet_referal_address : val.owner_address,
         wallet_master_address : val.master_address,
-        });    
+        });   
+        check = 1; 
     }
     getdata();
 
@@ -101,7 +102,7 @@ function App() {
               setIsdeployed(1);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' -++- ' + walletContractAddress + " + " + isdeployed ))
+              WebApp.showAlert((wc_addressss + ' -++- ' + walletContractAddress + " + " + isdeployed + " + " + check ))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
