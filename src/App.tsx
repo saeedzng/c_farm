@@ -18,7 +18,7 @@ function App() {
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
-  const [isdeployed , setIsdeployed] = useState <Boolean>(false);
+  const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [walletContractAddress, setWalletContractAddress] = useState<string>("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO");
   const [walletData , setWalletData] = useState<null |{
@@ -49,7 +49,7 @@ function App() {
   
   useEffect(() =>{
     async function getdata(){
-      if (isdeployed == false) return; 
+      if (isdeployed == 0) return; 
         setWalletData (null);
         const val = useWalletContract(Address.parse(walletContractAddress));
         setWalletData({
@@ -92,16 +92,16 @@ function App() {
               <label>Referral address: {referal_address}</label><br /><br />
               <button className='button' onClick={() => { 
                 sendDeployByMaster(address(referal_address));
-                setIsdeployed(true);
+                setIsdeployed(1);
               }}>Create Wallet Contract</button><br />
               <div>
                 <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
               </div>
               <button onClick={() => {
-              setIsdeployed(true);
+              setIsdeployed(1);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' -++- ' + walletContractAddress))
+              WebApp.showAlert((wc_addressss + ' -++- ' + walletContractAddress + " + " + isdeployed ))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
@@ -121,7 +121,7 @@ function App() {
       {page_n === 2 && (
         <div>
           <h1>Wallet Contract</h1>
-          <p>is deployed = {isdeployed.valueOf()}</p>
+          <p>is deployed = {isdeployed}</p>
           <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{walletData.wallet_contract_address} ton</div>} </p>
           
           
