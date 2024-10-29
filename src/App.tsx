@@ -21,13 +21,13 @@ function App() {
   const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [walletContractAddress, setWalletContractAddress] = useState<string>("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO");
-  const [walletData , setWalletData] = useState<null |{
-    w_contract_address:string | undefined;
-    w_contract_balance:number | null;
-    w_owner_address: Address | undefined;
-    w_referal_address:Address | undefined;
-    w_master_address:Address | undefined;
-  } >();
+  // const [walletData , setWalletData] = useState<null |{
+  //   w_contract_address:string | undefined;
+  //   w_contract_balance:number | null;
+  //   w_owner_address: Address | undefined;
+  //   w_referal_address:Address | undefined;
+  //   w_master_address:Address | undefined;
+  // } >();
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
@@ -125,7 +125,7 @@ function App() {
         <div>
           <h1>Wallet Contract</h1>
           <p>is deployed = {isdeployed}</p>
-          <p> wallet address = {walletData?.w_contract_address && <div className='Hint'>{walletData.w_contract_address} ton</div>} </p>
+          {/* <p> wallet address = {walletData?.w_contract_address && <div className='Hint'>{walletData.w_contract_address} ton</div>} </p> */}
           <p><div><b>Wallet contract balance = {wallet_contract_balance}</b></div></p>
           
           
