@@ -7,7 +7,7 @@ import { toNano } from "ton-core";
 import { useTonConnect } from "./useTonConnect";
 
 
-export function useWalletContract(UserAddress:Address) {
+export function useWalletContract(UserAddress: Address | undefined) {
   const client = useTonClient();
   const { sender } = useTonConnect();
   // const sleep = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
@@ -21,11 +21,15 @@ export function useWalletContract(UserAddress:Address) {
     first_buy: number;
   }>();
   const [balance, setBalance] = useState<null | number>(0);
-  const walletContract = useAsyncInitialize(async () => {
-    if (!client) return;
-    const contract = new WalletContract(UserAddress);
-    return client.open(contract) as OpenedContract<WalletContract>;
-  }, [client]);
+
+  
+    const walletContract = useAsyncInitialize(async () => {
+      if (!client || !UserAddress) return;
+      const contract = new WalletContract(UserAddress);
+      return client.open(contract) as OpenedContract<WalletContract>;
+    }, [client]);
+  
+
 
   useEffect(() => {
     async function getValue() {
@@ -47,7 +51,8 @@ export function useWalletContract(UserAddress:Address) {
       // getValue();
     }
     getValue();
-  }, [walletContract , UserAddress]);
+  }, [walletContract]);
+
 
   return {
     wallet_contract_address: walletContract?.address.toString({bounceable: false, testOnly: true}),
@@ -66,4 +71,5 @@ export function useWalletContract(UserAddress:Address) {
       return walletContract?.send_recive_eggs_order(sender, toNano(0.01));
     }
   };
+
 }

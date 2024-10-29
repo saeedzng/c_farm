@@ -20,7 +20,7 @@ function App() {
   const owner_address = useTonAddress();
   const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  const [walletContractAddress, setWalletContractAddress] = useState<string>("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO");
+  const [walletContractAddress, setWalletContractAddress] = useState<Address | undefined> (undefined);
   // const [walletData , setWalletData] = useState<null |{
   //   w_contract_address:string | undefined;
   //   w_contract_balance:number | null;
@@ -42,13 +42,13 @@ function App() {
 
   useEffect(() => {
     if (wc_addressss) {
-      setWalletContractAddress(wc_addressss.toString());
+      setWalletContractAddress(wc_addressss);
     }
   }, [wc_addressss]);
 
   const [check , setcheck] = useState <number>(0);
 
-  const {wallet_contract_address} = useWalletContract(Address.parse(walletContractAddress));
+  const {wallet_contract_address} = useWalletContract(walletContractAddress);
 
 
   useEffect(() =>{
