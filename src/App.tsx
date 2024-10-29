@@ -23,11 +23,9 @@ function App() {
   const [walletData , setWalletData] = useState<null |{
     wallet_contract_address:string | undefined;
     wallet_contract_balance:number | null;
-    wallet_owner_address:string | undefined;
-    wallet_referal_address:string | undefined;
-    wallet_master_address:string | undefined;
-
-    
+    wallet_owner_address: Address | undefined;
+    wallet_referal_address:Address | undefined;
+    wallet_master_address:Address | undefined;
   } >()
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
@@ -50,7 +48,14 @@ function App() {
   
   useEffect(() =>{
     if (isdeployed) {
-      setWalletData (useWalletContract(Address.parse(walletContractAddress)));
+      const val = (useWalletContract(Address.parse(walletContractAddress)));
+      setWalletData({
+      wallet_contract_address : val.wallet_contract_address,
+      wallet_contract_balance : val.wallet_contract_balance,
+      wallet_owner_address : val.owner_address,
+      wallet_referal_address : val.owner_address,
+      wallet_master_address : val.master_address,
+      });
     }
   } ,[isdeployed] )
 
