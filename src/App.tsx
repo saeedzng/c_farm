@@ -49,7 +49,7 @@ function App() {
   const [check , setcheck] = useState <number>(0);
 
   const {wallet_contract_address,wallet_contract_balance,wallet_master_address,wallet_owner_address,wallet_referal_address,
-    ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order
+    ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order,refAddress
   } =  useWalletContract(Address.parse(referal_address));
 
 
@@ -140,6 +140,8 @@ function App() {
             {eggs_number && <div className='Hint'>{fromNano(eggs_number)} ton</div>}
             <div><b>Wallet chicken number</b></div>
             <div className='Hint'>{ch_number}</div>
+            <div><b>ref address</b></div>
+            <div className='Hint'>{refAddress.toString()}</div>
             {connected && page_n === 2 && (
               <a onClick={() => { send_buy_chicken_order(1); }}>buy 1 chicken</a>
             )}<br />

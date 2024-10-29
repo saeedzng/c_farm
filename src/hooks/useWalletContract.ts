@@ -9,8 +9,7 @@ import { useMasterContract } from "./useMasterContract";
 
 
 export function useWalletContract(refAddress: Address) {
-  const { wc_addressss } = useMasterContract(
-    Address.parse("0QDbP6nFnSSS1dk9EHL5G_bYG0cIqPBwv1eje7uOGiVZcno8"),refAddress);
+  const { wc_addressss } = useMasterContract(Address.parse("0QDbP6nFnSSS1dk9EHL5G_bYG0cIqPBwv1eje7uOGiVZcno8"),refAddress);
   
 
 
@@ -31,8 +30,7 @@ export function useWalletContract(refAddress: Address) {
 
   
     const walletContract = useAsyncInitialize(async () => {
-      if ( wc_addressss == undefined) return ;
-      if (!client ) return;
+      if (!client || !wc_addressss ) return;
       const contract = new WalletContract(wc_addressss);
       return client.open(contract) as OpenedContract<WalletContract>;
     }, [client]);
@@ -63,6 +61,7 @@ export function useWalletContract(refAddress: Address) {
 
 
   return {
+    refAddress:refAddress,
     wallet_contract_address: walletContract?.address.toString({bounceable: false, testOnly: true}),
     wallet_contract_balance: balance,
     wallet_owner_address: contractData?.owner_address?.toString({bounceable: false, testOnly: true}),
