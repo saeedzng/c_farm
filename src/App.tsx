@@ -50,7 +50,7 @@ function App() {
 
   const {wallet_contract_address,wallet_contract_balance,wallet_master_address,wallet_owner_address,wallet_referal_address,
     ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order
-  } = useWalletContract(walletContractAddress);
+  } =  useWalletContract(walletContractAddress);
 
 
   useEffect(() =>{

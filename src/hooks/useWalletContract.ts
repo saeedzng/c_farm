@@ -8,6 +8,7 @@ import { useTonConnect } from "./useTonConnect";
 
 
 export function useWalletContract(UserAddress: Address | undefined) {
+  
   const client = useTonClient();
   const { sender } = useTonConnect();
   // const sleep = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
@@ -24,7 +25,8 @@ export function useWalletContract(UserAddress: Address | undefined) {
 
   
     const walletContract = useAsyncInitialize(async () => {
-      if (!client || UserAddress == undefined) return;
+      if ( UserAddress == undefined) return ;
+      if (!client ) return;
       const contract = new WalletContract(UserAddress);
       return client.open(contract) as OpenedContract<WalletContract>;
     }, [client]);
