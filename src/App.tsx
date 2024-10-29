@@ -46,8 +46,10 @@ function App() {
     }
   }, [wc_addressss]);
 
-  let check :number = 0;
+  const [check , setcheck] = useState <number>(0);
+
   useEffect(() =>{
+    
     async function getdata(){
       if (isdeployed == 0) return; 
         setWalletData (null);
@@ -59,7 +61,7 @@ function App() {
         wallet_referal_address : val.owner_address,
         wallet_master_address : val.master_address,
         });   
-        check = 1; 
+        setcheck(1); 
     }
     getdata();
 
