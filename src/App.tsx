@@ -48,11 +48,14 @@ function App() {
 
   const [check , setcheck] = useState <number>(0);
 
+  const {wallet_contract_balance} = useWalletContract(Address.parse(walletContractAddress));
+
+
   useEffect(() =>{
 
       if (isdeployed == 1) {
         // setWalletData (null);
-        const val = useWalletContract(Address.parse("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"));
+        const val = useWalletContract(Address.parse(walletContractAddress));
         setWalletData({
         w_contract_address : val.wallet_contract_address,
         w_contract_balance : val.wallet_contract_balance,
@@ -64,7 +67,6 @@ function App() {
       } 
   } ,[isdeployed] )
 
-  // const { ch_number, eggs_number, wallet_contract_balance, wallet_contract_address, send_buy_chicken_order, wallet_owner_address, wallet_referal_address, wallet_master_address, send_sell_chicken_order, send_recive_eggs_order } = useWalletContract(Address.parse(walletContractAddress));
 
   return (
     <div>
@@ -122,8 +124,8 @@ function App() {
         <div>
           <h1>Wallet Contract</h1>
           <p>is deployed = {isdeployed}</p>
-          <p> wallet address = {walletData?.w_contract_address && <div className='Hint'>{1} ton</div>} </p>
-          
+          <p> wallet address = {walletData?.w_contract_address && <div className='Hint'>{walletData.w_contract_address} ton</div>} </p>
+          <p><div><b>Wallet contract balance = {wallet_contract_balance}</b></div></p>
           
           
           {/* <div className='Card'>
