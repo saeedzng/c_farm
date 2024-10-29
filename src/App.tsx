@@ -21,12 +21,12 @@ function App() {
   const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [walletContractAddress, setWalletContractAddress] = useState<string>("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO");
-  const [ , setWalletData] = useState<null |{
-    wallet_contract_address:string | undefined;
-    wallet_contract_balance:number | null;
-    wallet_owner_address: Address | undefined;
-    wallet_referal_address:Address | undefined;
-    wallet_master_address:Address | undefined;
+  const [  , setWalletData] = useState<null |{
+    // w_contract_address:string | undefined;
+    w_contract_balance:number | null;
+    // w_owner_address: Address | undefined;
+    // w_referal_address:Address | undefined;
+    // w_master_address:Address | undefined;
   } >();
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
@@ -51,15 +51,17 @@ function App() {
   useEffect(() =>{
 
       if (isdeployed == 1) {
+        const { wallet_contract_balance } = useWalletContract(Address.parse(walletContractAddress));
+        setWalletData({w_contract_balance : wallet_contract_balance})
         // setWalletData (null);
-        const val = useWalletContract(Address.parse(walletContractAddress));
-        setWalletData({
-        wallet_contract_address : val.wallet_contract_address,
-        wallet_contract_balance : val.wallet_contract_balance,
-        wallet_owner_address : val.owner_address,
-        wallet_referal_address : val.owner_address,
-        wallet_master_address : val.master_address,
-        });   
+        // const val = useWalletContract(Address.parse(walletContractAddress));
+        // setWalletData({
+        // wallet_contract_address : val.wallet_contract_address,
+        // wallet_contract_balance : val.wallet_contract_balance,
+        // wallet_owner_address : val.owner_address,
+        // wallet_referal_address : val.owner_address,
+        // wallet_master_address : val.master_address,
+        // });   
         setcheck(1); 
       } 
   } ,[isdeployed] )
