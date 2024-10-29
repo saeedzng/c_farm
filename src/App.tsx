@@ -51,7 +51,7 @@ function App() {
   useEffect(() =>{
 
       if (isdeployed == 1) {
-        setWalletData (null);
+        // setWalletData (null);
         const val = useWalletContract(Address.parse(walletContractAddress));
         setWalletData({
         wallet_contract_address : val.wallet_contract_address,
@@ -122,7 +122,7 @@ function App() {
         <div>
           <h1>Wallet Contract</h1>
           <p>is deployed = {isdeployed}</p>
-          <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{walletData.wallet_contract_address} ton</div>} </p>
+          {/* <p> wallet address = {walletData?.wallet_contract_address && <div className='Hint'>{walletData.wallet_contract_address} ton</div>} </p> */}
           
           
           
