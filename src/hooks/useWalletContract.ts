@@ -23,9 +23,7 @@ export function useWalletContract(UserAddress:Address) {
   const [balance, setBalance] = useState<null | number>(0);
   const walletContract = useAsyncInitialize(async () => {
     if (!client) return;
-    const contract = new WalletContract(UserAddress
-      // Address.parse("0QC5jHeAZjxjVdK3wi1-wLxVjE_VIMjlMFnlRjiHoVYw5Kp1") // replace with your address
-    );
+    const contract = new WalletContract(UserAddress);
     return client.open(contract) as OpenedContract<WalletContract>;
   }, [client]);
 

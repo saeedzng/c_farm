@@ -17,9 +17,18 @@ function App() {
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
+  const [isdeployed , setIsdeployed] = useState <Boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [walletContractAddress, setWalletContractAddress] = useState<string>("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO");
+  const [walletData , setWalletData] = useState<null |{
+    wallet_contract_address:string | undefined;
+    wallet_contract_balance:number | null;
+    wallet_owner_address:string | undefined;
+    wallet_referal_address:string | undefined;
+    wallet_master_address:string | undefined;
 
+    
+  } >()
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
@@ -38,7 +47,14 @@ function App() {
     }
   }, [wc_addressss]);
 
-  const { ch_number, eggs_number, wallet_contract_balance, wallet_contract_address, send_buy_chicken_order, wallet_owner_address, wallet_referal_address, wallet_master_address, send_sell_chicken_order, send_recive_eggs_order } = useWalletContract(Address.parse(walletContractAddress));
+  
+  useEffect(() =>{
+    if (isdeployed) {
+      setWalletData (useWalletContract(Address.parse(walletContractAddress)));
+    }
+  } ,[isdeployed] )
+
+  // const { ch_number, eggs_number, wallet_contract_balance, wallet_contract_address, send_buy_chicken_order, wallet_owner_address, wallet_referal_address, wallet_master_address, send_sell_chicken_order, send_recive_eggs_order } = useWalletContract(Address.parse(walletContractAddress));
 
   return (
     <div>
@@ -64,18 +80,16 @@ function App() {
           {connected && (
             <>
               <label>Referral address: {referal_address}</label><br /><br />
-              <button className='button' onClick={() => { sendDeployByMaster(address(referal_address))}}>Create Wallet Contract</button><br />
+              <button className='button' onClick={() => { 
+                sendDeployByMaster(address(referal_address));
+                setIsdeployed(true);
+              }}>Create Wallet Contract</button><br />
               <div>
                 <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
               </div>
               <button onClick={() => {
-                    if (wc_addressss) {
-                      setWalletContractAddress(wc_addressss.toString());
-                    }
-                useWalletContract(Address.parse(walletContractAddress));
-                  setPageN(2);
-                
-              }}>Open Wallet Contract</button>
+              setIsdeployed(true);
+              }}>set and Open Wallet Contract</button>
               <button onClick={() => {
               WebApp.showAlert((wc_addressss + ' + ' + walletContractAddress))
 
@@ -97,7 +111,10 @@ function App() {
       {page_n === 2 && (
         <div>
           <h1>Wallet Contract</h1>
-          <div className='Card'>
+          {walletData?.wallet_contract_balance && <div className='Hint'>{fromNano(walletData.wallet_contract_balance)} ton</div>}
+          
+          
+          {/* <div className='Card'>
             <div><b>Wallet contract balance</b></div>
             {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
             <div><b>Wallet contract Address</b></div>
@@ -131,7 +148,7 @@ function App() {
                 url: telegramShareUrl,
               });
             }}>Share Wallet Address</button>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
