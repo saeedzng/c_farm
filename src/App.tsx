@@ -16,13 +16,15 @@ declare global {
 
 function App() {
   function setTonAddress(tonAddress : string) {localStorage.setItem("tonAddress", tonAddress);}
-  function getTonAddress() { return localStorage.getItem("tonAddress1"); }
+  function getTonAddress() {
+    const tonAddress = localStorage.getItem("tonAddress");
+    return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";}  
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
   const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  const [walletContractAddress, setWalletContractAddress] = useState<Address | undefined> (undefined);//!!!!!!!!!!
+  // const [walletContractAddress, setWalletContractAddress] = useState<Address | undefined> (undefined);//!!!!!!!!!!
   // const [walletData , setWalletData] = useState<null |{
   //   w_contract_address:string | undefined;
   //   w_contract_balance:number | null;
@@ -44,7 +46,7 @@ function App() {
 
   useEffect(() => {
     if (wc_addressss) {
-      setWalletContractAddress(wc_addressss);//!!!!!!!!!!!
+      // setWalletContractAddress(wc_addressss);//!!!!!!!!!!!
       setTonAddress(wc_addressss.toString());
     }
   }, [wc_addressss]);
@@ -52,8 +54,8 @@ function App() {
   const [check , setcheck] = useState <number>(0);//!!!!!!!!!!!
 
   const {wallet_contract_address,wallet_contract_balance,wallet_master_address,wallet_owner_address,wallet_referal_address,
-    ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order,refAddress
-  } =  useWalletContract(Address.parse(referal_address));
+    ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order,
+  } =  useWalletContract(Address.parse(getTonAddress()));
 
 
   useEffect(() =>{
@@ -108,7 +110,7 @@ function App() {
               setIsdeployed(1);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress + " + " +  check + " + " + getTonAddress() ))
+              WebApp.showAlert((wc_addressss +  " + " +  check + " + " + getTonAddress() ))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
@@ -143,8 +145,6 @@ function App() {
             {eggs_number && <div className='Hint'>{fromNano(eggs_number)} ton</div>}
             <div><b>Wallet chicken number</b></div>
             <div className='Hint'>{ch_number}</div>
-            <div><b>ref address</b></div>
-            <div className='Hint'>{refAddress.toString()}</div>
             {connected && page_n === 2 && (
               <a onClick={() => { send_buy_chicken_order(1); }}>buy 1 chicken</a>
             )}<br />

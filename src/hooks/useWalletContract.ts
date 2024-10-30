@@ -5,32 +5,8 @@ import { useAsyncInitialize } from "./useAsyncInitialize";
 import { Address, OpenedContract } from 'ton-core';
 import { toNano } from "ton-core";
 import { useTonConnect } from "./useTonConnect";
-import { useMasterContract } from "./useMasterContract";
 
-
-export function useWalletContract(refAddress: Address) {
-  const { wc_addressss } = useMasterContract(Address.parse("0QDbP6nFnSSS1dk9EHL5G_bYG0cIqPBwv1eje7uOGiVZcno8"),refAddress);
-
-
-  // const incrementA = () => {
-  //     const intervalId = setInterval(() => {
-          
-
-  
-  //         if (wc_addressss != undefined) {
-  //             clearInterval(intervalId); // Stop the interval when a is greater than zero
-              
-  //         }
-  //     }, 1000); // Run every 1000 milliseconds (1 second)
-  // };
-  
-  // // Start the incrementing process
-  // incrementA();
-
-  
-
-
-
+export function useWalletContract(UserAddress: Address) {
   const client = useTonClient();
   const { sender } = useTonConnect();
   // const sleep = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
@@ -47,8 +23,8 @@ export function useWalletContract(refAddress: Address) {
 
   
     const walletContract = useAsyncInitialize(async () => {
-      if (!client || !wc_addressss ) return;
-      const contract = new WalletContract(wc_addressss);
+      if (!client) return;
+      const contract = new WalletContract(UserAddress);
       return client.open(contract) as OpenedContract<WalletContract>;
     }, [client]);
   
@@ -78,7 +54,6 @@ export function useWalletContract(refAddress: Address) {
 
 
   return {
-    refAddress:refAddress,
     wallet_contract_address: walletContract?.address.toString({bounceable: false, testOnly: true}),
     wallet_contract_balance: balance,
     wallet_owner_address: contractData?.owner_address?.toString({bounceable: false, testOnly: true}),
