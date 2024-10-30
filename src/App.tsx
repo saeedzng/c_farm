@@ -143,12 +143,12 @@ function App() {
                 <div><b>Wallet chicken number</b></div>
                 <div className='Hint'>{ch_number}</div>
                 {connected && (
-                  <>
-                    <a onClick={() => { send_buy_chicken_order(1); }}>buy 1 chicken</a><br />
-                    <a onClick={() => { send_sell_chicken_order(1); }}>sell 1 chicken</a><br />
-                    <a onClick={() => { send_recive_eggs_order(); }}>get earned eggs</a>
-                  </>
-                )}
+  <>
+    <button className='action-button' onClick={() => { send_buy_chicken_order(1); }}>Buy 1 Chicken</button><br />
+    <button className='action-button' onClick={() => { send_sell_chicken_order(1); }}>Sell 1 Chicken</button><br />
+    <button className='action-button' onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
+  </>
+)}
               </div>
               <button onClick={() => {
                 const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;

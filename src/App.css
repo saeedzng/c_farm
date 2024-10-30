@@ -154,3 +154,21 @@
      font-size: smaller; /* Adjust font size for mobile */
    }
 }
+
+.action-button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding around the text */
+  text-align: center; /* Center text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Inline-block to allow margin */
+  font-size: 2vw; /* Responsive font size */
+  margin: 5px 0; /* Margin between buttons */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.action-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
