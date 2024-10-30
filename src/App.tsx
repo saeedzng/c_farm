@@ -94,7 +94,7 @@ function App() {
                 setPageN(2);
               }}>set and Open Wallet Contract</button><b></b>
               <button onClick={() => {
-                WebApp.showAlert((wc_addressss + " + " + getTonAddress()))
+                WebApp.showAlert((wc_addressss + " + " + getTonAddress() + "+" + getDeployed() + " + " + isdeployed ))
               }}>show alert</button>
               <p>owner : {owner_address}</p>
             </>
