@@ -122,19 +122,26 @@
 .three-dot-menu {
   cursor: pointer;
   font-size: 2.5vw; /* Adjust size as needed */
-  color: white; /* Menu color */
+  color: #fff; /* White color for the dots */
 }
 
 .menu-content {
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
+  color: #fff; /* White text color */
   border-radius: 10px; /* Rounded corners */
-  padding: 10px; /* Padding around content */
+  padding: 15px; /* Increased padding around content */
   position: absolute; /* Position it absolutely */
   z-index: 10; /* Ensure it appears above other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+}
+
+.menu-content div {
+   margin-bottom: 8px; /* Space between items */
 }
 
 .menu-content .Hint {
    font-size: smaller; /* Smaller font size for details */
+   opacity: 0.9; /* Slightly transparent for a softer look */
 }
 
 /* Responsive adjustments for mobile */
