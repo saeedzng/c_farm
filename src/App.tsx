@@ -7,7 +7,6 @@ import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
 
-
 declare global {
   interface Window {
     Telegram: any;
@@ -15,23 +14,17 @@ declare global {
 }
 
 function App() {
-  function setTonAddress(tonAddress : string) {localStorage.setItem("tonAddress", tonAddress);}
+  function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function getTonAddress() {
     const tonAddress = localStorage.getItem("tonAddress");
-    return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";}  
+    return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";
+  }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
-  const [isdeployed , setIsdeployed] = useState <number>(0);
+  const [isdeployed, setIsdeployed] = useState<number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  // const [walletContractAddress, setWalletContractAddress] = useState<Address | undefined> (undefined);//!!!!!!!!!!
-  // const [walletData , setWalletData] = useState<null |{
-  //   w_contract_address:string | undefined;
-  //   w_contract_balance:number | null;
-  //   w_owner_address: Address | undefined;
-  //   w_referal_address:Address | undefined;
-  //   w_master_address:Address | undefined;
-  // } >();
+
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
@@ -45,35 +38,16 @@ function App() {
   );
 
   useEffect(() => {
-    if (wc_addressss) {
-      // setWalletContractAddress(wc_addressss);//!!!!!!!!!!!
+    if (wc_addressss && isdeployed == 1) {
       setTonAddress(wc_addressss.toString());
     }
-  }, [wc_addressss]);
+  }, [isdeployed]);
 
-  const [check , setcheck] = useState <number>(0);//!!!!!!!!!!!
+  // const [check , setcheck] = useState <number>(0);
 
-  const {wallet_contract_address,wallet_contract_balance,wallet_master_address,wallet_owner_address,wallet_referal_address,
-    ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order,
-  } =  useWalletContract(Address.parse(getTonAddress()));
-
-
-  useEffect(() =>{
-
-      if (isdeployed == 1) {
-        // setWalletData (null);
-        // const val = useWalletContract(Address.parse("0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"));
-        // setWalletData({
-        // w_contract_address : val.wallet_contract_address,
-        // w_contract_balance : val.wallet_contract_balance,
-        // w_owner_address : val.owner_address,
-        // w_referal_address : val.owner_address,
-        // w_master_address : val.master_address,
-        // });   
-        setcheck(1); 
-      } 
-  } ,[isdeployed] )
-
+  const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
+    ch_number, eggs_number, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
+  } = useWalletContract(Address.parse(getTonAddress()));
 
   return (
     <div>
@@ -99,7 +73,7 @@ function App() {
           {connected && (
             <>
               <label>Referral address: {referal_address}</label><br /><br />
-              <button className='button' onClick={() => { 
+              <button className='button' onClick={() => {
                 sendDeployByMaster(address(referal_address));
                 setIsdeployed(1);
               }}>Create Wallet Contract</button><br />
@@ -107,12 +81,11 @@ function App() {
                 <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
               </div>
               <button onClick={() => {
-              setIsdeployed(1);
+                setIsdeployed(1);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss +  " + " +  check + " + " + getTonAddress() ))
-
-               }}>show alert</button>
+                WebApp.showAlert((wc_addressss + " + " + getTonAddress()))
+              }}>show alert</button>
               <p>owner : {owner_address}</p>
             </>
           )}
@@ -129,7 +102,7 @@ function App() {
       )}
       {page_n === 2 && (
         <div>
-          <h1>Wallet Contract</h1>      
+          <h1>Wallet Contract</h1>
           <div className='Card'>
             <div><b>Wallet contract balance</b></div>
             {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}

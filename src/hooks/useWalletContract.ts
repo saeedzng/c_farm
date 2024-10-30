@@ -20,15 +20,11 @@ export function useWalletContract(UserAddress: Address) {
     first_buy: number;
   }>();
   const [balance, setBalance] = useState<null | number>(0);
-
-  
-    const walletContract = useAsyncInitialize(async () => {
-      if (!client) return;
-      const contract = new WalletContract(UserAddress);
-      return client.open(contract) as OpenedContract<WalletContract>;
-    }, [client]);
-  
-
+  const walletContract = useAsyncInitialize(async () => {
+    if (!client) return;
+    const contract = new WalletContract(UserAddress);
+    return client.open(contract) as OpenedContract<WalletContract>;
+  }, [client]);
 
   useEffect(() => {
     async function getValue() {
@@ -40,7 +36,7 @@ export function useWalletContract(UserAddress: Address) {
         ch_number: val.chicken_number,
         owner_address: val.owner_address,
         master_address: val.master_address,
-        referal_address: val.master_address,
+        referal_address: val.referal_address,
         eggs_number: val.eggs_number,
         last_calc: val.last_calc,
         first_buy: val.first_buy,
@@ -52,13 +48,12 @@ export function useWalletContract(UserAddress: Address) {
     getValue();
   }, [walletContract]);
 
-
   return {
-    wallet_contract_address: walletContract?.address.toString({bounceable: false, testOnly: true}),
+    wallet_contract_address: walletContract?.address.toString({ bounceable: false, testOnly: true }),
     wallet_contract_balance: balance,
-    wallet_owner_address: contractData?.owner_address?.toString({bounceable: false, testOnly: true}),
-    wallet_referal_address: contractData?.referal_address?.toString({bounceable: false, testOnly: true}),
-    wallet_master_address: contractData?.master_address?.toString({bounceable: false, testOnly: true}),
+    wallet_owner_address: contractData?.owner_address?.toString({ bounceable: false, testOnly: true }),
+    wallet_referal_address: contractData?.referal_address?.toString({ bounceable: false, testOnly: true }),
+    wallet_master_address: contractData?.master_address?.toString({ bounceable: false, testOnly: true }),
     ...contractData,
     send_buy_chicken_order: (chicken_to_buy: number) => {
       return walletContract?.send_buy_chicken_order(sender, toNano(0.1), chicken_to_buy);
