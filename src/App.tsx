@@ -82,6 +82,7 @@ function App() {
               </div>
               <button onClick={() => {
                 setIsdeployed(1);
+                setPageN(2);
               }}>set and Open Wallet Contract</button><b></b>
               <button onClick={() => {
                 WebApp.showAlert((wc_addressss + " + " + getTonAddress()))
