@@ -118,3 +118,32 @@
     overflow-wrap: break-word; /* Ensure long addresses wrap properly */
   }
 }
+
+.three-dot-menu {
+  cursor: pointer;
+  font-size: 2.5vw; /* Adjust size as needed */
+  color: white; /* Menu color */
+}
+
+.menu-content {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px; /* Padding around content */
+  position: absolute; /* Position it absolutely */
+  z-index: 10; /* Ensure it appears above other elements */
+}
+
+.menu-content .Hint {
+   font-size: smaller; /* Smaller font size for details */
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+   .three-dot-menu {
+     font-size: 4vw; /* Larger dots on mobile */
+   }
+
+   .menu-content {
+     font-size: smaller; /* Adjust font size for mobile */
+   }
+}
