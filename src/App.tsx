@@ -73,9 +73,9 @@ function App() {
           {connected && (
             <>
               <label>Referral address: {referal_address}</label><br /><br />
-              <button className='button' onClick={() => {
-                sendDeployByMaster(address(referal_address));
-                setIsdeployed(1);
+              <button className='button' onClick={async () => {
+                  await sendDeployByMaster(address(referal_address));
+                  setIsdeployed(1); // Set deployed state only after successful approval
               }}>Create Wallet Contract</button><br />
               <div>
                 <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
@@ -86,7 +86,7 @@ function App() {
               <button onClick={() => {
                 WebApp.showAlert((wc_addressss + " + " + getTonAddress()))
               }}>show alert</button>
-              {/* <p>owner : {owner_address}</p> */}
+              <p>owner : {owner_address}</p>
             </>
           )}
         </>
