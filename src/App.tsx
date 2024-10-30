@@ -29,13 +29,15 @@ function App() {
   const owner_address = useTonAddress();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  const deployedValue = getDeployed() === "true";
-  setIsdeployed(deployedValue);
+  
+  
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
     }
+    const deployedValue = getDeployed() === "true";
+    setIsdeployed(deployedValue);
   }, []);
 
   const { master_contract_address, sendDeployByMaster, master_contract_balance, wc_addressss } = useMasterContract(
