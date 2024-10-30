@@ -15,16 +15,22 @@ declare global {
 
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
+  function setDeployed(Deployed: string) { localStorage.setItem( "deployed", Deployed); }
   function getTonAddress() {
     const tonAddress = localStorage.getItem("tonAddress");
     return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";
   }
+  function getDeployed() {
+    const Deployed = localStorage.getItem("deployed");
+    return Deployed ? Deployed : "false";
+  }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
-  const [isdeployed, setIsdeployed] = useState<number>(0);
+  const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-
+  const deployedValue = getDeployed() === "true";
+  setIsdeployed(deployedValue);
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
@@ -38,8 +44,9 @@ function App() {
   );
 
   useEffect(() => {
-    if (wc_addressss && isdeployed == 1) {
+    if (wc_addressss && isdeployed == true && getDeployed() == "false") {
       setTonAddress(wc_addressss.toString());
+      setDeployed("true");
     }
   }, [isdeployed]);
 
@@ -75,13 +82,13 @@ function App() {
               <label>Referral address: {referal_address}</label><br /><br />
               <button className='button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
-                  setIsdeployed(1); // Set deployed state only after successful approval
+                  setIsdeployed(true); // Set deployed state only after successful approval
               }}>Create Wallet Contract</button><br />
               <div>
                 <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
               </div>
               <button onClick={() => {
-                setIsdeployed(1);
+                setIsdeployed(true);
                 setPageN(2);
               }}>set and Open Wallet Contract</button><b></b>
               <button onClick={() => {
@@ -103,7 +110,7 @@ function App() {
       )}
       {page_n === 2 && (
         <div>
-          {isdeployed === 1 ? (
+          {isdeployed === true ? (
             <>
               <h1>Wallet Contract</h1>
               <div className='Card'>
