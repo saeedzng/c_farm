@@ -122,22 +122,7 @@ function App() {
               <div className='Card'>
                 <div><b>Wallet contract balance</b></div>
                 {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
-                {/* Three-dot menu */}
-                <div className="three-dot-menu" onClick={toggleMenu}>
-                  &#x2022;&#x2022;&#x2022; {/* Three dots */}
-                </div>
-                {showMenu && (
-                  <div className="menu-content">
-                    <div><b>Wallet contract Address</b></div>
-                    <div className='Hint'>{wallet_contract_address}</div>
-                    <div><b>Wallet owner Address</b></div>
-                    <div className='Hint'>{wallet_owner_address}</div>
-                    <div><b>Wallet referral Address</b></div>
-                    <div className='Hint'>{wallet_referal_address}</div>
-                    <div><b>Wallet master Address</b></div>
-                    <div className='Hint'>{wallet_master_address}</div>
-                  </div>
-                )}
+
                 <div><b>Wallet eggs number</b></div>
                 {eggs_number && <div className='Hint'>{fromNano(eggs_number)} ton</div>}
                 <div><b>Wallet chicken number</b></div>
@@ -158,6 +143,22 @@ function App() {
                   url: telegramShareUrl,
                 });
               }}>Share Wallet Address</button>
+                              {/* Three-dot menu */}
+                              <div className="three-dot-menu" onClick={toggleMenu}>
+                  &#x2022;&#x2022;&#x2022; {/* Three dots */}
+                </div>
+                {showMenu && (
+                  <div className="menu-content">
+                    <div><b>Wallet contract Address</b></div>
+                    <div className='Hint'>{wallet_contract_address}</div>
+                    <div><b>Wallet owner Address</b></div>
+                    <div className='Hint'>{wallet_owner_address}</div>
+                    <div><b>Wallet referral Address</b></div>
+                    <div className='Hint'>{wallet_referal_address}</div>
+                    <div><b>Wallet master Address</b></div>
+                    <div className='Hint'>{wallet_master_address}</div>
+                  </div>
+                )}
             </>
           ) : (
             <h2>Wallet Contract is not yet deployed. Please create a wallet contract first.</h2>
