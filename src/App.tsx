@@ -16,7 +16,7 @@ declare global {
 
 function App() {
   function setTonAddress(tonAddress : string) {localStorage.setItem("tonAddress", tonAddress);}
-  function getTonAddress() { return localStorage.getItem("tonAddress"); }
+  function getTonAddress() { return localStorage.getItem("tonAddress1"); }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
