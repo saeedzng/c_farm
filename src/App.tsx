@@ -102,42 +102,44 @@ function App() {
       )}
       {page_n === 2 && (
         <div>
-          <h1>Wallet Contract</h1>
-          <div className='Card'>
-            <div><b>Wallet contract balance</b></div>
-            {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
-            <div><b>Wallet contract Address</b></div>
-            <div className='Hint'>{wallet_contract_address}</div>
-            <div><b>Wallet owner Address</b></div>
-            <div className='Hint'>{wallet_owner_address}</div>
-            <div><b>Wallet referral Address</b></div>
-            <div className='Hint'>{wallet_referal_address}</div>
-            <div><b>Wallet master Address</b></div>
-            <div className='Hint'>{wallet_master_address}</div>
-            <div><b>Wallet eggs number</b></div>
-            {eggs_number && <div className='Hint'>{fromNano(eggs_number)} ton</div>}
-            <div><b>Wallet chicken number</b></div>
-            <div className='Hint'>{ch_number}</div>
-            {connected && page_n === 2 && (
-              <a onClick={() => { send_buy_chicken_order(1); }}>buy 1 chicken</a>
-            )}<br />
-            {connected && (
-              <a onClick={() => { send_sell_chicken_order(1); }}>sell 1 chicken</a>
-            )}<br />
-            {connected && (
-              <a onClick={() => { send_recive_eggs_order(); }}>get earned eggs</a>
-            )}
-          </div>
-          <div>
-            <button onClick={() => {
-              const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-              navigator.share({
-                title: 'Chicken Farm Wallet Contract',
-                text: 'Check out this wallet contract address!',
-                url: telegramShareUrl,
-              });
-            }}>Share Wallet Address</button>
-          </div>
+          {isdeployed === 1 ? (
+            <>
+              <h1>Wallet Contract</h1>
+              <div className='Card'>
+                <div><b>Wallet contract balance</b></div>
+                {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
+                <div><b>Wallet contract Address</b></div>
+                <div className='Hint'>{wallet_contract_address}</div>
+                <div><b>Wallet owner Address</b></div>
+                <div className='Hint'>{wallet_owner_address}</div>
+                <div><b>Wallet referral Address</b></div>
+                <div className='Hint'>{wallet_referal_address}</div>
+                <div><b>Wallet master Address</b></div>
+                <div className='Hint'>{wallet_master_address}</div>
+                <div><b>Wallet eggs number</b></div>
+                {eggs_number && <div className='Hint'>{fromNano(eggs_number)} ton</div>}
+                <div><b>Wallet chicken number</b></div>
+                <div className='Hint'>{ch_number}</div>
+                {connected && (
+                  <>
+                    <a onClick={() => { send_buy_chicken_order(1); }}>buy 1 chicken</a><br />
+                    <a onClick={() => { send_sell_chicken_order(1); }}>sell 1 chicken</a><br />
+                    <a onClick={() => { send_recive_eggs_order(); }}>get earned eggs</a>
+                  </>
+                )}
+              </div>
+              <button onClick={() => {
+                const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+                navigator.share({
+                  title: 'Chicken Farm Wallet Contract',
+                  text: 'Check out this wallet contract address!',
+                  url: telegramShareUrl,
+                });
+              }}>Share Wallet Address</button>
+            </>
+          ) : (
+            <h2>Wallet Contract is not yet deployed. Please create a wallet contract first.</h2>
+          )}
         </div>
       )}
     </div>
