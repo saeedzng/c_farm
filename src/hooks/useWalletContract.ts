@@ -12,20 +12,20 @@ export function useWalletContract(refAddress: Address) {
   const { wc_addressss } = useMasterContract(Address.parse("0QDbP6nFnSSS1dk9EHL5G_bYG0cIqPBwv1eje7uOGiVZcno8"),refAddress);
 
 
-  const incrementA = () => {
-      const intervalId = setInterval(() => {
+  // const incrementA = () => {
+  //     const intervalId = setInterval(() => {
           
 
   
-          if (wc_addressss != undefined) {
-              clearInterval(intervalId); // Stop the interval when a is greater than zero
+  //         if (wc_addressss != undefined) {
+  //             clearInterval(intervalId); // Stop the interval when a is greater than zero
               
-          }
-      }, 1000); // Run every 1000 milliseconds (1 second)
-  };
+  //         }
+  //     }, 1000); // Run every 1000 milliseconds (1 second)
+  // };
   
-  // Start the incrementing process
-  incrementA();
+  // // Start the incrementing process
+  // incrementA();
 
   
 

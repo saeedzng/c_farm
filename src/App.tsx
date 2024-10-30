@@ -15,12 +15,14 @@ declare global {
 }
 
 function App() {
+  function setTonAddress(tonAddress : string) {localStorage.setItem("tonAddress", tonAddress);}
+  function getTonAddress() { return localStorage.getItem("tonAddress"); }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
   const [isdeployed , setIsdeployed] = useState <number>(0);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  const [walletContractAddress, setWalletContractAddress] = useState<Address | undefined> (undefined);
+  const [walletContractAddress, setWalletContractAddress] = useState<Address | undefined> (undefined);//!!!!!!!!!!
   // const [walletData , setWalletData] = useState<null |{
   //   w_contract_address:string | undefined;
   //   w_contract_balance:number | null;
@@ -42,11 +44,12 @@ function App() {
 
   useEffect(() => {
     if (wc_addressss) {
-      setWalletContractAddress(wc_addressss);
+      setWalletContractAddress(wc_addressss);//!!!!!!!!!!!
+      setTonAddress(wc_addressss.toString());
     }
   }, [wc_addressss]);
 
-  const [check , setcheck] = useState <number>(0);
+  const [check , setcheck] = useState <number>(0);//!!!!!!!!!!!
 
   const {wallet_contract_address,wallet_contract_balance,wallet_master_address,wallet_owner_address,wallet_referal_address,
     ch_number,eggs_number,send_recive_eggs_order,send_buy_chicken_order,send_sell_chicken_order,refAddress
@@ -96,7 +99,7 @@ function App() {
               <label>Referral address: {referal_address}</label><br /><br />
               <button className='button' onClick={() => { 
                 sendDeployByMaster(address(referal_address));
-                // setIsdeployed(1);
+                setIsdeployed(1);
               }}>Create Wallet Contract</button><br />
               <div>
                 <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
@@ -105,7 +108,7 @@ function App() {
               setIsdeployed(1);
               }}>set and Open Wallet Contract</button>
               <button onClick={() => {
-              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress + " + " +  check + " + "   ))
+              WebApp.showAlert((wc_addressss + ' -+- ' + walletContractAddress + " + " +  check + " + " + getTonAddress() ))
 
                }}>show alert</button>
               <p>owner : {owner_address}</p>
