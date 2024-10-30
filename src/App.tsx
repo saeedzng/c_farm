@@ -15,7 +15,7 @@ declare global {
 
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
-  function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
+  function setDeployed(Deployed: string) { localStorage.setItem( "deployed", Deployed); }
   function getTonAddress() {
     const tonAddress = localStorage.getItem("tonAddress");
     return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";
@@ -24,16 +24,13 @@ function App() {
     const Deployed = localStorage.getItem("deployed");
     return Deployed ? Deployed : "false";
   }
-
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  
-  // New state for the menu
   const [showMenu, setShowMenu] = useState(false);
-
+  
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
@@ -49,21 +46,22 @@ function App() {
   );
 
   useEffect(() => {
-    if (wc_addressss && isdeployed === true && getDeployed() === "false") {
+    if (wc_addressss && isdeployed == true && getDeployed() == "false") {
       setTonAddress(wc_addressss.toString());
       setDeployed("true");
     }
   }, [isdeployed]);
 
+  // const [check , setcheck] = useState <number>(0);
+
   const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
     ch_number, eggs_number, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
 
-  // Function to toggle the menu
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-
+  
   return (
     <div>
       <div className="header">
@@ -81,14 +79,47 @@ function App() {
           <li><button onClick={() => setPageN(2)}>Wallet Contract</button></li>
         </ul>
       </nav>
-
+      {page_n === 0 && (
+        <>
+          <h1>Welcome to Chicken Farm</h1>
+          {!connected && <p>Please Log in To Continue</p>}
+          {connected && (
+            <>
+              <label>Referral address: {referal_address}</label><br /><br />
+              <button className='button' onClick={async () => {
+                  await sendDeployByMaster(address(referal_address));
+                  setIsdeployed(true); // Set deployed state only after successful approval
+              }}>Create Wallet Contract</button><br />
+              <div>
+                <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
+              </div>
+              <button onClick={() => {
+                setIsdeployed(true);
+                setPageN(2);
+              }}>set and Open Wallet Contract</button><b></b>
+              <button onClick={() => {
+                WebApp.showAlert((wc_addressss + " + " + getTonAddress() + " + " + getDeployed() + " + " + isdeployed ))
+              }}>show alert</button>
+              <p>owner : {owner_address}</p>
+            </>
+          )}
+        </>
+      )}
+      {page_n === 1 && (
+        <div>
+          <h1>Master Contract</h1>
+          <b>Master contract Address</b>
+          <div className='Hint'>{master_contract_address}</div>
+          <b>Master contract Balance</b>
+          {master_contract_balance && <div className='Hint'>{fromNano(master_contract_balance)} ton</div>}
+        </div>
+      )}
       {page_n === 2 && (
         <div>
-          {isdeployed ? (
+          {isdeployed === true ? (
             <>
               <h1>Wallet Contract</h1>
               <div className='Card'>
-                {/* Wallet balance and action buttons */}
                 <div><b>Wallet contract balance</b></div>
                 {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
                 {/* Three-dot menu */}
