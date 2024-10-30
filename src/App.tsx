@@ -82,11 +82,11 @@ function App() {
               </div>
               <button onClick={() => {
                 setIsdeployed(1);
-              }}>set and Open Wallet Contract</button>
+              }}>set and Open Wallet Contract</button><b></b>
               <button onClick={() => {
                 WebApp.showAlert((wc_addressss + " + " + getTonAddress()))
               }}>show alert</button>
-              <p>owner : {owner_address}</p>
+              {/* <p>owner : {owner_address}</p> */}
             </>
           )}
         </>
