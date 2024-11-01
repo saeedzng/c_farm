@@ -1,11 +1,12 @@
 #root {
-  width: 100vw; /* Full width */
-  height: 100vh; /* Full height */
-  margin: 0; /* Remove margin */
-  padding: 0; /* Remove padding */
+  width: calc(100vw - 2vw); /* Adjust width to account for the border */
+  height: calc(100vh - 2vw); /* Adjust height to account for the border */
+  margin: 1vw; /* Add margin equal to half of the border width */
+  padding: 0; /* Remove padding if not needed */
   text-align: center;
   background: linear-gradient(to right, #0000ff, #8a2be2); /* Blue to purple gradient */
   font-size: 2vw; /* Scaled font size */
+  border-radius: 50px; /* Match the body's border radius */
 }
 
 .header {
@@ -83,7 +84,7 @@
 }
 
 .logo {
-  height: 5vh; /* Adjust the size as needed */
+  height: 15vh; /* Adjust the size as needed */
   margin-left: 10px; /* Add spacing between the logo and TonConnect button */
 }
 

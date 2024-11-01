@@ -24,9 +24,11 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center; /* Center the wrapper */
+  align-items: center; /* Center the wrapper vertically */
   min-width: 320px;
   min-height: 100vh;
+  background-color: rgb(66, 55, 78); /* Background color matching border */
 }
 
 h1 {

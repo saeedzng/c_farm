@@ -63,6 +63,7 @@ function App() {
   };
   
   return (
+    <div className="wrapper"> {/* New wrapper div */}
     <div>
       <div className="header">
         <div className="left">
@@ -165,6 +166,7 @@ function App() {
           )}
         </div>
       )}
+    </div>
     </div>
   );
 }
