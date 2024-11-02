@@ -1,6 +1,6 @@
 #root {
-  width: calc(100vw - 2vw); /* Adjust width to account for the border */
-  height: calc(100vh - 2vw); /* Adjust height to account for the border */
+  width: calc(100vw); /* Adjust width to account for the border */
+  height: calc(100vh); /* Adjust height to account for the border */
   text-align: center;
   font-size: 2vw; /* Scaled font size */
 }
@@ -37,7 +37,7 @@
   border: 0.2vw solid rgb(247, 242, 242); /* Circular border */
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
-  padding-bottom: 20px; /* Space below menu */
+  padding-bottom: 10px; /* Space below menu */
 }
 
 .down-section {
@@ -46,7 +46,6 @@
   border: 0.2vw solid rgb(247, 242, 242); /* Circular border */
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
-  padding-bottom: 20px; /* Space below menu */
 }
 
 .menu {
