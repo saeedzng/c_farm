@@ -1,6 +1,4 @@
 #root {
-  width: calc(100vw); /* Adjust width to account for the border */
-  height: calc(100vh); /* Adjust height to account for the border */
   text-align: center;
   font-size: 2vw; /* Scaled font size */
 }
