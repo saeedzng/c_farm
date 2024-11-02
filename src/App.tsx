@@ -127,7 +127,7 @@ function App() {
            <div className="image-row">
             {/* Chicken Image Section */}
             <div className="image-container">
-              <img src="./chicken.png" alt="Chicken" className="wallet-image" />
+              <img src="./hen.png" alt="Chicken" className="wallet-image" />
               <div className="image-value">{ch_number} Chickens</div>
             </div>
 
