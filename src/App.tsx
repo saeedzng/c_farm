@@ -63,8 +63,9 @@ function App() {
   };
   
   return (
-    <div className="wrapper"> {/* New wrapper div */}
-    <div>
+    <div className="wrapper">
+    
+    <div className="top-section"> 
       <div className="header">
         <div className="left">
           <TonConnectButton />
@@ -80,6 +81,8 @@ function App() {
           <li><button onClick={() => setPageN(2)}>Wallet Contract</button></li>
         </ul>
       </nav>
+      </div >
+      <div className="down-section" >
       {page_n === 0 && (
         <>
           <h1>Welcome to Chicken Farm</h1>
