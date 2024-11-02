@@ -33,17 +33,18 @@ align-items: center;
 }
 
 .top-section {
-  background-color: #00ff88; /* Example solid color for top section */
-  border: 0.2vw solid rgb(247, 242, 242); /* Circular border */
+  background: linear-gradient(to bottom, #3a027b, #000000);
+ 
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
   padding-bottom: 10px; /* Space below menu */
+  margin-bottom: 1.5vh;
 }
 
 .down-section {
   height: 100%;
-  background-color: #7e2d6f; /* Example solid color for top section */
-  border: 0.2vw solid rgb(247, 242, 242); /* Circular border */
+  background: linear-gradient(to bottom, #1e0532, #000000);
+  
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
 }
