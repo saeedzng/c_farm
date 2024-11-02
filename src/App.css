@@ -1,4 +1,5 @@
 #root {
+
   text-align: center;
   font-size: 2vw; /* Scaled font size */
 }
@@ -23,8 +24,8 @@
 }
 
 .wrapper {
-  width: calc(100vw - 2vw); /* Adjust width to account for the border */
-  height: calc(100vh - 20vw); /* Adjust height to account for the border */
+  width: calc(100vw - 5vw); /* Adjust width to account for the border */
+  height: calc(100vh - 5vh); /* Adjust height to account for the border */
   padding: 0; /* Remove padding if not needed */
   text-align: center;
   font-size: 2vw; /* Scaled font size */
