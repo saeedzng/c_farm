@@ -1,7 +1,7 @@
 #root {
 align-items: center;
   text-align: center;
-  font-size: 2vw; /* Scaled font size */
+  font-size: 4vw; /* Scaled font size */
 }
 
 .header {
@@ -24,17 +24,16 @@ align-items: center;
 }
 
 .wrapper {
-  width: calc(100vw - 5vw); /* Adjust width to account for the border */
-  height: calc(100vh - 5vh); /* Adjust height to account for the border */
+  width: calc(100vw - 4vw); /* Adjust width to account for the border */
+  height: calc(100vh - 4vh); /* Adjust height to account for the border */
   align-items: center;
   padding: 0; /* Remove padding if not needed */
   text-align: center;
-  font-size: 2vw; /* Scaled font size */
+  font-size: 4vw; /* Scaled font size */
 }
 
 .top-section {
   background: linear-gradient(to bottom, #3a027b, #000000);
- 
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
   padding-bottom: 10px; /* Space below menu */
@@ -42,9 +41,8 @@ align-items: center;
 }
 
 .down-section {
-  height: 100%;
-  background: linear-gradient(to bottom, #1e0532, #000000);
   
+  background: linear-gradient(to bottom, #1e0532, #000000);
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
 }
