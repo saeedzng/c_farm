@@ -123,16 +123,19 @@ function App() {
           {isdeployed === true ? (
             <>
               <h1>Wallet Contract</h1>
-                        {/* Chicken Image Section */}
-          <div className="image-container">
-            <img src="./hen.jpeg" alt="Chicken" className="wallet-image" />
-            <div className="image-value">{ch_number} Chickens</div>
-          </div>
+           {/* Image Row Section */}
+           <div className="image-row">
+            {/* Chicken Image Section */}
+            <div className="image-container">
+              <img src="./chicken.png" alt="Chicken" className="wallet-image" />
+              <div className="image-value">{ch_number} Chickens</div>
+            </div>
 
-          {/* Egg Image Section */}
-          <div className="image-container">
-            <img src="./egg.jpeg" alt="Egg" className="wallet-image" />
-            <div className="image-value">{eggs_number} Eggs</div>
+            {/* Egg Image Section */}
+            <div className="image-container">
+              <img src="./egg.png" alt="Egg" className="wallet-image" />
+              <div className="image-value">{eggs_number} Eggs</div>
+            </div>
           </div>
               <div className='Card'>
                 <div><b>Wallet contract balance</b></div>

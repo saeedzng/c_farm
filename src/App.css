@@ -142,14 +142,20 @@ align-items: center;
   background-color: #45a049; /* Darker green on hover */
 }
 
+.image-row {
+  display: flex; /* Use flexbox for horizontal layout */
+  justify-content: space-between; /* Space between the images */
+  width: 100%; /* Full width of the container */
+}
+
 .image-container {
-  width: 100%; /* Full viewport width */
-  text-align: center; /* Center text */
-  margin-bottom: 10px; /* Space between images */
+  flex: 1; /* Each image container takes equal space */
+  text-align: center; /* Center text below images */
+  margin: 0; /* Remove default margin */
 }
 
 .wallet-image {
-  width: 50%; /* Full width of the container */
+  width: 100%; /* Full width of the container */
   height: auto; /* Maintain aspect ratio */
 }
 
