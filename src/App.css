@@ -145,7 +145,7 @@ align-items: center;
 /* Responsive adjustments for horizontal menu */
 @media (max-width: 768px) {
   #root {
-    font-size: 6vw; /* Further reduce font size for mobile */
+    font-size: 5vw; /* Further reduce font size for mobile */
   }
 
   .menu ul {
@@ -160,7 +160,7 @@ align-items: center;
   .menu ul li button, .menu ul li > * {
     padding: 1.5vh 2.5vw; /* Bigger padding for mobile */
     border-radius: 2vw;
-    font-size: 4vw; /* Bigger font size for menu items on mobile */
+    font-size: 3.5vw; /* Bigger font size for menu items on mobile */
   }
 
   .logo {
@@ -168,15 +168,15 @@ align-items: center;
   }
 
   .Hint {
-    font-size: 4vw; /* Scaled font size */
+    font-size: 3.5vw; /* Scaled font size */
     overflow-wrap: break-word; /* Ensure long addresses wrap properly */
   }
 
   .three-dot-menu {
-    font-size: 8vw; /* Larger dots on mobile */
+    font-size: 7vw; /* Larger dots on mobile */
   }
 
   .menu-content {
-    font-size: smaller; /* Adjust font size for mobile */
+    font-size:small; /* Adjust font size for mobile */
   }
 }
