@@ -77,7 +77,7 @@ function App() {
       <nav className="menu">
         <ul>
           <li><button onClick={() => setPageN(0)}>Home</button></li>
-          <li><button onClick={() => setPageN(1)}>Master Contract</button></li>
+          {/* <li><button onClick={() => setPageN(1)}>Master Contract</button></li> */}
           <li><button onClick={() => setPageN(2)}>Wallet Contract</button></li>
         </ul>
       </nav>
@@ -133,7 +133,7 @@ function App() {
                 <div className='Hint'>{ch_number}</div>
                 {connected && (
   <>
-    <button className='action-button' onClick={() => { send_buy_chicken_order(1); }}>Buy 1 Chicken</button><br />
+    <button  onClick={() => { send_buy_chicken_order(1); }}>Buy 1 Chicken</button><br />
     <button className='action-button' onClick={() => { send_sell_chicken_order(1); }}>Sell 1 Chicken</button><br />
     <button className='action-button' onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
   </>
