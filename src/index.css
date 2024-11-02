@@ -21,11 +21,10 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
   justify-content: center; /* Center the wrapper */
   align-items: center; /* Center the wrapper vertically */
-  min-width: 320px;
+  min-width: 98vw;
   min-height: 100vh;
   background-color: rgb(125, 8, 8); /* Background color matching border */
 }

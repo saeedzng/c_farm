@@ -63,7 +63,7 @@ function App() {
   };
   
   return (
-    <div >
+    <div className="wrapper">
     
     <div className="top-section"> 
       <div className="header">

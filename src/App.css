@@ -4,7 +4,7 @@
   margin: 1vw; /* Add margin equal to half of the border width */
   padding: 0; /* Remove padding if not needed */
   text-align: center;
-  background-color: #733fb3;
+  background-color: #bd9de3;
   font-size: 2vw; /* Scaled font size */
   border-radius: 50px; /* Match the body's border radius */
 }
@@ -29,8 +29,8 @@
 }
 
 .wrapper {
-  width: calc(100vw - 2vw); /* Adjust width to account for the border */
-  height: calc(100vh - 2vw); /* Adjust height to account for the border */
+  width: calc(100vw - 3vw); /* Adjust width to account for the border */
+  height: calc(100vh - 3vw); /* Adjust height to account for the border */
   padding: 0; /* Remove padding if not needed */
   text-align: center;
   font-size: 2vw; /* Scaled font size */
@@ -53,10 +53,6 @@
   padding-bottom: 20px; /* Space below menu */
 }
 
-.gradient-background {
-  background: linear-gradient(to right, #0000ff, #8a2be2); /* Blue to purple gradient */
-  height: calc(100vh - (desired height of top section)); /* Adjust height accordingly */
-}
 .menu {
   background-color: #333;
   overflow: hidden;
@@ -95,15 +91,6 @@
   background-color: #575757; /* Change background color on hover */
 }
 
-.ton-connect-button {
-  padding: 0; /* Remove extra padding */
-  height: auto; /* Adjust the height */
-  display: inline-flex; /* Flexbox for better alignment */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
-  font-size: 2.5vw; /* Match font size with menu items */
-}
-
 .card {
   padding: 4vh 2vw; /* Scaled padding */
 }
@@ -114,7 +101,7 @@
 }
 
 .logo {
-  height: 15vh; /* Adjust the size as needed */
+  height: 19vh; /* Adjust the size as needed */
   margin-left: 10px; /* Add spacing between the logo and TonConnect button */
 }
 
@@ -141,7 +128,7 @@
   }
 
   .logo {
-    height: 5vh; /* Scaled height */
+    height: 8vh; /* Scaled height */
   }
 
   .Hint {
