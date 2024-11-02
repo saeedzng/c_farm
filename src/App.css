@@ -1,12 +1,11 @@
 #root {
   width: calc(100vw - 2vw); /* Adjust width to account for the border */
   height: calc(100vh - 2vw); /* Adjust height to account for the border */
-  margin: 1vw; /* Add margin equal to half of the border width */
-  padding: 0; /* Remove padding if not needed */
+
   text-align: center;
-  background-color: #bd9de3;
+  
   font-size: 2vw; /* Scaled font size */
-  border-radius: 50px; /* Match the body's border radius */
+  
 }
 
 .header {
