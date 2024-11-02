@@ -21,18 +21,17 @@ a:hover {
 }
 
 
-
 h1 {
-  font-size: 2.2em; /* Reduced size for mobile */
+  font-size: 6vw; /* Reduced size for mobile */
   line-height: 1.1;
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 0.9em; /* Reduced size for mobile */
-  font-weight: 500;
+  padding: 1.5vh 3vw;
+  font-size: 4vw; /* Reduced size for mobile */
+  font-weight: bold;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
@@ -48,7 +47,7 @@ button:focus, button:focus-visible {
 }
 
 .Hint {
-  font-size: 0.85em; /* Reduced size for mobile */
+  font-size: 3vw; /* Reduced size for mobile */
   overflow-wrap: break-word; /* Ensure long addresses wrap properly */
 }
 
