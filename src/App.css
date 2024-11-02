@@ -24,11 +24,17 @@ align-items: center;
 }
 
 .wrapper {
-  width: calc(100vw - 5vw); /* Adjust width to account for the border */
-  height: calc(100vh - 5vh); /* Adjust height to account for the border */
-  padding: 0; /* Remove padding if not needed */
-  text-align: center;
-  font-size: 2vw; /* Scaled font size */
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  width: calc(100vw - 5vw); /* Adjust width to account for borders */
+  height: calc(100vh - 5vh); /* Adjust height to account for borders */
+}
+
+.top-section, .down-section {
+  width: 100%; /* Full width for both sections */
+  max-width: 1200px; /* Optional: Set a maximum width for larger screens */
 }
 
 .top-section {
@@ -36,12 +42,11 @@ align-items: center;
   border: 0.2vw solid rgb(247, 242, 242); /* Circular border */
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
-  padding-bottom: 10px; /* Space below menu */
 }
 
 .down-section {
-  height: 100%;
-  background-color: #7e2d6f; /* Example solid color for top section */
+  height: auto; /* Allow height to adjust based on content */
+  background-color: #7e2d6f; /* Example solid color for down section */
   border: 0.2vw solid rgb(247, 242, 242); /* Circular border */
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
@@ -105,6 +110,10 @@ align-items: center;
     padding: 1vh;
     font-size: 3vw; /* Further reduce font size for mobile */
   }
+
+  .top-section, .down-section {
+    width: calc(100% - 20px); /* Adjust for smaller screens */
+}
 
   .menu ul {
     flex-direction: row-reverse; /* Align items from right to left on mobile */
