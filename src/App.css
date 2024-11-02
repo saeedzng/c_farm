@@ -101,6 +101,49 @@ align-items: center;
   margin-left: 10px; /* Add spacing between the logo and TonConnect button */
 }
 
+.three-dot-menu {
+  cursor: pointer;
+  font-size: 2.5vw; /* Adjust size as needed */
+  color: #fff; /* White color for the dots */
+}
+
+.menu-content {
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
+  color: #fff; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px; /* Increased padding around content */
+  position: absolute; /* Position it absolutely */
+  z-index: 10; /* Ensure it appears above other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+}
+
+.menu-content div {
+   margin-bottom: 8px; /* Space between items */
+}
+
+.menu-content .Hint {
+   font-size: smaller; /* Smaller font size for details */
+   opacity: 0.9; /* Slightly transparent for a softer look */
+}
+
+.action-button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding around the text */
+  text-align: center; /* Center text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Inline-block to allow margin */
+  font-size: 2vw; /* Responsive font size */
+  margin: 5px 0; /* Margin between buttons */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.action-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
 /* Responsive adjustments for horizontal menu */
 @media (max-width: 768px) {
   #root {
@@ -131,58 +174,12 @@ align-items: center;
     font-size: 2vw; /* Scaled font size */
     overflow-wrap: break-word; /* Ensure long addresses wrap properly */
   }
-}
 
-.three-dot-menu {
-  cursor: pointer;
-  font-size: 2.5vw; /* Adjust size as needed */
-  color: #fff; /* White color for the dots */
-}
+  .three-dot-menu {
+    font-size: 4vw; /* Larger dots on mobile */
+  }
 
-.menu-content {
-  background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
-  color: #fff; /* White text color */
-  border-radius: 10px; /* Rounded corners */
-  padding: 15px; /* Increased padding around content */
-  position: absolute; /* Position it absolutely */
-  z-index: 10; /* Ensure it appears above other elements */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
-}
-
-.menu-content div {
-   margin-bottom: 8px; /* Space between items */
-}
-
-.menu-content .Hint {
-   font-size: smaller; /* Smaller font size for details */
-   opacity: 0.9; /* Slightly transparent for a softer look */
-}
-
-/* Responsive adjustments for mobile */
-@media (max-width: 768px) {
-   .three-dot-menu {
-     font-size: 4vw; /* Larger dots on mobile */
-   }
-
-   .menu-content {
-     font-size: smaller; /* Adjust font size for mobile */
-   }
-}
-
-.action-button {
-  background-color: #4CAF50; /* Green background */
-  color: white; /* White text */
-  border: none; /* No border */
-  padding: 10px 20px; /* Padding around the text */
-  text-align: center; /* Center text */
-  text-decoration: none; /* No underline */
-  display: inline-block; /* Inline-block to allow margin */
-  font-size: 2vw; /* Responsive font size */
-  margin: 5px 0; /* Margin between buttons */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-}
-
-.action-button:hover {
-  background-color: #45a049; /* Darker green on hover */
+  .menu-content {
+    font-size: smaller; /* Adjust font size for mobile */
+  }
 }
