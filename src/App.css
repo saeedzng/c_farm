@@ -29,7 +29,7 @@ align-items: center;
   align-items: center;
   padding: 0; /* Remove padding if not needed */
   text-align: center;
-  font-size: 4vw; /* Scaled font size */
+  font-size: 3vw; /* Scaled font size */
 }
 
 .top-section {
@@ -101,7 +101,7 @@ align-items: center;
 
 .three-dot-menu {
   cursor: pointer;
-  font-size: 2.5vw; /* Adjust size as needed */
+  font-size: 2.2vw; /* Adjust size as needed */
   color: #fff; /* White color for the dots */
 }
 
@@ -168,7 +168,7 @@ align-items: center;
   }
 
   .Hint {
-    font-size: 3.5vw; /* Scaled font size */
+    font-size: 3vw; /* Scaled font size */
     overflow-wrap: break-word; /* Ensure long addresses wrap properly */
   }
 
