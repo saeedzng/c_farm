@@ -133,7 +133,7 @@ align-items: center;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  background-image: linear-gradient(to bottom, #1e0532, #ffffff);
+  background-image: linear-gradient(to bottom, #1e0532, #000000);
   background-size: 200% auto;
 }
 
