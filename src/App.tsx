@@ -56,10 +56,10 @@ function App() {
   // const [check , setcheck] = useState <number>(0);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
-    ch_number, eggs_number, first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
+    ch_number,  first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
   let realeggnumber: number = 0;
-  realeggnumber = eggs_number ? eggs_number / 3333333 : 0;
+  realeggnumber = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
