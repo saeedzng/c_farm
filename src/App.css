@@ -192,7 +192,7 @@ align-items: center;
 }
 
 .dialog-content {
-  background-color: white;
+  background: linear-gradient(to bottom, #1e0532, #000000);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
@@ -207,14 +207,9 @@ align-items: center;
   margin: 0 10px; /* Space between buttons and input */
 }
 
-/* .dialog-buttons {
+.dialog-buttons {
   display: flex;
   justify-content: space-between;
-} */
-
-.dalog-input{
-  width: 20px;
-  margin-bottom: 10px;
 }
 
 /* Responsive adjustments for horizontal menu */
