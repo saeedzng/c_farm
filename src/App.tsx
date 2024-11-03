@@ -184,6 +184,7 @@ function App() {
                     value={chickenCount}
                     onChange={(e) => setChickenCount(Number(e.target.value))}
                     min="1"
+                    style={{ width: '50%' }}
                   />
                   <button onClick={increaseCount}>+</button>
                 </div>
