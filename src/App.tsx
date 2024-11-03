@@ -123,7 +123,7 @@ function App() {
           {isdeployed === true ? (
             <>
               <h1>Wallet Contract</h1>
-           {/* Image Row Section */}
+
            <div className="image-row">           
             <div className="image-container">
               <img src="./hen.png" alt="Chicken" className="wallet-image" />
