@@ -179,12 +179,11 @@ function App() {
                 <h2>Buy Chickens</h2>
                 <div className="input-container">
                   <button onClick={decreaseCount}>-</button>
-                  <input
+                  <input className="dialog-input"
                     type="number"
                     value={chickenCount}
                     onChange={(e) => setChickenCount(Number(e.target.value))}
                     min="1"
-                    style={{ width: '50%' }} // Set width to half of parent
                   />
                   <button onClick={increaseCount}>+</button>
                 </div>

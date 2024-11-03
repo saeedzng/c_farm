@@ -203,6 +203,11 @@ align-items: center;
   justify-content: space-between;
 }
 
+.dalog-input{
+  width: 20%;
+  margin-bottom: 10px;
+}
+
 /* Responsive adjustments for horizontal menu */
 @media (max-width: 768px) {
   #root {
