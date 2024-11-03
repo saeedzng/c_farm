@@ -177,7 +177,6 @@ align-items: center;
 .wallet-button {
   width: 33.3%; /* Set image width to half of its container */
   height: auto; /* Maintain aspect ratio */
-
 }
 
 /* Responsive adjustments for horizontal menu */
