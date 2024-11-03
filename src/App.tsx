@@ -163,6 +163,8 @@ function App() {
                         }}>Share Wallet Address</button>
                       </div>
                     </div>
+
+                    
                               {/* Buy Chicken Dialog */}
           {showBuyDialog && (
             <div className="dialog-overlay">
