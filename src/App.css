@@ -125,17 +125,15 @@ align-items: center;
 }
 
 .action-button {
+  width: 48%; /* Slightly less than 50% to account for spacing */
+  height: 50px; /* Fixed height */
+  font-size: 16px;
   background-color: #4CAF50; /* Green background */
-  color: white; /* White text */
-  border: none; /* No border */
-  padding: 10px 20px; /* Padding around the text */
-  text-align: center; /* Center text */
-  text-decoration: none; /* No underline */
-  display: inline-block; /* Inline-block to allow margin */
-  font-size: 2vw; /* Responsive font size */
-  margin: 5px 0; /* Margin between buttons */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .action-button:hover {
@@ -169,15 +167,15 @@ align-items: center;
 }
 
 .button-container {
-  flex: 1; /* Each image container takes equal space */
-  text-align: center; /* Center text below images */
-  margin: 0; /* Remove default margin */
+  width: 100%;
 }
 
-.wallet-button {
-  width: 50%; /* Set image width to half of its container */
-  height: auto; /* Maintain aspect ratio */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Space between button rows */
 }
+
 
 /* Responsive adjustments for horizontal menu */
 @media (max-width: 768px) {
@@ -215,5 +213,9 @@ align-items: center;
 
   .menu-content {
     font-size:small; /* Adjust font size for mobile */
+  }
+
+  .action-button {
+    font-size: 14px; /* Smaller font size on mobile */
   }
 }
