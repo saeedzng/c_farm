@@ -128,32 +128,11 @@ function App() {
             <div className="image-container">
               <img src="./hen.png" alt="Chicken" className="wallet-image" />
               <div className="image-value">{ch_number} Chickens</div>
-            </div>
-            <div className="image-container">
-              <img src="./hen.png" alt="Chicken" className="wallet-image" />
-              <div className="image-value">{ch_number} Chickens</div>
-            </div>          
+            </div>         
             <div className="image-container">
               <img src="./egg.png" alt="Egg" className="wallet-image" />
               <div className="image-value">{eggs_number} Eggs</div>
             </div>
-          </div>
-          <div className="button-container">
-              <div className="button-row">
-                <button  onClick={() => { send_buy_chicken_order(1); }}>Buy 1 Chicken</button>
-                <button  onClick={() => { send_sell_chicken_order(1); }}>Sell 1 Chicken</button>
-              </div>
-              <div className="button-row">
-                <button  onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
-                <button  onClick={() => {
-                  const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-                  navigator.share({
-                    title: 'Chicken Farm Wallet Contract',
-                    text: 'Check out this wallet contract address!',
-                    url: telegramShareUrl,
-                  });
-                }}>Share Wallet Address</button>
-              </div>          
           </div>
           <div className="button-container">
               <div className="button-row">
