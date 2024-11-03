@@ -56,7 +56,7 @@ export function useWalletContract(UserAddress: Address) {
     wallet_master_address: contractData?.master_address?.toString({ bounceable: false, testOnly: true }),
     ...contractData,
     send_buy_chicken_order: (chicken_to_buy: number) => {
-      return walletContract?.send_buy_chicken_order(sender, toNano(0.1), chicken_to_buy);
+      return walletContract?.send_buy_chicken_order(sender, toNano(chicken_to_buy * 0.1), chicken_to_buy);
     },
     send_sell_chicken_order: (chicken_to_sell: number) => {
       return walletContract?.send_sell_chicken_order(sender, toNano(0.01), chicken_to_sell);
