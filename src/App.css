@@ -201,7 +201,7 @@ align-items: center;
 .input-container {
   display: flex;
   align-items: center; /* Align items vertically */
-  align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
 }
 
@@ -213,6 +213,8 @@ align-items: center;
   display: flex;
   justify-content: space-between;
 }
+
+
 
 /* Responsive adjustments for horizontal menu */
 @media (max-width: 768px) {
