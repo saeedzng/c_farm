@@ -55,7 +55,7 @@ function App() {
   // const [check , setcheck] = useState <number>(0);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
-    ch_number, eggs_number, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
+    ch_number, eggs_number,first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
 
   const toggleMenu = () => { setShowMenu(!showMenu);};
@@ -82,12 +82,14 @@ function App() {
   };
 
   const increaseCount = () => {
-    setChickenCount(prevCount => prevCount + 1);
-  };
+    setChickenCount(prevCount => prevCount + 1);};
 
   const decreaseCount = () => {
-    setChickenCount(prevCount => Math.max(1, prevCount - 1)); // Prevent going below 1
-  };
+    setChickenCount(prevCount => Math.max(1, prevCount - 1));};
+
+// const cansell = () => {
+//   let b :Date = new Date()
+// }
 
   return (
     <div className="wrapper">
@@ -129,7 +131,7 @@ function App() {
                   setPageN(2);
                 }}>set and Open Wallet Contract</button><b></b>
                 <button onClick={() => {
-                  WebApp.showAlert((wc_addressss + " + " + getTonAddress() + " + " + getDeployed() + " + " + isdeployed))
+                  WebApp.showAlert((wc_addressss + " + " + getTonAddress() + " + " + getDeployed() + " + " + isdeployed + "+" + first_buy))
                 }}>show alert</button>
                 <p>owner : {owner_address}</p>
               </>
