@@ -124,8 +124,7 @@ function App() {
             <>
               <h1>Wallet Contract</h1>
            {/* Image Row Section */}
-           <div className="image-row">
-            
+           <div className="image-row">           
             <div className="image-container">
               <img src="./hen.png" alt="Chicken" className="wallet-image" />
               <div className="image-value">{ch_number} Chickens</div>
@@ -139,6 +138,23 @@ function App() {
               <div className="image-value">{eggs_number} Eggs</div>
             </div>
           </div>
+          <div className="image-row"> 
+          <div className="image-container">
+          <div className="wallet-image">
+          <button  onClick={() => { send_buy_chicken_order(1); }}>Buy Chicken</button>
+          </div>
+          </div>
+          <div className="image-container">
+          <div className="wallet-image">
+          <button  onClick={() => { send_sell_chicken_order(1); }}>Sell Chicken</button>
+          </div>
+          </div>
+          <div className="image-container">
+          <div className="wallet-image">
+          <button  onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
+          </div>
+          </div>
+          </div>
               <div className='Card'>
                 <div><b>Wallet contract balance</b></div>
                 {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
@@ -150,8 +166,8 @@ function App() {
                 {connected && (
   <>
     <button  onClick={() => { send_buy_chicken_order(1); }}>Buy 1 Chicken</button><br />
-    <button className='action-button' onClick={() => { send_sell_chicken_order(1); }}>Sell 1 Chicken</button><br />
-    <button className='action-button' onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
+    <button  onClick={() => { send_sell_chicken_order(1); }}>Sell 1 Chicken</button><br />
+    <button  onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
   </>
 )}
               </div>
