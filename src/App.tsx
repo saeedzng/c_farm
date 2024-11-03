@@ -180,8 +180,7 @@ function App() {
                 });
               }}>Share Wallet Address</button>
                               {/* Three-dot menu */}
-                              <div className="three-dot-menu" onClick={toggleMenu}>
-                  &#x2022;&#x2022;&#x2022; {/* Three dots */}
+                              <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022; {/* Three dots */}
                 </div>
                 {showMenu && (
                   <div className="menu-content">
