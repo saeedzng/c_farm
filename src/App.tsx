@@ -58,48 +58,19 @@ function App() {
     ch_number, eggs_number, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  const toggleMenu = () => { setShowMenu(!showMenu);};
+  const [showBuyDialog, setShowBuyDialog] = useState(false);
+  const [chickenCount, setChickenCount] = useState(1);
 
+  const handleBuyChicken = () => {setShowBuyDialog(true);};
 
-  const handleBuyChicken = () => {
-    WebApp.showPopup({
-      title: 'Buy Chickens',
-      message: 'How many chickens do you want to buy?',
-      buttons: [
-        {
-          id: "cancel",
-          type: "cancel"
-        },
-        {
-          id: "buy",
-          type: "ok"
-        }
-      ]
-    }, (buttonId?: string) => {
-      if (buttonId === "buy") {
-        WebApp.showPopup({
-          title: 'Enter Number',
-          message: 'Enter the number of chickens:',
-          buttons: [
-            {
-              id: "confirm",
-              type: "ok"
-            }
-          ]
-        }, (buttonId?: string) => {
-          if (buttonId === "confirm") {
-            const chickenCount = parseInt(WebApp.initDataUnsafe.start_param || "1");
-            if (!isNaN(chickenCount) && chickenCount > 0) {
-              send_buy_chicken_order(chickenCount);
-            } else {
-              WebApp.showAlert("Please enter a valid number of chickens.");
-            }
-          }
-        });
-      }
-    });
+  const confirmPurchase = () => {
+    if (chickenCount > 0) {
+      send_buy_chicken_order(chickenCount);
+      setShowBuyDialog(false); // Close dialog after purchase
+    } else {
+      WebApp.showAlert("Please enter a valid number of chickens.");
+    }
   };
 
   return (
@@ -192,6 +163,24 @@ function App() {
                         }}>Share Wallet Address</button>
                       </div>
                     </div>
+                              {/* Buy Chicken Dialog */}
+          {showBuyDialog && (
+            <div className="dialog-overlay">
+              <div className="dialog-content">
+                <h2>Buy Chickens</h2>
+                <input
+                  type="number"
+                  value={chickenCount}
+                  onChange={(e) => setChickenCount(Number(e.target.value))}
+                  min="1"
+                />
+                <div className="dialog-buttons">
+                  <button onClick={() => setShowBuyDialog(false)}>Cancel</button>
+                  <button onClick={confirmPurchase}>Buy</button>
+                </div>
+              </div>
+            </div>
+          )}
                     <div className='Card'>
                       <div><b> contract balance</b></div>
                       {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
