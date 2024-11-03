@@ -168,6 +168,18 @@ align-items: center;
   margin-top: 5px; /* Space above value */
 }
 
+.button-container {
+  flex: 1; /* Each image container takes equal space */
+  text-align: center; /* Center text below images */
+  margin: 0; /* Remove default margin */
+}
+
+.wallet-button {
+  width: 33.3%; /* Set image width to half of its container */
+  height: auto; /* Maintain aspect ratio */
+
+}
+
 /* Responsive adjustments for horizontal menu */
 @media (max-width: 768px) {
   #root {

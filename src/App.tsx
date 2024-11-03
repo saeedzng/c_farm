@@ -139,18 +139,18 @@ function App() {
             </div>
           </div>
           <div className="image-row"> 
-          <div className="image-container">
-          <div className="wallet-image">
+          <div className="button-container">
+          <div className="wallet-button">
           <button  onClick={() => { send_buy_chicken_order(1); }}>Buy Chicken</button>
           </div>
           </div>
-          <div className="image-container">
-          <div className="wallet-image">
+          <div className="button-container">
+          <div className="wallet-button">
           <button  onClick={() => { send_sell_chicken_order(1); }}>Sell Chicken</button>
           </div>
           </div>
-          <div className="image-container">
-          <div className="wallet-image">
+          <div className="button-container">
+          <div className="wallet-button">
           <button  onClick={() => { send_recive_eggs_order(); }}>Get Eggs</button>
           </div>
           </div>
