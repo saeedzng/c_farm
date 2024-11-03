@@ -200,7 +200,7 @@ align-items: center;
 
 .input-container {
   display: flex;
-  align-items: center; /* Align items vertically */
+  align-items: center center;
 }
 
 .input-container input {
