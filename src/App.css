@@ -131,6 +131,7 @@ align-items: center;
   background-color: #3a027b; /* Green background */
   color: white;
   border: 1px solid transparent;
+  border-color: #fff;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
