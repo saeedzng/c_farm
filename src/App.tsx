@@ -149,11 +149,7 @@ function App() {
           <button  onClick={() => { send_sell_chicken_order(1); }}>Sell Chicken</button>
           </div>
           </div>
-          <div className="button-container">
-          <div className="wallet-button">
-          <button  onClick={() => { send_recive_eggs_order(); }}>Get Eggs</button>
-          </div>
-          </div>
+          
           </div>
               <div className='Card'>
                 <div><b> contract balance</b></div>
