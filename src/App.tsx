@@ -72,6 +72,13 @@ function App() {
       WebApp.showAlert("Please enter a valid number of chickens.");
     }
   };
+  const increaseCount = () => {
+    setChickenCount(prevCount => prevCount + 1);
+  };
+
+  const decreaseCount = () => {
+    setChickenCount(prevCount => Math.max(1, prevCount - 1)); // Prevent going below 1
+  };
 
   return (
     <div className="wrapper">
@@ -164,18 +171,23 @@ function App() {
                       </div>
                     </div>
 
-                    
-                              {/* Buy Chicken Dialog */}
+
+          {/* Buy Chicken Dialog */}
           {showBuyDialog && (
             <div className="dialog-overlay">
               <div className="dialog-content">
                 <h2>Buy Chickens</h2>
-                <input
-                  type="number"
-                  value={chickenCount}
-                  onChange={(e) => setChickenCount(Number(e.target.value))}
-                  min="1"
-                />
+                <div className="input-container">
+                  <button onClick={decreaseCount}>-</button>
+                  <input
+                    type="number"
+                    value={chickenCount}
+                    onChange={(e) => setChickenCount(Number(e.target.value))}
+                    min="1"
+                    style={{ width: '50%' }} // Set width to half of parent
+                  />
+                  <button onClick={increaseCount}>+</button>
+                </div>
                 <div className="dialog-buttons">
                   <button onClick={() => setShowBuyDialog(false)}>Cancel</button>
                   <button onClick={confirmPurchase}>Buy</button>
