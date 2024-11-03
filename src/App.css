@@ -140,6 +140,29 @@ align-items: center;
   background-color: #45a049; /* Darker green on hover */
 }
 
+button {
+  width: 48%; /* Slightly less than 50% to account for spacing */
+  height: 50px; /* Fixed height */
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 1.5vh 3vw;
+  font-size: 3.5vw; /* Reduced size for mobile */
+  font-weight: bold;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus, button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+
 .image-row {
   display: flex; /* Use flexbox for horizontal layout */
   justify-content: space-between; /* Space between the images */
