@@ -31,6 +31,7 @@ function App() {
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [showMenu, setShowMenu] = useState(false);
 
+
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
@@ -55,10 +56,11 @@ function App() {
   // const [check , setcheck] = useState <number>(0);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
-    ch_number, eggs_number,first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
+    ch_number, eggs_number, first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
-
-  const toggleMenu = () => { setShowMenu(!showMenu);};
+  let realeggnumber: number = 0;
+  realeggnumber = eggs_number ? eggs_number * 0.0033333333333333  : 0;
+  const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
   const [actionType, setActionType] = useState<'buy' | 'sell'>('buy'); // State to track action type
@@ -82,14 +84,16 @@ function App() {
   };
 
   const increaseCount = () => {
-    setChickenCount(prevCount => prevCount + 1);};
+    setChickenCount(prevCount => prevCount + 1);
+  };
 
   const decreaseCount = () => {
-    setChickenCount(prevCount => Math.max(1, prevCount - 1));};
+    setChickenCount(prevCount => Math.max(1, prevCount - 1));
+  };
 
-// const cansell = () => {
-//   let b :Date = new Date()
-// }
+  // const cansell = () => {
+  //   let b :Date = new Date()
+  // }
 
   return (
     <div className="wrapper">
@@ -131,8 +135,8 @@ function App() {
                   setPageN(2);
                 }}>set and Open Wallet Contract</button><b></b>
                 <button onClick={() => {
-                  WebApp.showAlert((wc_addressss + " + " + getTonAddress() + " + " + getDeployed() + " + " 
-                  + isdeployed + "+" + first_buy + "+" + Date()))
+                  WebApp.showAlert((wc_addressss + " + " + getTonAddress() + " + " + getDeployed() + " + "
+                    + isdeployed + "+" + first_buy + "+" + Date()))
                 }}>show alert</button>
                 <p>owner : {owner_address}</p>
               </>
@@ -162,13 +166,13 @@ function App() {
                       </div>
                       <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
-                        <div className="image-value">{eggs_number}</div>
+                        <div className="image-value">{realeggnumber}</div>
                       </div>
                     </div>
                     <div className="button-container">
                       <div className="button-row">
-                      <button className="action-button" onClick={() => handleDialogOpen('buy')}>Buy Chicken</button>
-                      <button className="action-button" onClick={() => handleDialogOpen('sell')}>Sell Chicken</button>
+                        <button className="action-button" onClick={() => handleDialogOpen('buy')}>Buy Chicken</button>
+                        <button className="action-button" onClick={() => handleDialogOpen('sell')}>Sell Chicken</button>
                       </div>
                       <div className="button-row">
                         <button className="action-button" onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
@@ -184,29 +188,29 @@ function App() {
                     </div>
 
 
-          {/* Buy/Sell Chicken Dialog */}
-          {showDialog && (
-            <div className="dialog-overlay">
-              <div className="dialog-content">
-                <h2>{actionType === 'buy' ? 'Buy Chickens' : 'Sell Chickens'}</h2>
-                <div className="input-container">
-                  <button onClick={decreaseCount}>-</button>
-                  <input
-                    type="number"
-                    value={chickenCount}
-                    onChange={(e) => setChickenCount(Number(e.target.value))}
-                    min="1"
-                    style={{ width: '50%' }} // Set width to half of parent
-                  />
-                  <button onClick={increaseCount}>+</button>
-                </div>
-                <div className="dialog-buttons">
-                  <button onClick={() => setShowDialog(false)}>Cancel</button>
-                  <button onClick={confirmPurchase}>Confirm</button>
-                </div>
-              </div>
-            </div>
-          )}
+                    {/* Buy/Sell Chicken Dialog */}
+                    {showDialog && (
+                      <div className="dialog-overlay">
+                        <div className="dialog-content">
+                          <h2>{actionType === 'buy' ? 'Buy Chickens' : 'Sell Chickens'}</h2>
+                          <div className="input-container">
+                            <button onClick={decreaseCount}>-</button>
+                            <input
+                              type="number"
+                              value={chickenCount}
+                              onChange={(e) => setChickenCount(Number(e.target.value))}
+                              min="1"
+                              style={{ width: '50%' }} // Set width to half of parent
+                            />
+                            <button onClick={increaseCount}>+</button>
+                          </div>
+                          <div className="dialog-buttons">
+                            <button onClick={() => setShowDialog(false)}>Cancel</button>
+                            <button onClick={confirmPurchase}>Confirm</button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                     <div className='Card'>
                       <div><b> contract balance</b></div>
                       {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
