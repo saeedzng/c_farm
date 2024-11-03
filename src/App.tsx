@@ -125,13 +125,15 @@ function App() {
               <h1>Wallet Contract</h1>
            {/* Image Row Section */}
            <div className="image-row">
-            {/* Chicken Image Section */}
+            
             <div className="image-container">
               <img src="./hen.png" alt="Chicken" className="wallet-image" />
               <div className="image-value">{ch_number} Chickens</div>
             </div>
-
-            {/* Egg Image Section */}
+            <div className="image-container">
+              <img src="./hen.png" alt="Chicken" className="wallet-image" />
+              <div className="image-value">{ch_number} Chickens</div>
+            </div>          
             <div className="image-container">
               <img src="./egg.png" alt="Egg" className="wallet-image" />
               <div className="image-value">{eggs_number} Eggs</div>

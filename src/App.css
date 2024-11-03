@@ -37,7 +37,7 @@ align-items: center;
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
   padding-bottom: 10px; /* Space below menu */
-  margin-bottom: 1.5vh;
+  margin-bottom: 1vh;
 }
 
 .down-section {
@@ -152,19 +152,20 @@ align-items: center;
   flex: 1; /* Each image container takes equal space */
   text-align: center; /* Center text below images */
   margin: 0; /* Remove default margin */
+  border: 1px solid #2b1b56; /* Tiny border around each image */
+  border-radius: 4px; /* Optional: rounded corners for the border */
 }
 
 .wallet-image {
-  width: 50%; /* Set image width to half of its container */
+  width: 33.3%; /* Set image width to half of its container */
   height: auto; /* Maintain aspect ratio */
-  border: 1px solid #2b1b56; /* Tiny border around each image */
-  border-radius: 4px; /* Optional: rounded corners for the border */
+
 }
 
 .image-value {
   font-size: 4vw; /* Responsive font size */
   font-weight: bold;
-  margin-top: 10px; /* Space above value */
+  margin-top: 5px; /* Space above value */
 }
 
 /* Responsive adjustments for horizontal menu */
