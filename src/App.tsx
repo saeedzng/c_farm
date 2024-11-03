@@ -62,6 +62,46 @@ function App() {
     setShowMenu(!showMenu);
   };
 
+
+  const handleBuyChicken = () => {
+    WebApp.showPopup({
+      title: 'Buy Chickens',
+      message: 'How many chickens do you want to buy?',
+      buttons: [
+        {
+          id: "cancel",
+          type: "cancel"
+        },
+        {
+          id: "buy",
+          type: "ok"
+        }
+      ]
+    }, (buttonId?: string) => {
+      if (buttonId === "buy") {
+        WebApp.showPopup({
+          title: 'Enter Number',
+          message: 'Enter the number of chickens:',
+          buttons: [
+            {
+              id: "confirm",
+              type: "ok"
+            }
+          ]
+        }, (buttonId?: string) => {
+          if (buttonId === "confirm") {
+            const chickenCount = parseInt(WebApp.initDataUnsafe.start_param || "1");
+            if (!isNaN(chickenCount) && chickenCount > 0) {
+              send_buy_chicken_order(chickenCount);
+            } else {
+              WebApp.showAlert("Please enter a valid number of chickens.");
+            }
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div className="wrapper">
 
@@ -137,7 +177,7 @@ function App() {
                     </div>
                     <div className="button-container">
                       <div className="button-row">
-                        <button className="action-button" onClick={() => { send_buy_chicken_order(1); }}>Buy Chicken</button>
+                      <button className="action-button" onClick={handleBuyChicken}>Buy Chicken</button>
                         <button className="action-button" onClick={() => { send_sell_chicken_order(1); }}>Sell Chicken</button>
                       </div>
                       <div className="button-row">
