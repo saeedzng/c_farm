@@ -151,7 +151,7 @@ function App() {
           </div>
           <div className="image-container">
           <div className="wallet-image">
-          <button  onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
+          <button  onClick={() => { send_recive_eggs_order(); }}>Get Eggs</button>
           </div>
           </div>
           </div>
