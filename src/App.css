@@ -200,7 +200,9 @@ align-items: center;
 
 .input-container {
   display: flex;
-  align-items: center center;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
   border: 1px solid #cbc4dd; /* Tiny border around each image */
 }
 
