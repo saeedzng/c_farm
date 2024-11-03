@@ -68,10 +68,10 @@ function App() {
       <div className="top-section">
         <div className="header">
           <div className="left">
-            <TonConnectButton />
+          <img src="./logo.png" alt="Logo" className="logo" />
           </div>
           <div className="right">
-            <img src="./logo.png" alt="Logo" className="logo" />
+          <TonConnectButton />
           </div>
         </div>
         <nav className="menu">
@@ -126,11 +126,11 @@ function App() {
                 <div className="image-row">
                   <div className="image-container">
                     <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                    <div className="image-value">{ch_number} Chickens</div>
+                    <div className="image-value">{ch_number}</div>
                   </div>
                   <div className="image-container">
                     <img src="./egg.png" alt="Egg" className="wallet-image" />
-                    <div className="image-value">{eggs_number} Eggs</div>
+                    <div className="image-value">{eggs_number}</div>
                   </div>
                 </div>
                 <div className="button-container">
