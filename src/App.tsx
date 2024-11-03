@@ -59,19 +59,28 @@ function App() {
   } = useWalletContract(Address.parse(getTonAddress()));
 
   const toggleMenu = () => { setShowMenu(!showMenu);};
-  const [showBuyDialog, setShowBuyDialog] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
+  const [actionType, setActionType] = useState<'buy' | 'sell'>('buy'); // State to track action type
 
-  const handleBuyChicken = () => {setShowBuyDialog(true);};
+  const handleDialogOpen = (type: 'buy' | 'sell') => {
+    setActionType(type);
+    setShowDialog(true);
+  };
 
   const confirmPurchase = () => {
     if (chickenCount > 0) {
-      send_buy_chicken_order(chickenCount);
-      setShowBuyDialog(false); // Close dialog after purchase
+      if (actionType === 'buy') {
+        send_buy_chicken_order(chickenCount);
+      } else {
+        send_sell_chicken_order(chickenCount);
+      }
+      setShowDialog(false); // Close dialog after purchase
     } else {
       WebApp.showAlert("Please enter a valid number of chickens.");
     }
   };
+
   const increaseCount = () => {
     setChickenCount(prevCount => prevCount + 1);
   };
@@ -155,8 +164,8 @@ function App() {
                     </div>
                     <div className="button-container">
                       <div className="button-row">
-                      <button className="action-button" onClick={handleBuyChicken}>Buy Chicken</button>
-                        <button className="action-button" onClick={() => { send_sell_chicken_order(1); }}>Sell Chicken</button>
+                      <button className="action-button" onClick={() => handleDialogOpen('buy')}>Buy Chicken</button>
+                      <button className="action-button" onClick={() => handleDialogOpen('sell')}>Sell Chicken</button>
                       </div>
                       <div className="button-row">
                         <button className="action-button" onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
@@ -172,25 +181,25 @@ function App() {
                     </div>
 
 
-          {/* Buy Chicken Dialog */}
-          {showBuyDialog && (
+          {/* Buy/Sell Chicken Dialog */}
+          {showDialog && (
             <div className="dialog-overlay">
               <div className="dialog-content">
-                <h2>Buy Chickens</h2>
+                <h2>{actionType === 'buy' ? 'Buy Chickens' : 'Sell Chickens'}</h2>
                 <div className="input-container">
                   <button onClick={decreaseCount}>-</button>
-                  <input className="dialog-input"
+                  <input
                     type="number"
                     value={chickenCount}
                     onChange={(e) => setChickenCount(Number(e.target.value))}
                     min="1"
-                    style={{ width: '20%' }}
+                    style={{ width: '50%' }} // Set width to half of parent
                   />
                   <button onClick={increaseCount}>+</button>
                 </div>
                 <div className="dialog-buttons">
-                  <button onClick={() => setShowBuyDialog(false)}>Cancel</button>
-                  <button onClick={confirmPurchase}>Buy</button>
+                  <button onClick={() => setShowDialog(false)}>Cancel</button>
+                  <button onClick={confirmPurchase}>Confirm</button>
                 </div>
               </div>
             </div>
