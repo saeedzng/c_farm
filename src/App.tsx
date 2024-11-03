@@ -156,13 +156,6 @@ function App() {
           </div>
           </div>
               <div className='Card'>
-                <div><b>Wallet contract balance</b></div>
-                {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
-
-                <div><b>Wallet eggs number</b></div>
-                {eggs_number && <div className='Hint'>{fromNano(eggs_number)} ton</div>}
-                <div><b>Wallet chicken number</b></div>
-                <div className='Hint'>{ch_number}</div>
                 {connected && (
   <>
     <button  onClick={() => { send_buy_chicken_order(1); }}>Buy 1 Chicken</button><br />
