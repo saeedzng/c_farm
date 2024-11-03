@@ -133,7 +133,7 @@ align-items: center;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  background-image: linear-gradient(to bottom, #1e0532, #000000);
+  background-image: linear-gradient(to bottom, #1e0532, #ffffff);
   background-size: 200% auto;
 }
 
@@ -166,6 +166,7 @@ align-items: center;
   font-size: 4vw; /* Responsive font size */
   font-weight: bold;
   margin-top: 5px; /* Space above value */
+  margin-bottom: 10px;
 }
 
 .button-container {
