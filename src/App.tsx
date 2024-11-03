@@ -68,10 +68,10 @@ function App() {
       <div className="top-section">
         <div className="header">
           <div className="left">
-          <img src="./logo.png" alt="Logo" className="logo" />
+            <img src="./logo.png" alt="Logo" className="logo" />
           </div>
           <div className="right">
-          <TonConnectButton />
+            <TonConnectButton />
           </div>
         </div>
         <nav className="menu">
@@ -120,58 +120,62 @@ function App() {
         )}
         {page_n === 2 && (
           <div>
-            {isdeployed === true ? (
-              <>
-                <h1>Wallet Contract</h1>
-                <div className="image-row">
-                  <div className="image-container">
-                    <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                    <div className="image-value">{ch_number}</div>
-                  </div>
-                  <div className="image-container">
-                    <img src="./egg.png" alt="Egg" className="wallet-image" />
-                    <div className="image-value">{eggs_number}</div>
-                  </div>
-                </div>
-                <div className="button-container">
-                  <div className="button-row">
-                    <button className="action-button" onClick={() => { send_buy_chicken_order(1); }}>Buy Chicken</button>
-                    <button className="action-button" onClick={() => { send_sell_chicken_order(1); }}>Sell Chicken</button>
-                  </div>
-                  <div className="button-row">
-                    <button className="action-button" onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
-                    <button className="action-button" onClick={() => {
-                      const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-                      navigator.share({
-                        title: 'Chicken Farm Wallet Contract',
-                        text: 'Check out this wallet contract address!',
-                        url: telegramShareUrl,
-                      });
-                    }}>Share Wallet Address</button>
-                  </div>
-                </div>
-                <div className='Card'>
-                  <div><b> contract balance</b></div>
-                  {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
-                </div>
-                <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;
-                </div>
-                {showMenu && (
-                  <div className="menu-content">
-                    <div><b>Wallet contract Address</b></div>
-                    <div className='Hint'>{wallet_contract_address}</div>
-                    <div><b>Wallet owner Address</b></div>
-                    <div className='Hint'>{wallet_owner_address}</div>
-                    <div><b>Wallet referral Address</b></div>
-                    <div className='Hint'>{wallet_referal_address}</div>
-                    <div><b>Wallet master Address</b></div>
-                    <div className='Hint'>{wallet_master_address}</div>
-                  </div>
+            {connected === true ? (
+              <div>
+                {isdeployed === true ? (
+                  <>
+                    <h1>Wallet Contract</h1>
+                    <div className="image-row">
+                      <div className="image-container">
+                        <img src="./hen.png" alt="Chicken" className="wallet-image" />
+                        <div className="image-value">{ch_number}</div>
+                      </div>
+                      <div className="image-container">
+                        <img src="./egg.png" alt="Egg" className="wallet-image" />
+                        <div className="image-value">{eggs_number}</div>
+                      </div>
+                    </div>
+                    <div className="button-container">
+                      <div className="button-row">
+                        <button className="action-button" onClick={() => { send_buy_chicken_order(1); }}>Buy Chicken</button>
+                        <button className="action-button" onClick={() => { send_sell_chicken_order(1); }}>Sell Chicken</button>
+                      </div>
+                      <div className="button-row">
+                        <button className="action-button" onClick={() => { send_recive_eggs_order(); }}>Get Earned Eggs</button>
+                        <button className="action-button" onClick={() => {
+                          const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+                          navigator.share({
+                            title: 'Chicken Farm Wallet Contract',
+                            text: 'Check out this wallet contract address!',
+                            url: telegramShareUrl,
+                          });
+                        }}>Share Wallet Address</button>
+                      </div>
+                    </div>
+                    <div className='Card'>
+                      <div><b> contract balance</b></div>
+                      {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
+                    </div>
+                    <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;
+                    </div>
+                    {showMenu && (
+                      <div className="menu-content">
+                        <div><b>Wallet contract Address</b></div>
+                        <div className='Hint'>{wallet_contract_address}</div>
+                        <div><b>Wallet owner Address</b></div>
+                        <div className='Hint'>{wallet_owner_address}</div>
+                        <div><b>Wallet referral Address</b></div>
+                        <div className='Hint'>{wallet_referal_address}</div>
+                        <div><b>Wallet master Address</b></div>
+                        <div className='Hint'>{wallet_master_address}</div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <h2>Wallet Contract is not yet deployed. Please create a wallet contract first.</h2>
                 )}
-              </>
-            ) : (
-              <h2>Wallet Contract is not yet deployed. Please create a wallet contract first.</h2>
-            )}
+              </div>
+            ) : (<h2>You Must Login.</h2>)}
           </div>
         )}
       </div>
