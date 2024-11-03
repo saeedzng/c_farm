@@ -120,11 +120,11 @@ function App() {
         )}
         {page_n === 2 && (
           <div>
+            <h1>Wallet Contract</h1>
             {connected === true ? (
               <div>
                 {isdeployed === true ? (
                   <>
-                    <h1>Wallet Contract</h1>
                     <div className="image-row">
                       <div className="image-container">
                         <img src="./hen.png" alt="Chicken" className="wallet-image" />
@@ -171,11 +171,9 @@ function App() {
                       </div>
                     )}
                   </>
-                ) : (
-                  <h2>Wallet Contract is not yet deployed. Please create a wallet contract first.</h2>
-                )}
+                ) : (<p>Please create a wallet contract first.</p>)}
               </div>
-            ) : (<h2>You Must Login.</h2>)}
+            ) : (<p>Please Log in To Continue</p>)}
           </div>
         )}
       </div>
