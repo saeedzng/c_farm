@@ -159,7 +159,7 @@ function App() {
                 <div><b>Wallet contract balance</b></div>
                 {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
 
-                <div><b> eggs number</b></div>
+                <div><b> eggs  number</b></div>
                 {eggs_number && <div className='Hint'>{fromNano(eggs_number)} ton</div>}
                 <div><b>Wallet chicken number</b></div>
                 <div className='Hint'>{ch_number}</div>
