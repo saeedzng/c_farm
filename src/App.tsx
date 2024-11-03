@@ -59,7 +59,7 @@ function App() {
     ch_number, eggs_number, first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
   let realeggnumber: number = 0;
-  realeggnumber = eggs_number ? eggs_number / 1000000000 : 0;
+  realeggnumber = eggs_number ? eggs_number / 3333333 : 0;
   const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
