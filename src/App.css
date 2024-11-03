@@ -201,6 +201,7 @@ align-items: center;
 .input-container {
   display: flex;
   align-items: center center;
+  border: 1px solid #cbc4dd; /* Tiny border around each image */
 }
 
 .input-container input {
