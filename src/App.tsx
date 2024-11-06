@@ -181,7 +181,7 @@ function App() {
                     <div className="image-row">
                       <div className="image-container">
                         <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">{ch_number}</div>
+                        <div className="image-value">{ch_number?.toFixed(1)}</div>
                       </div>
                       <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
@@ -241,7 +241,7 @@ function App() {
                       </div>
                     )}
                     <div className='Card'>
-                      <div><b> contract balance</b></div>
+                      <div><b> Your TON Ballance</b></div>
                       {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
                     </div>
                     <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;
