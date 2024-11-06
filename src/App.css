@@ -179,6 +179,12 @@ align-items: center;
   margin-bottom: 10px; /* Space between button rows */
 }
 
+.buy-row {
+  
+  border: 1px solid #2b1b56;
+  margin-bottom: 10px; /* Space between button rows */
+}
+
 .dialog-overlay {
   position: fixed;
   top: 0;

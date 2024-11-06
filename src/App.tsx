@@ -106,16 +106,15 @@ function App() {
     setChickenCount(prevCount => Math.max(1, prevCount - 1));
   };
 
-  function runthefunc () {
+  function runreciveeggs () {
      send_recive_eggs_order();
   };
   function warningloweggs(){
-    WebApp.showConfirm('Transactions under one egg or 0.03 tons will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.' , runthefunc)
+    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.' , runreciveeggs)
   }
   
   return (
     <div className="wrapper">
-
       <div className="top-section">
         <div className="header">
           <div className="left">
@@ -190,9 +189,12 @@ function App() {
                       </div>
                     </div>
                     <div className="button-container">
+                      <div className="buy-row">
+                        <label>Buy</label>
                       <div className="button-row">
                         <button className="action-button" onClick={() => handleDialogOpen('buy')}>Buy Chicken</button>
                         <button className="action-button" onClick={() => handleDialogOpen('sell')}>Sell Chicken</button>
+                      </div>
                       </div>
                       <div className="button-row">
                       <button className="action-button" onClick={ warningloweggs}>Get Earned Eggs</button>
