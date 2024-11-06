@@ -67,7 +67,7 @@ function App() {
   }, [isdeployed]);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
-    ch_number, first_buy ,send_buy_chicken_order, send_sell_chicken_order,
+    ch_number, first_buy ,send_buy_chicken_order, send_sell_chicken_order,send_recive_eggs_order
   } = useWalletContract(Address.parse(getTonAddress()));
 
   // useEffect(() => {
@@ -107,7 +107,7 @@ function App() {
   };
 
   function runthefunc () {
-    WebApp.showAlert("test ok.");
+    send_recive_eggs_order;
 
     // WebApp.showConfirm(
     //   "If this transaction brings you less than one egg or equivalent to 0.03 tons, the transaction will fail to avoid additional fees. Please refrain from confirming transactions that are predicted to fail. Keep in mind that each transaction in your network will have a fee of approximately 0.002 tons."
@@ -121,7 +121,7 @@ function App() {
   };
 
   function warningloweggs(){
-    WebApp.showConfirm('are you sure' , runthefunc)
+    WebApp.showConfirm('"If this transaction brings you less than one egg or equivalent to 0.03 tons, the transaction will fail to avoid additional fees. Please refrain from confirming transactions that are predicted to fail. Keep in mind that each transaction in your network will have a fee of approximately 0.002 tons."' , runthefunc)
   }
   
   return (
