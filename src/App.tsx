@@ -108,12 +108,8 @@ function App() {
 
   function warningloweggs () {
     WebApp.showConfirm(
-      "If this transaction brings you less than one egg or equivalent to 0.03 tons, the transaction will fail to avoid additional fees. Please refrain from confirming transactions that are predicted to fail. Keep in mind that each transaction in your network will have a fee of approximately 0.002 tons.",
-      (confirmed) => {
-        if (confirmed) {
-          WebApp.showAlert('test3')
-        }
-      }
+      "If this transaction brings you less than one egg or equivalent to 0.03 tons, the transaction will fail to avoid additional fees. Please refrain from confirming transactions that are predicted to fail. Keep in mind that each transaction in your network will have a fee of approximately 0.002 tons."
+ 
     );
   };
   
