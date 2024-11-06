@@ -199,7 +199,7 @@ function App() {
                       </div>
                       </div>
                       <div className="button-row">
-                      <button className="action-button" onClick={ warningloweggs}>Get Earned Eggs</button>
+                      <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
                         <button className="action-button" onClick={() => {
                           const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
                           navigator.share({
