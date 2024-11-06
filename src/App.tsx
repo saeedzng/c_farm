@@ -127,6 +127,7 @@ function App() {
         <nav className="menu">
           <ul>
             <li><button onClick={() => setPageN(2)}>Wallet</button></li>
+            <li><button onClick={() => toggleMenu}></button>Details</li>
             {/* <li><button onClick={() => setPageN(1)}>Master Contract</button></li> */}
             <li><button onClick={() => setPageN(0)}>Home</button></li>
           </ul>
@@ -244,8 +245,7 @@ function App() {
                       <div><b> Your TON Ballance</b></div>
                       {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
                     </div>
-                    <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;
-                    </div>
+                    <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div>
                     {showMenu && (
                       <div className="menu-content">
                         <div><b>Wallet contract Address</b></div>
