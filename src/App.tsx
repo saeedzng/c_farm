@@ -198,6 +198,10 @@ function App() {
                         <button className="action-button" onClick={() => handleDialogOpen('sell')}>From Eggs</button>
                       </div>
                       </div>
+                      <div className="buy-row">
+                      <div className="buy-label">
+                        <label>Get Reward</label>
+                        </div>
                       <div className="button-row">
                       <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
                         <button className="action-button" onClick={() => {
@@ -207,7 +211,8 @@ function App() {
                             text: 'Check out this wallet contract address!',
                             url: telegramShareUrl,
                           });
-                        }}>Share Wallet Address</button>
+                        }}>Share Referal</button>
+                      </div>
                       </div>
                     </div>
 
