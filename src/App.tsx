@@ -106,20 +106,9 @@ function App() {
     setChickenCount(prevCount => Math.max(1, prevCount - 1));
   };
 
-  async function runthefunc () {
-    await send_recive_eggs_order;
-
-    // WebApp.showConfirm(
-    //   "If this transaction brings you less than one egg or equivalent to 0.03 tons, the transaction will fail to avoid additional fees. Please refrain from confirming transactions that are predicted to fail. Keep in mind that each transaction in your network will have a fee of approximately 0.002 tons."
-    //   ,
-    //   (confirmed:boolean) => {
-    //     if (confirmed) {
-    //       WebApp.showAlert('test3')
-    //     }
-    //   }
-    // );
+  function runthefunc () {
+     send_recive_eggs_order;
   };
-
   function warningloweggs(){
     WebApp.showConfirm('Transactions under one egg or 0.03 tons will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.' , runthefunc)
   }
@@ -206,7 +195,7 @@ function App() {
                         <button className="action-button" onClick={() => handleDialogOpen('sell')}>Sell Chicken</button>
                       </div>
                       <div className="button-row">
-                      <button className="action-button" onClick={() => warningloweggs()}>Get Earned Eggs</button>
+                      <button className="action-button" onClick={ warningloweggs}>Get Earned Eggs</button>
                         <button className="action-button" onClick={() => {
                           const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
                           navigator.share({
