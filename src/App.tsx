@@ -16,6 +16,12 @@ declare global {
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
+  // function setContractData(chicken_Count: string , eggs_count : string , last_calculate : string , first_chick : string) 
+  // { localStorage.setItem("chicken_Count", chicken_Count); 
+  //   localStorage.setItem("eggs_count", eggs_count);
+  //   localStorage.setItem("last_calculate", last_calculate);
+  //   localStorage.setItem("first_chick", first_chick);
+  // }
   function getTonAddress() {
     const tonAddress = localStorage.getItem("tonAddress");
     return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";
@@ -24,6 +30,13 @@ function App() {
     const Deployed = localStorage.getItem("deployed");
     return Deployed ? Deployed : "false";
   }
+  // function getContractData() {
+  //   const chicken_Count = localStorage.getItem("chicken_Count");
+  //   const eggs_count = localStorage.getItem("eggs_count");
+  //   const last_calculate = localStorage.getItem("last_calculate");
+  //   const first_chick = localStorage.getItem("first_chick");
+  //   return {chicken_Count, eggs_count,last_calculate, first_chick};
+  // }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
@@ -53,13 +66,15 @@ function App() {
     }
   }, [isdeployed]);
 
-  // const [check , setcheck] = useState <number>(0);
-
   const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
-    ch_number,  first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
+    ch_number, first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
-  let realeggnumber: number = 0;
-  realeggnumber = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
+
+  // useEffect(() => {
+  //   setContractData(ch_number,)
+  // },[wallet_contract_balance])
+
+  const realeggnumber:number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
@@ -91,9 +106,7 @@ function App() {
     setChickenCount(prevCount => Math.max(1, prevCount - 1));
   };
 
-  // const cansell = () => {
-  //   let b :Date = new Date()
-  // }
+
 
   return (
     <div className="wrapper">
@@ -135,7 +148,9 @@ function App() {
                   setPageN(2);
                 }}>set and Open Wallet Contract</button><b></b>
                 <button onClick={() => {
-                  WebApp.showAlert((wc_addressss + " + " + getTonAddress() + " + " + getDeployed() + " + "
+                  let impoDate : Date = new Date ;
+                  if (first_buy){impoDate = new Date(first_buy)}
+                  WebApp.showAlert(( impoDate + " + " + Date() + " + " + getDeployed() + " + "
                     + isdeployed + "+" + first_buy + "+" + Date()))
                 }}>show alert</button>
                 <p>owner : {owner_address}</p>
