@@ -185,8 +185,8 @@ align-items: center;
   margin-bottom: 15px; /* Space between button rows */
 }
 
-.buy-row label{
-  padding: 10px; /* Increased padding around content */
+.buy-label{
+  padding: 15px; /* Increased padding around content */
 }
 
 .dialog-overlay {

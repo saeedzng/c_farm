@@ -190,7 +190,7 @@ function App() {
                     </div>
                     <div className="button-container">
                       <div className="buy-row">
-                        <label>Buy Chicken</label>
+                        <label className="buy-label">Buy Chicken</label>
                       <div className="button-row">
                         <button className="action-button" onClick={() => handleDialogOpen('buy')}>From Wallet</button>
                         <button className="action-button" onClick={() => handleDialogOpen('sell')}>From Eggs</button>
