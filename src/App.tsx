@@ -107,7 +107,7 @@ function App() {
   };
 
   function runthefunc () {
-     send_recive_eggs_order;
+     send_recive_eggs_order();
   };
   function warningloweggs(){
     WebApp.showConfirm('Transactions under one egg or 0.03 tons will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.' , runthefunc)
