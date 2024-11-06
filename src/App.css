@@ -180,14 +180,14 @@ align-items: center;
 }
 
 .buy-row {
-  padding-bottom: 5px; /* Increased padding around content */
+  padding: 5px; /* Increased padding around content */
   border: 1px solid #2b1b56;
   border-radius: 4px; /* Optional: rounded corners for the border */
   margin-bottom: 15px; /* Space between button rows */
 }
 
 .buy-label{
-  padding: 15px; /* Increased padding around content */
+  padding-bottom: 15px; /* Increased padding around content */
 }
 
 .dialog-overlay {
