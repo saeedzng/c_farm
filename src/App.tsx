@@ -67,7 +67,7 @@ function App() {
   }, [isdeployed]);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_master_address, wallet_owner_address, wallet_referal_address,
-    ch_number, first_buy, send_recive_eggs_order, send_buy_chicken_order, send_sell_chicken_order,
+    ch_number, first_buy,  send_buy_chicken_order, send_sell_chicken_order,
   } = useWalletContract(Address.parse(getTonAddress()));
 
   // useEffect(() => {
