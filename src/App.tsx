@@ -200,15 +200,15 @@ function App() {
                     <div className="image-row">
                       <div className="image-container">
                         <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">Hens :{ch_number}</div>
+                        <div className="image-value">Hens : {ch_number}</div>
                       </div>
                       <div className="image-container">
                         <img src="./coins.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">TON :{showbalance.toFixed(3)}</div>
+                        <div className="image-value">TON : {showbalance.toFixed(3)}</div>
                       </div>
                       <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
-                        <div className="image-value">Eggs :{realeggnumber?.toFixed(1)}</div>
+                        <div className="image-value">Eggs : {realeggnumber?.toFixed(1)}</div>
                       </div>
                     </div>
                     <div className="button-container">
