@@ -241,6 +241,9 @@ function App() {
                           }}>Share Referal</button>
                         </div>
                       </div>
+                      <div className="button-row">
+                      <button className="action-button" onClick={() => handleDialogOpen('buy')}>From Wallet</button>
+                      </div>
                     </div>
                     {/* Buy/Sell Chicken Dialog */}
                     {showDialog && (
