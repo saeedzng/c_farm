@@ -207,7 +207,7 @@ function App() {
                         <div className="image-value">Hens : {ch_number}</div>
                       </div>
                       <div className="image-container">
-                        <img src="./coins.png" alt="Chicken" className="wallet-image" />
+                        <img src="./coin.png" alt="Chicken" className="wallet-image" />
                         <div className="image-value">TON : {showbalance.toFixed(3)}</div>
                       </div>
                       <div className="image-container">
