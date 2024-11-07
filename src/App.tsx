@@ -75,6 +75,7 @@ function App() {
   // },[wallet_contract_balance])
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
+  const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
   const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
@@ -112,7 +113,7 @@ function App() {
   function warningloweggs() {
     WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.', runreciveeggs)
   }
-
+  
   return (
     <div className="wrapper">
       <div className="top-section">
@@ -203,7 +204,7 @@ function App() {
                       </div>
                       <div className="image-container">
                         <img src="./coins.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">{wallet_contract_balance?.toFixed(3)}</div>
+                        <div className="image-value">{showbalance.toFixed(3)}</div>
                       </div>
                       <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
