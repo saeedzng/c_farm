@@ -162,7 +162,7 @@ align-items: center;
 }
 
 .image-value {
-  font-size: 4vw; /* Responsive font size */
+  font-size: 3vw; /* Responsive font size */
   font-weight: bold;
   margin-top: 5px; /* Space above value */
   margin-bottom: 10px;
