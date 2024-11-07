@@ -141,7 +141,9 @@ function App() {
             {connected && (
               <div>
                 <div className="offchain-data">
-                  <div><b>Referral address: {referal_address}</b></div>
+                  <div><p>Owner Address</p></div>
+                  <div>{owner_address}</div>
+                  <div><b>Referral address</b></div>
                   <div>{referal_address}</div>
                 </div>
                 <button className='button' onClick={async () => {
@@ -160,8 +162,7 @@ function App() {
                   if (first_buy) { impoDate = new Date(first_buy) }
                   WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
                     + isdeployed + "+" + first_buy + "+" + Date()))
-                }}>show alert</button>
-                <p>owner : {owner_address}</p>
+                }}>show alert</button>               
                 <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div>
                 {showMenu && (
                   <div className="menu-content">
