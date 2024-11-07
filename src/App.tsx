@@ -143,8 +143,10 @@ function App() {
                 <div className="offchain-data">
                   <div><p>Owner Address</p></div>
                   <div>{owner_address}</div>
-                  <div><b>Referral address</b></div>
+                  <div><p>Referral address</p></div>
                   <div>{referal_address}</div>
+                  <div><p>Wallet Address</p></div>
+                  <div></div>
                 </div>
                 <button className='button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
@@ -200,8 +202,8 @@ function App() {
                         <div className="image-value">{ch_number}</div>
                       </div>
                       <div className="image-container">
-                        <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">{ch_number}</div>
+                        <img src="./coins.png" alt="Chicken" className="wallet-image" />
+                        <div className="image-value">{wallet_contract_balance && <div>{fromNano(wallet_contract_balance)} ton</div>}</div>
                       </div>
                       <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
@@ -260,7 +262,7 @@ function App() {
                     )}
                     <div className='Card'>
                       <div><b> Your TON Ballance</b></div>
-                      {wallet_contract_balance && <div className='Hint'>{fromNano(wallet_contract_balance)} ton</div>}
+                      {wallet_contract_balance && <div>{fromNano(wallet_contract_balance)} ton</div>}
                     </div>
 
                   </>
