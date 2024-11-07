@@ -16,12 +16,7 @@ declare global {
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
-  // function setContractData(chicken_Count: string , eggs_count : string , last_calculate : string , first_chick : string) 
-  // { localStorage.setItem("chicken_Count", chicken_Count); 
-  //   localStorage.setItem("eggs_count", eggs_count);
-  //   localStorage.setItem("last_calculate", last_calculate);
-  //   localStorage.setItem("first_chick", first_chick);
-  // }
+
   function getTonAddress() {
     const tonAddress = localStorage.getItem("tonAddress");
     return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";
@@ -30,20 +25,13 @@ function App() {
     const Deployed = localStorage.getItem("deployed");
     return Deployed ? Deployed : "false";
   }
-  // function getContractData() {
-  //   const chicken_Count = localStorage.getItem("chicken_Count");
-  //   const eggs_count = localStorage.getItem("eggs_count");
-  //   const last_calculate = localStorage.getItem("last_calculate");
-  //   const first_chick = localStorage.getItem("first_chick");
-  //   return {chicken_Count, eggs_count,last_calculate, first_chick};
-  // }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [showMenu, setShowMenu] = useState(false);
-
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
@@ -70,9 +58,14 @@ function App() {
     ch_number, first_buy, send_buy_chicken_order, send_sell_chicken_order, send_recive_eggs_order
   } = useWalletContract(Address.parse(getTonAddress()));
 
-  // useEffect(() => {
-  //   setContractData(ch_number,)
-  // },[wallet_contract_balance])
+  useEffect(() => {
+    // Check if wallet_contract_address is available
+    if (wallet_contract_address) {
+        setIsDataLoaded(true);
+    } else {
+        setIsDataLoaded(false);
+    }
+}, [wallet_contract_address]); // Dependency array to run effect on address change
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
@@ -192,6 +185,17 @@ function App() {
         )}
         {page_n === 2 && (
           <div>
+                        <div className="status-indicator">
+                {isDataLoaded ? (
+                    <div style={{ color: 'green' }}>
+                        <span>🟢</span> You are connected
+                    </div>
+                ) : (
+                    <div style={{ color: 'red' }}>
+                        <span>🔴</span> You are offline
+                    </div>
+                )}
+            </div>
             <h1>Wallet Contract</h1>
             {connected === true ? (
               <div>
