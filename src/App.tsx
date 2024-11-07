@@ -185,6 +185,10 @@ function App() {
                         <div className="image-value">{ch_number}</div>
                       </div>
                       <div className="image-container">
+                        <img src="./hen.png" alt="Chicken" className="wallet-image" />
+                        <div className="image-value">{ch_number}</div>
+                      </div>
+                      <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
                         <div className="image-value">{realeggnumber?.toFixed(1)}</div>
                       </div>

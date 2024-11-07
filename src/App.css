@@ -157,7 +157,7 @@ align-items: center;
 }
 
 .wallet-image {
-  width: 50%; /* Set image width to half of its container */
+  width: 33%; /* Set image width to half of its container */
   height: auto; /* Maintain aspect ratio */
 
 }
