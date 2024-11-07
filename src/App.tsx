@@ -200,15 +200,15 @@ function App() {
                     <div className="image-row">
                       <div className="image-container">
                         <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">{ch_number}</div>
+                        <div className="image-value">Hens :{ch_number}</div>
                       </div>
                       <div className="image-container">
                         <img src="./coins.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">{showbalance.toFixed(3)}</div>
+                        <div className="image-value">TON :{showbalance.toFixed(3)}</div>
                       </div>
                       <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
-                        <div className="image-value">{realeggnumber?.toFixed(1)}</div>
+                        <div className="image-value">Eggs :{realeggnumber?.toFixed(1)}</div>
                       </div>
                     </div>
                     <div className="button-container">
@@ -261,11 +261,6 @@ function App() {
                         </div>
                       </div>
                     )}
-                    <div className='Card'>
-                      <div><b> Your TON Ballance</b></div>
-                      {wallet_contract_balance && <div>{fromNano(wallet_contract_balance)} ton</div>}
-                    </div>
-
                   </>
                 ) : (<p>Please create a wallet contract first.</p>)}
               </div>
