@@ -203,7 +203,7 @@ function App() {
                       </div>
                       <div className="image-container">
                         <img src="./coins.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">{wallet_contract_balance && <div>{fromNano(wallet_contract_balance)} ton</div>}</div>
+                        <div className="image-value">{wallet_contract_balance?.toFixed(3)}</div>
                       </div>
                       <div className="image-container">
                         <img src="./egg.png" alt="Egg" className="wallet-image" />
