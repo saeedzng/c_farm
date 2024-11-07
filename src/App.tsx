@@ -67,14 +67,14 @@ function App() {
   }, [isdeployed]);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address,
-    ch_number, first_buy ,send_buy_chicken_order, send_sell_chicken_order,send_recive_eggs_order
+    ch_number, first_buy, send_buy_chicken_order, send_sell_chicken_order, send_recive_eggs_order
   } = useWalletContract(Address.parse(getTonAddress()));
 
   // useEffect(() => {
   //   setContractData(ch_number,)
   // },[wallet_contract_balance])
 
-  const realeggnumber:number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
+  const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
@@ -106,13 +106,13 @@ function App() {
     setChickenCount(prevCount => Math.max(1, prevCount - 1));
   };
 
-  function runreciveeggs () {
-     send_recive_eggs_order();
+  function runreciveeggs() {
+    send_recive_eggs_order();
   };
-  function warningloweggs(){
-    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.' , runreciveeggs)
+  function warningloweggs() {
+    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.', runreciveeggs)
   }
-  
+
   return (
     <div className="wrapper">
       <div className="top-section">
@@ -139,8 +139,11 @@ function App() {
             <h1>Welcome to Chicken Farm</h1>
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
-              <>
-                <label>Referral address: {referal_address}</label><br /><br />
+              <div>
+                <div className="offchain-data">
+                  <div><b>Referral address: {referal_address}</b></div>
+                  <div>{referal_address}</div>
+                </div>
                 <button className='button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
@@ -153,24 +156,24 @@ function App() {
                   setPageN(2);
                 }}>set and Open Wallet Contract</button><b></b>
                 <button onClick={() => {
-                  let impoDate : Date = new Date ;
-                  if (first_buy){impoDate = new Date(first_buy)}
-                  WebApp.showAlert(( impoDate + " + " + Date() + " + " + getDeployed() + " + "
+                  let impoDate: Date = new Date;
+                  if (first_buy) { impoDate = new Date(first_buy) }
+                  WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
                     + isdeployed + "+" + first_buy + "+" + Date()))
                 }}>show alert</button>
                 <p>owner : {owner_address}</p>
                 <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div>
-                    {showMenu && (
-                      <div className="menu-content">
-                        <div><b>Wallet contract Address</b></div>
-                        <div className='Hint'>{wallet_contract_address}</div>
-                        <div><b>Wallet owner Address</b></div>
-                        <div className='Hint'>{wallet_owner_address}</div>
-                        <div><b>Wallet referral Address</b></div>
-                        <div className='Hint'>{wallet_referal_address}</div>
-                      </div>
-                    )}
-              </>
+                {showMenu && (
+                  <div className="menu-content">
+                    <div><b>Wallet contract Address</b></div>
+                    <div className='Hint'>{wallet_contract_address}</div>
+                    <div><b>Wallet owner Address</b></div>
+                    <div className='Hint'>{wallet_owner_address}</div>
+                    <div><b>Wallet referral Address</b></div>
+                    <div className='Hint'>{wallet_referal_address}</div>
+                  </div>
+                )}
+              </div>
             )}
           </>
         )}
@@ -207,32 +210,30 @@ function App() {
                     <div className="button-container">
                       <div className="buy-row">
                         <div className="buy-label">
-                        <label>Buy Chicken</label>
+                          <label>Buy Chicken</label>
                         </div>
-                      <div className="button-row">
-                        <button className="action-button" onClick={() => handleDialogOpen('buy')}>From Wallet</button>
-                        <button className="action-button" onClick={() => handleDialogOpen('sell')}>From Eggs</button>
-                      </div>
+                        <div className="button-row">
+                          <button className="action-button" onClick={() => handleDialogOpen('buy')}>From Wallet</button>
+                          <button className="action-button" onClick={() => handleDialogOpen('sell')}>From Eggs</button>
+                        </div>
                       </div>
                       <div className="buy-row">
-                      <div className="buy-label">
-                        <label>Get Reward</label>
+                        <div className="buy-label">
+                          <label>Get Reward</label>
                         </div>
-                      <div className="button-row">
-                      <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
-                        <button className="action-button" onClick={() => {
-                          const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-                          navigator.share({
-                            title: 'Chicken Farm Wallet Contract',
-                            text: 'Check out this wallet contract address!',
-                            url: telegramShareUrl,
-                          });
-                        }}>Share Referal</button>
-                      </div>
+                        <div className="button-row">
+                          <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
+                          <button className="action-button" onClick={() => {
+                            const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+                            navigator.share({
+                              title: 'Chicken Farm Wallet Contract',
+                              text: 'Check out this wallet contract address!',
+                              url: telegramShareUrl,
+                            });
+                          }}>Share Referal</button>
+                        </div>
                       </div>
                     </div>
-
-
                     {/* Buy/Sell Chicken Dialog */}
                     {showDialog && (
                       <div className="dialog-overlay">
