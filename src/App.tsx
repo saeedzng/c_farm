@@ -30,7 +30,7 @@ function App() {
   const owner_address = useTonAddress();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  const [showMenu, setShowMenu] = useState(false);
+  // const [showMenu, setShowMenu] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -61,15 +61,15 @@ function App() {
   useEffect(() => {
     // Check if wallet_contract_address is available
     if (wallet_contract_address) {
-        setIsDataLoaded(true);
+      setIsDataLoaded(true);
     } else {
-        setIsDataLoaded(false);
+      setIsDataLoaded(false);
     }
-}, [wallet_contract_address]); // Dependency array to run effect on address change
+  }, [wallet_contract_address]); // Dependency array to run effect on address change
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
-  const toggleMenu = () => { setShowMenu(!showMenu); };
+  // const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
   const [actionType, setActionType] = useState<'buy' | 'sell'>('buy'); // State to track action type
@@ -106,7 +106,7 @@ function App() {
   function warningloweggs() {
     WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.', runreciveeggs)
   }
-  
+
   return (
     <div className="wrapper">
       <div className="top-section">
@@ -140,26 +140,29 @@ function App() {
                   <div><p>Referral address</p></div>
                   <div>{referal_address}</div>
                   <div><p>Wallet Address</p></div>
-                  <div></div>
+                  <div>{wallet_contract_address}</div>
+                  <div><p>Wallet owner Address</p></div>
+                  <div>{wallet_owner_address}</div>
+                  <div><p>Wallet referral Address</p></div>
+                  <div >{wallet_referal_address}</div>
+                  <div><p>Deploy Address</p></div>
+                  <div>{wc_addressss?.toString()}</div>
                 </div>
-                <button className='button' onClick={async () => {
+                <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
-                }}>Create Wallet Contract</button><br />
-                <div>
-                  <label>Deployed contract at: <a>{wc_addressss && <div>{wc_addressss.toString()}</div>}</a></label>
-                </div>
-                <button onClick={() => {
+                }}>Deploy Wallet Contract</button><br />
+                <button className='action-button' onClick={() => {
                   setIsdeployed(true);
                   setPageN(2);
                 }}>set and Open Wallet Contract</button><b></b>
-                <button onClick={() => {
+                <button className='action-button' onClick={() => {
                   let impoDate: Date = new Date;
                   if (first_buy) { impoDate = new Date(first_buy) }
                   WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
                     + isdeployed + "+" + first_buy + "+" + Date()))
-                }}>show alert</button>               
-                <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div>
+                }}>show alert</button>
+                {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div>
                 {showMenu && (
                   <div className="menu-content">
                     <div><b>Wallet contract Address</b></div>
@@ -169,7 +172,7 @@ function App() {
                     <div><b>Wallet referral Address</b></div>
                     <div className='Hint'>{wallet_referal_address}</div>
                   </div>
-                )}
+                )} */}
               </div>
             )}
           </>
@@ -185,16 +188,16 @@ function App() {
         )}
         {page_n === 2 && (
           <div>
-                        <div className="status-indicator">
-                {isDataLoaded ? (
-                    <div style={{ color: 'green' }}>
-                        <span>🟢</span> You are connected
-                    </div>
-                ) : (
-                    <div style={{ color: 'red' }}>
-                        <span>🔴</span> You are offline
-                    </div>
-                )}
+            <div className="status-indicator">
+              {isDataLoaded ? (
+                <div style={{ color: 'green' }}>
+                  <span>🟢</span> You are connected
+                </div>
+              ) : (
+                <div style={{ color: 'red' }}>
+                  <span>🔴</span> You are offline
+                </div>
+              )}
             </div>
             <h1>Wallet Contract</h1>
             {connected === true ? (
@@ -242,7 +245,7 @@ function App() {
                         </div>
                       </div>
                       <div className="">
-                      <button className="action-button" onClick={() => handleDialogOpen('buy')}>Withdraw To Wallet</button>
+                        <button className="action-button" onClick={() => handleDialogOpen('buy')}>Withdraw To Wallet</button>
                       </div>
                     </div>
                     {/* Buy/Sell Chicken Dialog */}
