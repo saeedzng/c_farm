@@ -136,8 +136,7 @@ function App() {
         <nav className="menu">
           <ul>
             <li><button onClick={() => setPageN(2)}>Wallet</button></li>
-            {/* <li><button onClick={() => toggleMenu}></button>Details</li> */}
-            {/* <li><button onClick={() => setPageN(1)}>Master Contract</button></li> */}
+            <li><button onClick={() => setPageN(1)}>Master Contract</button></li>
             <li><button onClick={() => setPageN(0)}>Home</button></li>
           </ul>
         </nav>
@@ -199,6 +198,7 @@ function App() {
             <div className='Hint'>{master_contract_address}</div>
             <b>Master contract Balance</b>
             {master_contract_balance && <div className='Hint'>{fromNano(master_contract_balance)} ton</div>}
+            <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button>
           </div>
         )}
         {page_n === 2 && (
