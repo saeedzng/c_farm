@@ -292,6 +292,7 @@ function App() {
                       <div className="dialog-overlay">
                         <div className="dialog-content">
                           <h2>{actionType === 'buy' ? 'Buy Chickens' : 'Sell Chickens'}</h2>
+                          <p>The price of each chicken is one dollar</p>
                           <div className="input-container">
                             <button onClick={decreaseCount}>-</button>
                             <input

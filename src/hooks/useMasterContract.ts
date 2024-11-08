@@ -51,7 +51,7 @@ export function useMasterContract(wowner_address : Address , wreferal_address : 
       return masterContract?.sendDeploy(sender, toNano(0.02));
     },
     sendDeployByMaster: (wc_referal: Address) => {
-      return masterContract?.sendDeployByMaster(sender, toNano(0.02), wc_referal);
+      return masterContract?.sendDeployByMaster(sender, toNano(0.01), wc_referal);
     },
     get_user_wallet_address: (wc_owner: Address, wc_referal: Address) => {
       return masterContract?.getWalletAddress(wc_owner, wc_referal);
