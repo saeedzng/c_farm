@@ -16,7 +16,7 @@ declare global {
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
-  function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"; }
+  function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "You Dont Have Contract Wallet"; }
   function getDeployed() { const Deployed = localStorage.getItem("deployed"); return Deployed ? Deployed : "false"; }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
@@ -62,6 +62,7 @@ function App() {
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
+  const showchickennumber: number = ch_number ? ch_number : 0;
   // const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
@@ -222,7 +223,7 @@ function App() {
                     <div className="image-row">
                       <div className="image-container">
                         <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">Hens : {ch_number}</div>
+                        <div className="image-value">Hens : {showchickennumber}</div>
                       </div>
                       <div className="image-container">
                         <img src="./coin.png" alt="Chicken" className="wallet-image" />
