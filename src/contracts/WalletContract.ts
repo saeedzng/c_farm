@@ -66,6 +66,15 @@ export class WalletContract implements Contract {
             body: beginCell().storeUint(3, 32).endCell(),
         });
     }
+
+    async send_ballance_to_owner(provider: ContractProvider, via: Sender, value: bigint , withdraw_amount :bigint) {
+        await provider.internal(via, {
+            value,
+            sendMode: SendMode.PAY_GAS_SEPARATELY,
+            body: beginCell().storeUint(4,32).storeUint(withdraw_amount,32).endCell(),
+        });
+    }
+    
     async getData(provider: ContractProvider) {
         const { stack } = await provider.get("load_contract_storage_content", []);
         return {

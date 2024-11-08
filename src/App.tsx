@@ -16,15 +16,8 @@ declare global {
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
-
-  function getTonAddress() {
-    const tonAddress = localStorage.getItem("tonAddress");
-    return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO";
-  }
-  function getDeployed() {
-    const Deployed = localStorage.getItem("deployed");
-    return Deployed ? Deployed : "false";
-  }
+  function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"; }
+  function getDeployed() { const Deployed = localStorage.getItem("deployed"); return Deployed ? Deployed : "false"; }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
@@ -54,7 +47,7 @@ function App() {
     }
   }, [isdeployed]);
 
-  const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address,
+  const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, withdraw_to_owner,
     ch_number, first_buy, send_buy_chicken_order, send_sell_chicken_order, send_recive_eggs_order
   } = useWalletContract(Address.parse(getTonAddress()));
 
@@ -106,6 +99,28 @@ function App() {
   function warningloweggs() {
     WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.', runreciveeggs)
   }
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState('');
+
+  const handleWithdrawClick = () => {
+    setIsDialogVisible(true);
+    setWithdrawAmount(''); // Reset amount when opening dialog
+  };
+
+  const handleWithdraw = () => {
+    // Ensure amountToWithdraw is defined and a valid number
+    const amountToWithdraw = withdrawAmount === 'all'
+      ? (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))
+      : (withdrawAmount ? BigInt(Number(withdrawAmount)) : BigInt(0));
+
+    if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
+      withdraw_to_owner(amountToWithdraw); // Call the withdrawal function with BigInt
+      setIsDialogVisible(false); // Close dialog after withdrawal
+    } else {
+      alert("Please enter a valid amount."); // Error handling
+    }
+  };
+
 
   return (
     <div className="wrapper">
@@ -245,8 +260,31 @@ function App() {
                         </div>
                       </div>
                       <div className="">
-                        <button className="action-button" onClick={() => handleDialogOpen('buy')}>Withdraw To Wallet</button>
+                        <button className="action-button" onClick={() => handleWithdrawClick}>Withdraw To Wallet</button>
                       </div>
+                      {/* Withdrawal Dialog */}
+                      {isDialogVisible && (
+                        <div className="dialog-overlay">
+                          <div className="dialog-content">
+                            <h2>Withdraw Funds</h2>
+                            <div>
+                              <label>
+                                Amount to Withdraw:
+                                <input
+                                  type="text"
+                                  value={withdrawAmount}
+                                  onChange={(e) => setWithdrawAmount(e.target.value)}
+                                  placeholder="Enter amount or type 'all'"
+                                />
+                              </label>
+                            </div>
+                            <div className="dialog-buttons">
+                              <button onClick={() => setIsDialogVisible(false)}>Cancel</button>
+                              <button onClick={handleWithdraw}>Withdraw</button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                     {/* Buy/Sell Chicken Dialog */}
                     {showDialog && (
