@@ -61,7 +61,7 @@ function App() {
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
   const showchickennumber: number = ch_number ? ch_number : 0;
   const toggleHelp = () => { setShowHelp(!showHelp);setShowDetails(false);};
-  const toggleDetails = () => { setShowDetails(!showHelp);setShowHelp(false);};
+  const toggleDetails = () => { setShowDetails(!showDetails);setShowHelp(false);};
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
   const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
@@ -168,8 +168,10 @@ function App() {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
                 }}>Deploy Wallet Contract</button><br />     */}
+                <div className="button-row">
                 <button className="three-dot-menu" onClick={toggleHelp}> Help </button>
                 <button className="three-dot-menu" onClick={toggleDetails}> Details </button>
+                </div>
                 {showDetails && (
                   <div className="offchain-data">
                     <div><p>Owner Address</p></div>
