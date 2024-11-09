@@ -1,5 +1,5 @@
 import "./App.css";
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress ,useTonConnectUI } from "@tonconnect/ui-react";
 import { useMasterContract } from "./hooks/useMasterContract";
 import { useWalletContract } from "./hooks/useWalletContract";
 import { useTonConnect } from "./hooks/useTonConnect";
@@ -22,6 +22,7 @@ function App() {
   const [showHelp, setShowHelp] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [tonConnectUI] = useTonConnectUI();
 
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
@@ -71,18 +72,42 @@ function App() {
     setShowDialog(true);
   };
 
-  const confirmPurchase = () => {
+  const confirmPurchase = async () => {
     if (chickenCount > 0) {
-      if (actionType === 'ton') {
-        send_buy_chicken_order(chickenCount);
-      } else {
-        send_buy_chicken_by_eggs(chickenCount);
+      try{
+        if (actionType === 'ton') {
+          await send_buy_chicken_order(chickenCount);
+        } else {
+          await send_buy_chicken_by_eggs(chickenCount);
+        }
+        setShowDialog(false); // Close dialog after purchase
+      }catch(error){
+        WebApp.showAlert("Transaction failed. Please try again." + error);
       }
-      setShowDialog(false); // Close dialog after purchase
+
     } else {
       WebApp.showAlert("Please enter a valid number of chickens.");
     }
   };
+
+      // Effect to listen for TonConnect events
+      useEffect(() => {
+        const handleWalletStatusChange = (wallet:any) => {
+            // Check if the wallet has a proof indicating a successful transaction
+            if (wallet.connectItems?.tonProof && 'proof' in wallet.connectItems.tonProof) {
+                WebApp.showAlert("Transaction successful:", wallet.connectItems.tonProof.proof);
+                // Update your state or perform actions here
+            }
+        };
+
+        // Subscribe to status changes
+        tonConnectUI.onStatusChange(handleWalletStatusChange);
+
+        return () => {
+            // Clean up the listener on component unmount
+            tonConnectUI.onStatusChange(handleWalletStatusChange);
+        };
+    }, [tonConnectUI]);
 
   const increaseCount = () => {
     setChickenCount(prevCount => prevCount + 1);
@@ -125,6 +150,7 @@ function App() {
       alert("Please enter a valid amount."); // Error handling
     }
   };
+
 
   return (
     <div className="wrapper">
