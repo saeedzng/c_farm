@@ -60,8 +60,8 @@ function App() {
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
   const showchickennumber: number = ch_number ? ch_number : 0;
-  const toggleHelp = () => { setShowHelp(!showHelp);setShowDetails(false);};
-  const toggleDetails = () => { setShowDetails(!showDetails);setShowHelp(false);};
+  const toggleHelp = () => { setShowHelp(!showHelp); setShowDetails(false); };
+  const toggleDetails = () => { setShowDetails(!showDetails); setShowHelp(false); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
   const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
@@ -152,26 +152,25 @@ function App() {
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
               <div>
-              <>
-              <div className="button-row">
-              {!isdeployed && (
-                    <button className='action-button' onClick={async () => {
-                      await sendDeployByMaster(address(referal_address));
-                      setIsdeployed(true); // Set deployed state only after successful approval
-                      window.location.reload();
-                    }}>
-                      Deploy Wallet Contract
-                    </button>
-                  )}
-              </div>
+                <>
+                  <div className="button-row-single">
+                    {(!isdeployed && !isDataLoaded) && (
+                      <button className='action-button' onClick={async () => {
+                        await sendDeployByMaster(address(referal_address));
+                        setIsdeployed(true); // Set deployed state only after successful approvale
+                      }}>
+                        Deploy Wallet Contract
+                      </button>
+                    )}
+                  </div>
                 </>
                 {/* <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
                 }}>Deploy Wallet Contract</button><br />     */}
                 <div className="button-row">
-                <button className="action-button" onClick={toggleHelp}> Help </button>
-                <button className="action-button" onClick={toggleDetails}> Details </button>
+                  <button className="action-button" onClick={toggleHelp}> Help </button>
+                  <button className="action-button" onClick={toggleDetails}> Details </button>
                 </div>
                 {showDetails && (
                   <div className="detail-content">
@@ -212,8 +211,6 @@ function App() {
                     <p>16. When a level one referral team member buys hens, you get 25% of their purchase.</p>
                     <p>17. When a level two referral team member buys hens, you get 10% of their purchase.</p>
                     <p>18. When a level three referral team member buys hens, you get 5% of their purchase.</p>
-
-
 
                   </div>
                 )}
