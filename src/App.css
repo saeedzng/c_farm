@@ -104,7 +104,9 @@ align-items: center;
   font-size: 2.2vw; /* Adjust size as needed */
   color: #fff; /* White color for the dots */
   padding: 2.2vw;
+  margin-bottom: 10px; /* Add space below the button */
 }
+
 
 .menu-content {
   background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
@@ -115,6 +117,7 @@ align-items: center;
   z-index: 10; /* Ensure it appears above other elements */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
   text-align: left; /* Justify text to the left */
+  margin-top: 10px; /* Add space above the menu content */
   border: 1px solid #2b1b56; /* Tiny border around each image */
 }
 

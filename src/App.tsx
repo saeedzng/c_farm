@@ -184,24 +184,27 @@ function App() {
                 {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
                 {showMenu && (
                   <div className="menu-content">
-                    <p>1. First, you need to log in with a wallet for authentication.</p>
-<p>2. Every transaction on the TON platform incurs a fee of about 0.01 TON.</p>
-<p>3. Reload the app 30 seconds after each transaction to see the changes.</p>
-<p>4. Deploy a smart contract for yourself to start playing.</p>
-<p>5. The wallet that pays for deploying the contract will be the contract owner.</p>
-<p>6. You can buy hens with TON from your wallet and get one egg per day per hen.</p>
-<p>7. You can also buy hens with your eggs.</p>
-<p>8. When you want to collect your earned eggs, you must have at least one egg and pay the gas fee.</p>
-<p>9. Transactions requesting less than one egg will fail.</p>
-<p>10. Each egg is worth 0.0333 TON.</p>
-<p>11. You can withdraw your eggs to your wallet whenever your balance exceeds the transaction fee.</p>
+<p>1. First, log in with a wallet for authentication.</p>
+<p>2. Each transaction on the TON platform incurs a fee of about 0.01 TON.</p>
+<p>3. Reload the app 30 seconds after each transaction to see updates.</p>
+<p>4. Deploy a smart contract to start using the app.</p>
+<p>5. The wallet that pays for the contract deployment becomes the contract owner.</p>
+<p>6. You can buy hens with TON from your wallet, earning one egg per day per hen.</p>
+<p>7. Each hen costs 1 TON.</p>
+<p>8. You can also purchase hens with your eggs.</p>
+<p>9. To collect your earned eggs, you must have at least one egg and pay the gas fee.</p>
+<p>10. Transactions requesting less than one egg will fail.</p>
+<p>11. Each egg is worth 0.0333 TON.</p>
+<p>12. You can withdraw your eggs to your wallet when your balance exceeds the transaction fee.</p>
+<p>13. If your page is offline, reload the app to reconnect.</p>
 
 <h3>Referral</h3>
-<p>12. When you share the app using the referral button, your address will be set as the referral address in the shared link.</p>
-<p>13. Anyone who joins the app through your link is part of your referral team.</p>
-<p>14. When someone in your level one referral team buys hens, you get 25% of their purchase.</p>
-<p>15. When someone in your level two referral team buys hens, you get 10% of their purchase.</p>
-<p>16. When someone in your level three referral team buys hens, you get 5% of their purchase.</p>
+<p>14. When you share the app using the referral button, your address is set as the referral address in the shared link.</p>
+<p>15. Anyone who joins the app through your link becomes part of your referral team.</p>
+<p>16. When a level one referral team member buys hens, you get 25% of their purchase.</p>
+<p>17. When a level two referral team member buys hens, you get 10% of their purchase.</p>
+<p>18. When a level three referral team member buys hens, you get 5% of their purchase.</p>
+
 
 
                   </div>
