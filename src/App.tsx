@@ -98,7 +98,12 @@ function App() {
     send_recive_eggs_order();
   };
   function warningloweggs() {
-    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.', runreciveeggs)
+    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.', 
+      function(result) {
+        if (result) {
+          runreciveeggs();
+        } 
+      })
   }
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState('');
