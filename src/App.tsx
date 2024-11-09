@@ -43,7 +43,7 @@ function App() {
     }
   }, [isdeployed]);
 
-  const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, /* withdraw_to_owner, */
+  const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, withdraw_to_owner,
     ch_number, first_buy, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order
   } = useWalletContract(Address.parse(getTonAddress()));
 
@@ -116,8 +116,8 @@ function App() {
       : (withdrawAmount ? BigInt(Number(withdrawAmount)* 1000000000) : BigInt(0));
 
     if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
-      WebApp.showAlert((amountToWithdraw - BigInt(100000)).toString())
-      //withdraw_to_owner(amountToWithdraw - BigInt(100000)); // Call the withdrawal function with BigInt
+      // WebApp.showAlert((amountToWithdraw - BigInt(100000)).toString())
+      withdraw_to_owner(amountToWithdraw - BigInt(100000)); // Call the withdrawal function with BigInt
       setIsDialogVisible(false); // Close dialog after withdrawal
     } else {
       alert("Please enter a valid amount."); // Error handling
