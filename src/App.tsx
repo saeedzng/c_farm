@@ -279,7 +279,7 @@ function App() {
                                 Amount to Withdraw:
                                 <input
                                   type="text"
-                                  value={withdrawAmount}
+                                  value={fromNano(withdrawAmount)}
                                   onChange={(e) => setWithdrawAmount(e.target.value)}
                                   placeholder="Enter amount or type 'all'"
                                 />
