@@ -47,8 +47,8 @@ function App() {
     }
   }, [isdeployed]);
 
-  const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, withdraw_to_owner,
-    ch_number, first_buy, send_buy_chicken_order, send_sell_chicken_order, send_recive_eggs_order
+  const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, /* withdraw_to_owner, */
+    ch_number, first_buy, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order
   } = useWalletContract(Address.parse(getTonAddress()));
 
   useEffect(() => {
@@ -66,19 +66,19 @@ function App() {
   // const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
-  const [actionType, setActionType] = useState<'buy' | 'sell'>('buy'); // State to track action type
+  const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
 
-  const handleDialogOpen = (type: 'buy' | 'sell') => {
+  const handleDialogOpen = (type: 'ton' | 'egg') => {
     setActionType(type);
     setShowDialog(true);
   };
 
   const confirmPurchase = () => {
     if (chickenCount > 0) {
-      if (actionType === 'buy') {
+      if (actionType === 'ton') {
         send_buy_chicken_order(chickenCount);
       } else {
-        send_sell_chicken_order(chickenCount);
+        send_buy_chicken_by_eggs(chickenCount);
       }
       setShowDialog(false); // Close dialog after purchase
     } else {
@@ -98,7 +98,7 @@ function App() {
     send_recive_eggs_order();
   };
   function warningloweggs() {
-    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee of 0.002 tons.', runreciveeggs)
+    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.', runreciveeggs)
   }
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState('');
@@ -115,7 +115,8 @@ function App() {
       : (withdrawAmount ? BigInt(Number(withdrawAmount)) : BigInt(0));
 
     if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
-      withdraw_to_owner(amountToWithdraw); // Call the withdrawal function with BigInt
+      WebApp.showAlert(amountToWithdraw.toString());
+      // withdraw_to_owner(amountToWithdraw); // Call the withdrawal function with BigInt
       setIsDialogVisible(false); // Close dialog after withdrawal
     } else {
       alert("Please enter a valid amount."); // Error handling
@@ -240,8 +241,8 @@ function App() {
                           <label>Buy Chicken</label>
                         </div>
                         <div className="button-row">
-                          <button className="action-button" onClick={() => handleDialogOpen('buy')}>From Wallet</button>
-                          <button className="action-button" onClick={() => handleDialogOpen('sell')}>From Eggs</button>
+                          <button className="action-button" onClick={() => handleDialogOpen('ton')}>From Wallet</button>
+                          <button className="action-button" onClick={() => handleDialogOpen('egg')}>From Eggs</button>
                         </div>
                       </div>
                       <div className="buy-row">
@@ -291,7 +292,7 @@ function App() {
                     {showDialog && (
                       <div className="dialog-overlay">
                         <div className="dialog-content">
-                          <h2>{actionType === 'buy' ? 'Buy Chickens' : 'Sell Chickens'}</h2>
+                          <h2>{actionType === 'ton' ? 'Buy Chickens' : 'Buy Chickens'}</h2>
                           <p>The price of each chicken is one TON</p>
                           <div className="input-container">
                             <button onClick={decreaseCount}>-</button>
