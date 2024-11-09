@@ -97,6 +97,7 @@ function App() {
     send_recive_eggs_order();
   };
   function warningloweggs() {
+    if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
     WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.',
       function (result) {
         if (result) {
@@ -296,6 +297,7 @@ function App() {
                             <div className="button-row">
                               <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
                               <button className="action-button" onClick={() => {
+                                if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
                                 const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
                                 navigator.share({
                                   title: 'Chicken Farm Wallet Contract',
