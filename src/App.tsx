@@ -169,6 +169,7 @@ function App() {
                     <button className='action-button' onClick={async () => {
                       await sendDeployByMaster(address(referal_address));
                       setIsdeployed(true); // Set deployed state only after successful approval
+                      window.location.reload();
                     }}>
                       Deploy Wallet Contract
                     </button>
@@ -183,12 +184,25 @@ function App() {
                 {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
                 {showMenu && (
                   <div className="menu-content">
-                    <div><b>Wallet contract Address</b></div>
-                    <div className='Hint'>{wallet_contract_address}</div>
-                    <div><b>Wallet owner Address</b></div>
-                    <div className='Hint'>{wallet_owner_address}</div>
-                    <div><b>Wallet referral Address</b></div>
-                    <div className='Hint'>{wallet_referal_address}</div>
+                    <p>First, you need to log in with a wallet for authentication.</p>
+                    <p>Every transaction on the TON platform incurs a fee of about 0.01 TON.</p>
+                    <p>Reload the app 30 seconds after each transaction to see the changes.</p>
+                    <p>Deploy a smart contract for yourself to start playing.</p>
+                    <p>The wallet that pays for deploying the contract will be the contract owner.</p>
+                    <p>You can buy hens with TON from your wallet and get one egg per day per hen.</p>
+                    <p>You can also buy hens with your eggs.</p>
+                    <p>When you want to collect your earned eggs, you must have at least one egg and pay the gas fee.</p>
+                    <p>Transactions requesting less than one egg will fail.</p>
+                    <p>Each egg is worth 0.0333 TON.</p>
+                    <p>You can withdraw your eggs to your wallet whenever your balance exceeds the transaction fee.</p>
+
+                    <h3>Referral</h3>
+                    <p>When you share the app using the referral button, your address will be set as the referral address in the shared link.</p>
+                    <p>Anyone who joins the app through your link is part of your referral team.</p>
+                    <p>When someone in your level one referral team buys hens, you get 25% of their purchase.</p>
+                    <p>When someone in your level two referral team buys hens, you get 10% of their purchase.</p>
+                    <p>When someone in your level three referral team buys hens, you get 5% of their purchase.</p>
+
                   </div>
                 )}
               </div>
