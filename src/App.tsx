@@ -120,7 +120,7 @@ function App() {
       : (withdrawAmount ? BigInt(Number(withdrawAmount)) : BigInt(0));
 
     if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
-      WebApp.showAlert(amountToWithdraw.toString());
+      WebApp.showAlert(fromNano(amountToWithdraw));
       // withdraw_to_owner(amountToWithdraw); // Call the withdrawal function with BigInt
       setIsDialogVisible(false); // Close dialog after withdrawal
     } else {
