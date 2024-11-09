@@ -19,7 +19,8 @@ function App() {
   const owner_address = useTonAddress();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  const [showMenu, setShowMenu] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -59,7 +60,8 @@ function App() {
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
   const showchickennumber: number = ch_number ? ch_number : 0;
-  const toggleMenu = () => { setShowMenu(!showMenu); };
+  const toggleHelp = () => { setShowHelp(!showHelp);setShowDetails(false);};
+  const toggleDetails = () => { setShowDetails(!showHelp);setShowHelp(false);};
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
   const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
@@ -150,20 +152,23 @@ function App() {
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
               <div>
-                <div className="offchain-data">
-                  <div><p>Owner Address</p></div>
-                  <div>{owner_address}</div>
-                  <div><p>Referral address</p></div>
-                  <div>{referal_address}</div>
-                  <div><p>Wallet Address</p></div>
-                  <div>{wallet_contract_address}</div>
-                  <div><p>Wallet owner Address</p></div>
-                  <div>{wallet_owner_address}</div>
-                  <div><p>Wallet referral Address</p></div>
-                  <div >{wallet_referal_address}</div>
-                  <div><p>Deploy Address</p></div>
-                  <div>{wc_addressss?.toString()}</div>
-                </div>
+                {showDetails && (
+                  <div className="offchain-data">
+                    <div><p>Owner Address</p></div>
+                    <div>{owner_address}</div>
+                    <div><p>Referral address</p></div>
+                    <div>{referal_address}</div>
+                    <div><p>Wallet Address</p></div>
+                    <div>{wallet_contract_address}</div>
+                    <div><p>Wallet owner Address</p></div>
+                    <div>{wallet_owner_address}</div>
+                    <div><p>Wallet referral Address</p></div>
+                    <div >{wallet_referal_address}</div>
+                    <div><p>Deploy Address</p></div>
+                    <div>{wc_addressss?.toString()}</div>
+                  </div>
+                )}
+
                 <>
                   {!isdeployed && (
                     <button className='action-button' onClick={async () => {
@@ -180,30 +185,31 @@ function App() {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
                 }}>Deploy Wallet Contract</button><br />     */}
-                <button className="three-dot-menu" onClick={toggleMenu}> Help </button>
+                <button className="three-dot-menu" onClick={toggleHelp}> Help </button>
+                <button className="three-dot-menu" onClick={toggleDetails}> Help </button>
                 {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
-                {showMenu && (
+                {showHelp && (
                   <div className="menu-content">
-<p>1. First, log in with a wallet for authentication.</p>
-<p>2. Each transaction on the TON platform incurs a fee of about 0.01 TON.</p>
-<p>3. Reload the app 30 seconds after each transaction to see updates.</p>
-<p>4. Deploy a smart contract to start using the app.</p>
-<p>5. The wallet that pays for the contract deployment becomes the contract owner.</p>
-<p>6. You can buy hens with TON from your wallet, earning one egg per day per hen.</p>
-<p>7. Each hen costs 1 TON.</p>
-<p>8. You can also purchase hens with your eggs.</p>
-<p>9. To collect your earned eggs, you must have at least one egg and pay the gas fee.</p>
-<p>10. Transactions requesting less than one egg will fail.</p>
-<p>11. Each egg is worth 0.0333 TON.</p>
-<p>12. You can withdraw your eggs to your wallet when your balance exceeds the transaction fee.</p>
-<p>13. If your page is offline, reload the app to reconnect.</p>
+                    <p>1. First, log in with a wallet for authentication.</p>
+                    <p>2. Each transaction on the TON platform incurs a fee of about 0.01 TON.</p>
+                    <p>3. Reload the app 30 seconds after each transaction to see updates.</p>
+                    <p>4. Deploy a smart contract to start using the app.</p>
+                    <p>5. The wallet that pays for the contract deployment becomes the contract owner.</p>
+                    <p>6. You can buy hens with TON from your wallet, earning one egg per day per hen.</p>
+                    <p>7. Each hen costs 1 TON.</p>
+                    <p>8. You can also purchase hens with your eggs.</p>
+                    <p>9. To collect your earned eggs, you must have at least one egg and pay the gas fee.</p>
+                    <p>10. Transactions requesting less than one egg will fail.</p>
+                    <p>11. Each egg is worth 0.0333 TON.</p>
+                    <p>12. You can withdraw your eggs to your wallet when your balance exceeds the transaction fee.</p>
+                    <p>13. If your page is offline, reload the app to reconnect.</p>
 
-<h3>Referral</h3>
-<p>14. When you share the app using the referral button, your address is set as the referral address in the shared link.</p>
-<p>15. Anyone who joins the app through your link becomes part of your referral team.</p>
-<p>16. When a level one referral team member buys hens, you get 25% of their purchase.</p>
-<p>17. When a level two referral team member buys hens, you get 10% of their purchase.</p>
-<p>18. When a level three referral team member buys hens, you get 5% of their purchase.</p>
+                    <h3>Referral</h3>
+                    <p>14. When you share the app using the referral button, your address is set as the referral address in the shared link.</p>
+                    <p>15. Anyone who joins the app through your link becomes part of your referral team.</p>
+                    <p>16. When a level one referral team member buys hens, you get 25% of their purchase.</p>
+                    <p>17. When a level two referral team member buys hens, you get 10% of their purchase.</p>
+                    <p>18. When a level three referral team member buys hens, you get 5% of their purchase.</p>
 
 
 
