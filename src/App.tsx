@@ -67,6 +67,7 @@ function App() {
   const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
 
   const handleDialogOpen = (type: 'ton' | 'egg') => {
+    if (!isDataLoaded){WebApp.showAlert("You Are Offline");return;}
     setActionType(type);
     setShowDialog(true);
   };
@@ -118,7 +119,6 @@ function App() {
       : (withdrawAmount ? (Number(withdrawAmount) * 1000000000) : (0));
 
     if (amountToWithdraw > (0) && amountToWithdraw <= (wallet_contract_balance ? (wallet_contract_balance) : (0))) {
-      // WebApp.showAlert((amountToWithdraw - BigInt(100000)).toString())
       withdraw_to_owner(amountToWithdraw - 100); // Call the withdrawal function with BigInt
       setIsDialogVisible(false); // Close dialog after withdrawal
     } else {
