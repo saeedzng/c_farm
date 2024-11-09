@@ -7,11 +7,7 @@ import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
 
-declare global {
-  interface Window {
-    Telegram: any;
-  }
-}
+declare global {interface Window {Telegram: any;}}
 
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
@@ -53,12 +49,12 @@ function App() {
 
   useEffect(() => {
     // Check if wallet_contract_address is available
-    if (ch_number) {
+    if (wallet_contract_balance) {
       setIsDataLoaded(true);
     } else {
       setIsDataLoaded(false);
     }
-  }, [ch_number]); // Dependency array to run effect on address change
+  }, [wallet_contract_balance]); // Dependency array to run effect on address change
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
@@ -120,7 +116,7 @@ function App() {
       : (withdrawAmount ? BigInt(Number(withdrawAmount)* 1000000000) : BigInt(0));
 
     if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
-      withdraw_to_owner(amountToWithdraw); // Call the withdrawal function with BigInt
+      withdraw_to_owner(amountToWithdraw - BigInt(100000)); // Call the withdrawal function with BigInt
       setIsDialogVisible(false); // Close dialog after withdrawal
     } else {
       alert("Please enter a valid amount."); // Error handling
