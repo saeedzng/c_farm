@@ -115,9 +115,9 @@ function App() {
       ? (wallet_contract_balance ? (wallet_contract_balance) : (0))
       : (withdrawAmount ? (Number(withdrawAmount)* 1000000000) : (0));
 
-    if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
+    if (amountToWithdraw > (0) && amountToWithdraw <= (wallet_contract_balance ? (wallet_contract_balance) : (0))) {
       // WebApp.showAlert((amountToWithdraw - BigInt(100000)).toString())
-      withdraw_to_owner(amountToWithdraw - 1000); // Call the withdrawal function with BigInt
+      withdraw_to_owner(amountToWithdraw - 100); // Call the withdrawal function with BigInt
       setIsDialogVisible(false); // Close dialog after withdrawal
     } else {
       alert("Please enter a valid amount."); // Error handling
@@ -167,17 +167,7 @@ function App() {
                 <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
-                }}>Deploy Wallet Contract</button><br />
-                <button className='action-button' onClick={() => {
-                  setIsdeployed(true);
-                  setPageN(2);
-                }}>set and Open Wallet Contract</button><b></b>
-                <button className='action-button' onClick={() => {
-                  let impoDate: Date = new Date;
-                  if (first_buy) { impoDate = new Date(first_buy) }
-                  WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
-                    + isdeployed + "+" + first_buy + "+" + Date()))
-                }}>show alert</button>
+                }}>Deploy Wallet Contract</button><br />               
                 {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div>
                 {showMenu && (
                   <div className="menu-content">
@@ -200,7 +190,17 @@ function App() {
             <div className='Hint'>{master_contract_address}</div>
             <b>Master contract Balance</b>
             {master_contract_balance && <div className='Hint'>{fromNano(master_contract_balance)} ton</div>}
-            <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button>
+            <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />   
+            <button className='action-button' onClick={() => {
+                  setIsdeployed(true);
+                  setPageN(2);
+                }}>set and Open Wallet Contract</button><b></b>
+                <button className='action-button' onClick={() => {
+                  let impoDate: Date = new Date;
+                  if (first_buy) { impoDate = new Date(first_buy) }
+                  WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
+                    + isdeployed + "+" + first_buy + "+" + Date()))
+                }}>show alert</button><br />   
           </div>
         )}
         {page_n === 2 && (
