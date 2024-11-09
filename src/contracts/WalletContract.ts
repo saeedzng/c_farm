@@ -67,7 +67,7 @@ export class WalletContract implements Contract {
         });
     }
 
-    async send_ballance_to_owner(provider: ContractProvider, via: Sender, value: bigint , withdraw_amount :bigint) {
+    async send_ballance_to_owner(provider: ContractProvider, via: Sender, value: bigint , withdraw_amount :number) {
         await provider.internal(via, {
             value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,

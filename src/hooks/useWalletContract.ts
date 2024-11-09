@@ -67,7 +67,7 @@ export function useWalletContract(UserAddress: Address) {
     send_recive_eggs_order: () => {
       return walletContract?.send_recive_eggs_order(sender, toNano(0.01));
     },
-    withdraw_to_owner: (ton_to_send : bigint) => {
+    withdraw_to_owner: (ton_to_send : number) => {
       return walletContract?.send_ballance_to_owner(sender, toNano(0.01),ton_to_send);
     }
   };

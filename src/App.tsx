@@ -112,12 +112,12 @@ function App() {
   const handleWithdraw = () => {
     // Ensure amountToWithdraw is defined and a valid number
     const amountToWithdraw = withdrawAmount === 'all'
-      ? (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))
-      : (withdrawAmount ? BigInt(Number(withdrawAmount)* 1000000000) : BigInt(0));
+      ? (wallet_contract_balance ? (wallet_contract_balance) : (0))
+      : (withdrawAmount ? (Number(withdrawAmount)* 1000000000) : (0));
 
     if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
       // WebApp.showAlert((amountToWithdraw - BigInt(100000)).toString())
-      withdraw_to_owner(amountToWithdraw - BigInt(100000)); // Call the withdrawal function with BigInt
+      withdraw_to_owner(amountToWithdraw - 1000); // Call the withdrawal function with BigInt
       setIsDialogVisible(false); // Close dialog after withdrawal
     } else {
       alert("Please enter a valid amount."); // Error handling
