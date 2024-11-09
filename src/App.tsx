@@ -53,12 +53,12 @@ function App() {
 
   useEffect(() => {
     // Check if wallet_contract_address is available
-    if (wallet_contract_address) {
+    if (ch_number) {
       setIsDataLoaded(true);
     } else {
       setIsDataLoaded(false);
     }
-  }, [wallet_contract_address]); // Dependency array to run effect on address change
+  }, [ch_number]); // Dependency array to run effect on address change
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
@@ -292,7 +292,7 @@ function App() {
                       <div className="dialog-overlay">
                         <div className="dialog-content">
                           <h2>{actionType === 'buy' ? 'Buy Chickens' : 'Sell Chickens'}</h2>
-                          <p>The price of each chicken is one dollar</p>
+                          <p>The price of each chicken is one TON</p>
                           <div className="input-container">
                             <button onClick={decreaseCount}>-</button>
                             <input
