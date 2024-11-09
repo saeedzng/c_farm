@@ -108,15 +108,28 @@ align-items: center;
 }
 
 
-.menu-content {
+.help-content {
   background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
   color: #fff; /* White text color */
   border-radius: 10px; /* Rounded corners */
-  padding: 15px; /* Increased padding around content */
+  padding: 5px; /* Increased padding around content */
   position: absolute; /* Position it absolutely */
   z-index: 10; /* Ensure it appears above other elements */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
   text-align: left; /* Justify text to the left */
+  margin-top: 10px; /* Add space above the menu content */
+  border: 1px solid #2b1b56; /* Tiny border around each image */
+}
+
+
+.detail-content {
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
+  color: #fff; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 5px; /* Increased padding around content */
+  position: absolute; /* Position it absolutely */
+  z-index: 10; /* Ensure it appears above other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
   margin-top: 10px; /* Add space above the menu content */
   border: 1px solid #2b1b56; /* Tiny border around each image */
 }

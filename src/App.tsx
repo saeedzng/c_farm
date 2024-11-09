@@ -153,7 +153,8 @@ function App() {
             {connected && (
               <div>
               <>
-                  {!isdeployed && (
+              <div className="button-row">
+              {!isdeployed && (
                     <button className='action-button' onClick={async () => {
                       await sendDeployByMaster(address(referal_address));
                       setIsdeployed(true); // Set deployed state only after successful approval
@@ -162,7 +163,7 @@ function App() {
                       Deploy Wallet Contract
                     </button>
                   )}
-                  <br />
+              </div>
                 </>
                 {/* <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
@@ -173,7 +174,7 @@ function App() {
                 <button className="action-button" onClick={toggleDetails}> Details </button>
                 </div>
                 {showDetails && (
-                  <div className="menu-content">
+                  <div className="detail-content">
                     <div><p>Owner Address</p></div>
                     <div>{owner_address}</div>
                     <div><p>Referral address</p></div>
@@ -190,7 +191,7 @@ function App() {
                 )}
                 {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
                 {showHelp && (
-                  <div className="menu-content">
+                  <div className="help-content">
                     <p>1. First, log in with a wallet for authentication.</p>
                     <p>2. Each transaction on the TON platform incurs a fee of about 0.01 TON.</p>
                     <p>3. Reload the app 30 seconds after each transaction to see updates.</p>
