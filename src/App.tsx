@@ -117,7 +117,7 @@ function App() {
     // Ensure amountToWithdraw is defined and a valid number
     const amountToWithdraw = withdrawAmount === 'all'
       ? (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))
-      : (withdrawAmount ? BigInt(Number(withdrawAmount)) : BigInt(0));
+      : (withdrawAmount ? BigInt(Number(withdrawAmount)* 1000000000) : BigInt(0));
 
     if (amountToWithdraw > BigInt(0) && amountToWithdraw <= (wallet_contract_balance ? BigInt(wallet_contract_balance) : BigInt(0))) {
       WebApp.showAlert(fromNano(amountToWithdraw));
