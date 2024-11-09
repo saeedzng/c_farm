@@ -114,8 +114,10 @@ align-items: center;
   position: absolute; /* Position it absolutely */
   z-index: 10; /* Ensure it appears above other elements */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
-  align-items: baseline;
+  text-align: left; /* Justify text to the left */
+  border: 1px solid #2b1b56; /* Tiny border around each image */
 }
+
 
 .menu-content div {
    margin-bottom: 8px; /* Space between items */
