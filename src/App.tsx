@@ -7,7 +7,7 @@ import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
 
-declare global {interface Window {Telegram: any;}}
+declare global { interface Window { Telegram: any; } }
 
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
@@ -94,11 +94,11 @@ function App() {
     send_recive_eggs_order();
   };
   function warningloweggs() {
-    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.', 
-      function(result) {
+    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.',
+      function (result) {
         if (result) {
           runreciveeggs();
-        } 
+        }
       })
   }
   const [isDialogVisible, setIsDialogVisible] = useState(false);
@@ -113,7 +113,7 @@ function App() {
     // Ensure amountToWithdraw is defined and a valid number
     const amountToWithdraw = withdrawAmount === 'all'
       ? (wallet_contract_balance ? (wallet_contract_balance) : (0))
-      : (withdrawAmount ? (Number(withdrawAmount)* 1000000000) : (0));
+      : (withdrawAmount ? (Number(withdrawAmount) * 1000000000) : (0));
 
     if (amountToWithdraw > (0) && amountToWithdraw <= (wallet_contract_balance ? (wallet_contract_balance) : (0))) {
       // WebApp.showAlert((amountToWithdraw - BigInt(100000)).toString())
@@ -164,11 +164,22 @@ function App() {
                   <div><p>Deploy Address</p></div>
                   <div>{wc_addressss?.toString()}</div>
                 </div>
-                <button className='action-button' onClick={async () => {
+                <>
+                  {!isdeployed && (
+                    <button className='action-button' onClick={async () => {
+                      await sendDeployByMaster(address(referal_address));
+                      setIsdeployed(true); // Set deployed state only after successful approval
+                    }}>
+                      Deploy Wallet Contract
+                    </button>
+                  )}
+                  <br />
+                </>
+                {/* <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
-                }}>Deploy Wallet Contract</button><br />    
-                <button className="three-dot-menu" onClick={toggleMenu}> Help </button>           
+                }}>Deploy Wallet Contract</button><br />     */}
+                <button className="three-dot-menu" onClick={toggleMenu}> Help </button>
                 {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
                 {showMenu && (
                   <div className="menu-content">
@@ -191,17 +202,17 @@ function App() {
             <div className='Hint'>{master_contract_address}</div>
             <b>Master contract Balance</b>
             {master_contract_balance && <div className='Hint'>{fromNano(master_contract_balance)} ton</div>}
-            <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />   
+            <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />
             <button className='action-button' onClick={() => {
-                  setIsdeployed(true);
-                  setPageN(2);
-                }}>set and Open Wallet Contract</button><b></b>
-                <button className='action-button' onClick={() => {
-                  let impoDate: Date = new Date;
-                  if (first_buy) { impoDate = new Date(first_buy) }
-                  WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
-                    + isdeployed + "+" + first_buy + "+" + Date()))
-                }}>show alert</button><br />   
+              setIsdeployed(true);
+              setPageN(2);
+            }}>set and Open Wallet Contract</button><b></b>
+            <button className='action-button' onClick={() => {
+              let impoDate: Date = new Date;
+              if (first_buy) { impoDate = new Date(first_buy) }
+              WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
+                + isdeployed + "+" + first_buy + "+" + Date()))
+            }}>show alert</button><br />
           </div>
         )}
         {page_n === 2 && (

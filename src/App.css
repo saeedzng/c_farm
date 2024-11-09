@@ -103,6 +103,7 @@ align-items: center;
   cursor: pointer;
   font-size: 2.2vw; /* Adjust size as needed */
   color: #fff; /* White color for the dots */
+  padding: 2.2vw;
 }
 
 .menu-content {
