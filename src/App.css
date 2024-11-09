@@ -114,6 +114,7 @@ align-items: center;
   position: absolute; /* Position it absolutely */
   z-index: 10; /* Ensure it appears above other elements */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+  align-items: baseline;
 }
 
 .menu-content div {
