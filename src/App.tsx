@@ -267,7 +267,7 @@ function App() {
                         </div>
                       </div>
                       <div className="">
-                        <button className="action-button" onClick={() => handleWithdrawClick}>Withdraw To Wallet</button>
+                        <button className="action-button" onClick={handleWithdrawClick}>Withdraw To Wallet</button>
                       </div>
                       {/* Withdrawal Dialog */}
                       {isDialogVisible && (
