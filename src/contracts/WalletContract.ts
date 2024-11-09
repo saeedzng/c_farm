@@ -71,7 +71,7 @@ export class WalletContract implements Contract {
         await provider.internal(via, {
             value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,
-            body: beginCell().storeUint(4,32).storeUint(withdraw_amount,32).endCell(),
+            body: beginCell().storeUint(4,32).storeCoins(withdraw_amount).endCell(),
         });
     }
     
