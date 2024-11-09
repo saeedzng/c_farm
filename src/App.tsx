@@ -159,7 +159,7 @@ function App() {
                         await sendDeployByMaster(address(referal_address));
                         setIsdeployed(true); // Set deployed state only after successful approvale
                       }}>
-                        Deploy Wallet Contract
+                        Start Contract
                       </button>
                     )}
                   </div>
@@ -211,6 +211,12 @@ function App() {
                     <p>16. When a level one referral team member buys hens, you get 25% of their purchase.</p>
                     <p>17. When a level two referral team member buys hens, you get 10% of their purchase.</p>
                     <p>18. When a level three referral team member buys hens, you get 5% of their purchase.</p>
+
+                    <h3>Errors</h3>
+                    <p>Error 101: You are not the owner of the contract.</p>
+                    <p>Error 102: Your balance is not enough.</p>
+                    <p>Error 103: You have less than one egg.</p>
+
 
                   </div>
                 )}

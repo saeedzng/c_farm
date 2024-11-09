@@ -201,7 +201,7 @@ align-items: center;
 .button-row-single {
   display: flex;
   justify-content: center; /* Center the button horizontally */
-  margin-bottom: 10px; /* Space between button rows */
+  margin-bottom: 25px; /* Space between button rows */
 }
 
 
