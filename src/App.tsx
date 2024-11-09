@@ -19,7 +19,7 @@ function App() {
   const owner_address = useTonAddress();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  // const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function App() {
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
   const showchickennumber: number = ch_number ? ch_number : 0;
-  // const toggleMenu = () => { setShowMenu(!showMenu); };
+  const toggleMenu = () => { setShowMenu(!showMenu); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
   const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
@@ -167,8 +167,9 @@ function App() {
                 <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
-                }}>Deploy Wallet Contract</button><br />               
-                {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div>
+                }}>Deploy Wallet Contract</button><br />    
+                <button className="three-dot-menu" onClick={toggleMenu}> Help </button>           
+                {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
                 {showMenu && (
                   <div className="menu-content">
                     <div><b>Wallet contract Address</b></div>
@@ -178,7 +179,7 @@ function App() {
                     <div><b>Wallet referral Address</b></div>
                     <div className='Hint'>{wallet_referal_address}</div>
                   </div>
-                )} */}
+                )}
               </div>
             )}
           </>
