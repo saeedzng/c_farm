@@ -67,7 +67,7 @@ function App() {
   const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
 
   const handleDialogOpen = (type: 'ton' | 'egg') => {
-    if (!isDataLoaded){WebApp.showAlert("You Are Offline");return;}
+    if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
     setActionType(type);
     setShowDialog(true);
   };
@@ -250,11 +250,11 @@ function App() {
             <div className="status-indicator">
               {isDataLoaded ? (
                 <div style={{ color: 'green' }}>
-                  <span>🟢</span> You are connected
+                  <span>🟢</span>  connected
                 </div>
               ) : (
                 <div style={{ color: 'red' }}>
-                  <span>🔴</span> You are offline
+                  <span>🔴</span>  offline
                 </div>
               )}
             </div>
@@ -263,97 +263,103 @@ function App() {
               <div>
                 {isdeployed === true ? (
                   <>
-                    <div className="image-row">
-                      <div className="image-container">
-                        <img src="./hen.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">Hens : {showchickennumber}</div>
-                      </div>
-                      <div className="image-container">
-                        <img src="./coin.png" alt="Chicken" className="wallet-image" />
-                        <div className="image-value">TON : {showbalance.toFixed(3)}</div>
-                      </div>
-                      <div className="image-container">
-                        <img src="./egg.png" alt="Egg" className="wallet-image" />
-                        <div className="image-value">Eggs : {realeggnumber?.toFixed(1)}</div>
-                      </div>
-                    </div>
-                    <div className="button-container">
-                      <div className="buy-row">
-                        <div className="buy-label">
-                          <label>Buy Chicken</label>
+                    {isDataLoaded === true ? (
+                      <>
+                        <div className="image-row">
+                          <div className="image-container">
+                            <img src="./hen.png" alt="Chicken" className="wallet-image" />
+                            <div className="image-value">Hens : {showchickennumber}</div>
+                          </div>
+                          <div className="image-container">
+                            <img src="./coin.png" alt="Chicken" className="wallet-image" />
+                            <div className="image-value">TON : {showbalance.toFixed(3)}</div>
+                          </div>
+                          <div className="image-container">
+                            <img src="./egg.png" alt="Egg" className="wallet-image" />
+                            <div className="image-value">Eggs : {realeggnumber?.toFixed(1)}</div>
+                          </div>
                         </div>
-                        <div className="button-row">
-                          <button className="action-button" onClick={() => handleDialogOpen('ton')}>From Wallet</button>
-                          <button className="action-button" onClick={() => handleDialogOpen('egg')}>From Eggs</button>
+                        <div className="button-container">
+                          <div className="buy-row">
+                            <div className="buy-label">
+                              <label>Buy Chicken</label>
+                            </div>
+                            <div className="button-row">
+                              <button className="action-button" onClick={() => handleDialogOpen('ton')}>From Wallet</button>
+                              <button className="action-button" onClick={() => handleDialogOpen('egg')}>From Eggs</button>
+                            </div>
+                          </div>
+                          <div className="buy-row">
+                            <div className="buy-label">
+                              <label>Get Reward</label>
+                            </div>
+                            <div className="button-row">
+                              <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
+                              <button className="action-button" onClick={() => {
+                                const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+                                navigator.share({
+                                  title: 'Chicken Farm Wallet Contract',
+                                  text: 'Check out this wallet contract address!',
+                                  url: telegramShareUrl,
+                                });
+                              }}>Share Referal</button>
+                            </div>
+                          </div>
+                          <div className="">
+                            <button className="action-button" onClick={handleWithdrawClick}>Withdraw To Wallet</button>
+                          </div>
+                          {/* Withdrawal Dialog */}
+                          {isDialogVisible && (
+                            <div className="dialog-overlay">
+                              <div className="dialog-content">
+                                <h2>Withdraw Funds</h2>
+                                <div>
+                                  <label>
+                                    Amount to Withdraw:
+                                    <input
+                                      type="text"
+                                      value={withdrawAmount}
+                                      onChange={(e) => setWithdrawAmount(e.target.value)}
+                                      placeholder="Enter amount or type 'all'"
+                                    />
+                                  </label>
+                                </div>
+                                <div className="dialog-buttons">
+                                  <button onClick={() => setIsDialogVisible(false)}>Cancel</button>
+                                  <button onClick={handleWithdraw}>Withdraw</button>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      </div>
-                      <div className="buy-row">
-                        <div className="buy-label">
-                          <label>Get Reward</label>
-                        </div>
-                        <div className="button-row">
-                          <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
-                          <button className="action-button" onClick={() => {
-                            const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-                            navigator.share({
-                              title: 'Chicken Farm Wallet Contract',
-                              text: 'Check out this wallet contract address!',
-                              url: telegramShareUrl,
-                            });
-                          }}>Share Referal</button>
-                        </div>
-                      </div>
-                      <div className="">
-                        <button className="action-button" onClick={handleWithdrawClick}>Withdraw To Wallet</button>
-                      </div>
-                      {/* Withdrawal Dialog */}
-                      {isDialogVisible && (
-                        <div className="dialog-overlay">
-                          <div className="dialog-content">
-                            <h2>Withdraw Funds</h2>
-                            <div>
-                              <label>
-                                Amount to Withdraw:
+                        {/* Buy/Sell Chicken Dialog */}
+                        {showDialog && (
+                          <div className="dialog-overlay">
+                            <div className="dialog-content">
+                              <h2>Buy Chicken</h2>
+                              <p>each chicken is {actionType === 'ton' ? 'one TON' : 'thirty eggs'}</p>
+                              <div className="input-container">
+                                <button onClick={decreaseCount}>-</button>
                                 <input
-                                  type="text"
-                                  value={withdrawAmount}
-                                  onChange={(e) => setWithdrawAmount(e.target.value)}
-                                  placeholder="Enter amount or type 'all'"
+                                  type="number"
+                                  value={chickenCount}
+                                  onChange={(e) => setChickenCount(Number(e.target.value))}
+                                  min="1"
+                                  style={{ width: '50%' }} // Set width to half of parent
                                 />
-                              </label>
+                                <button onClick={increaseCount}>+</button>
+                              </div>
+                              <div className="dialog-buttons">
+                                <button onClick={() => setShowDialog(false)}>Cancel</button>
+                                <button onClick={confirmPurchase}>Confirm</button>
+                              </div>
                             </div>
-                            <div className="dialog-buttons">
-                              <button onClick={() => setIsDialogVisible(false)}>Cancel</button>
-                              <button onClick={handleWithdraw}>Withdraw</button>
-                            </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                    {/* Buy/Sell Chicken Dialog */}
-                    {showDialog && (
-                      <div className="dialog-overlay">
-                        <div className="dialog-content">
-                          <h2>Buy Chicken</h2>
-                          <p>each chicken is {actionType === 'ton' ? 'one TON' : 'thirty eggs'}</p>
-                          <div className="input-container">
-                            <button onClick={decreaseCount}>-</button>
-                            <input
-                              type="number"
-                              value={chickenCount}
-                              onChange={(e) => setChickenCount(Number(e.target.value))}
-                              min="1"
-                              style={{ width: '50%' }} // Set width to half of parent
-                            />
-                            <button onClick={increaseCount}>+</button>
-                          </div>
-                          <div className="dialog-buttons">
-                            <button onClick={() => setShowDialog(false)}>Cancel</button>
-                            <button onClick={confirmPurchase}>Confirm</button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                        )}
+                      </>
+                    )
+                      : (<p>Please Reload The Page.</p>)
+                    }
                   </>
                 ) : (<p>Please create a wallet contract first.</p>)}
               </div>
