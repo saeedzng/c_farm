@@ -173,7 +173,7 @@ function App() {
                 <button className="action-button" onClick={toggleDetails}> Details </button>
                 </div>
                 {showDetails && (
-                  <div className="offchain-data">
+                  <div className="menu-content">
                     <div><p>Owner Address</p></div>
                     <div>{owner_address}</div>
                     <div><p>Referral address</p></div>
