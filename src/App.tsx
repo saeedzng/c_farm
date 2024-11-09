@@ -169,8 +169,8 @@ function App() {
                   setIsdeployed(true); // Set deployed state only after successful approval
                 }}>Deploy Wallet Contract</button><br />     */}
                 <div className="button-row">
-                <button className="three-dot-menu" onClick={toggleHelp}> Help </button>
-                <button className="three-dot-menu" onClick={toggleDetails}> Details </button>
+                <button className="action-button" onClick={toggleHelp}> Help </button>
+                <button className="action-button" onClick={toggleDetails}> Details </button>
                 </div>
                 {showDetails && (
                   <div className="offchain-data">
