@@ -297,8 +297,8 @@ function App() {
                     {showDialog && (
                       <div className="dialog-overlay">
                         <div className="dialog-content">
-                          <h2>{actionType === 'ton' ? 'Buy Chickens' : 'Buy Chickens'}</h2>
-                          <p>The price of each chicken is one TON</p>
+                          <h2>Buy Chicken</h2>
+                          <p>each chicken is {actionType === 'ton' ? 'one TON' : 'thirty eggs'}</p>
                           <div className="input-container">
                             <button onClick={decreaseCount}>-</button>
                             <input
