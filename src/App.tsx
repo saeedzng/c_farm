@@ -152,24 +152,7 @@ function App() {
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
               <div>
-                {showDetails && (
-                  <div className="offchain-data">
-                    <div><p>Owner Address</p></div>
-                    <div>{owner_address}</div>
-                    <div><p>Referral address</p></div>
-                    <div>{referal_address}</div>
-                    <div><p>Wallet Address</p></div>
-                    <div>{wallet_contract_address}</div>
-                    <div><p>Wallet owner Address</p></div>
-                    <div>{wallet_owner_address}</div>
-                    <div><p>Wallet referral Address</p></div>
-                    <div >{wallet_referal_address}</div>
-                    <div><p>Deploy Address</p></div>
-                    <div>{wc_addressss?.toString()}</div>
-                  </div>
-                )}
-
-                <>
+              <>
                   {!isdeployed && (
                     <button className='action-button' onClick={async () => {
                       await sendDeployByMaster(address(referal_address));
@@ -186,7 +169,23 @@ function App() {
                   setIsdeployed(true); // Set deployed state only after successful approval
                 }}>Deploy Wallet Contract</button><br />     */}
                 <button className="three-dot-menu" onClick={toggleHelp}> Help </button>
-                <button className="three-dot-menu" onClick={toggleDetails}> Help </button>
+                <button className="three-dot-menu" onClick={toggleDetails}> Details </button>
+                {showDetails && (
+                  <div className="offchain-data">
+                    <div><p>Owner Address</p></div>
+                    <div>{owner_address}</div>
+                    <div><p>Referral address</p></div>
+                    <div>{referal_address}</div>
+                    <div><p>Wallet Address</p></div>
+                    <div>{wallet_contract_address}</div>
+                    <div><p>Wallet owner Address</p></div>
+                    <div>{wallet_owner_address}</div>
+                    <div><p>Wallet referral Address</p></div>
+                    <div >{wallet_referal_address}</div>
+                    <div><p>Deploy Address</p></div>
+                    <div>{wc_addressss?.toString()}</div>
+                  </div>
+                )}
                 {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
                 {showHelp && (
                   <div className="menu-content">
