@@ -154,7 +154,7 @@ function App() {
               <div>
                 <>
                   <div className="button-row-single">
-                    {(!isdeployed && !isDataLoaded) && (
+                    {(!isdeployed || !isDataLoaded) && (
                       <button className='action-button' onClick={async () => {
                         await sendDeployByMaster(address(referal_address));
                         setIsdeployed(true); // Set deployed state only after successful approvale
