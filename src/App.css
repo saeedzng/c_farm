@@ -1,6 +1,8 @@
 :root { 
   --bg-gradient-light: linear-gradient(to bottom, #9449e8, #efdbf3); /* Light mode gradient */ 
   --bg-gradient-dark: linear-gradient(to bottom, #3a027b, #000000); /* Dark mode gradient */
+  --bg-color-light: #ffffff; /* Light mode background color */ 
+  --bg-color-dark: #333; /* Dark mode background color */
  }
 
 #root {
@@ -46,14 +48,13 @@ align-items: center;
 }
 
 .down-section {
-  
   background: var(--bg-gradient);
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
 }
 
 .menu {
-  background-color: #333;
+  background-color: var(--bg-color);
   overflow: hidden;
   padding: 1vh 0; /* Scaled padding */
   border-radius: 2vw; /* Scaled border radius */
@@ -79,7 +80,7 @@ align-items: center;
   text-align: center;
   padding: 2vh 3vw; /* Bigger padding for menu items */
   text-decoration: none;
-  background-color: #333;
+  background-color: var(--bg-color);
   border: none;
   border-radius: 2vw; /* Scaled border radius */
   vertical-align: middle; /* Align items vertically in the middle */
@@ -114,7 +115,7 @@ align-items: center;
 
 
 .help-content {
-  background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
+  background-color: var(--bg-color);
   color: #fff; /* White text color */
   border-radius: 10px; /* Rounded corners */
   padding: 5px; /* Increased padding around content */
@@ -128,7 +129,7 @@ align-items: center;
 
 
 .detail-content {
-  background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
+  background-color: var(--bg-color);
   color: #fff; /* White text color */
   border-radius: 10px; /* Rounded corners */
   padding: 5px; /* Increased padding around content */
@@ -227,7 +228,7 @@ align-items: center;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: var(--bg-color); /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -309,11 +310,13 @@ align-items: center;
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-gradient: var(--bg-gradient-dark); /* Use dark mode gradient */
+    --bg-color: var(--bg-color-dark); /* Use dark mode background color */
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --bg-gradient: var(--bg-gradient-light); /* Use light mode gradient */
+    --bg-color: var(--bg-color-light); /* Use light mode background color */
   }
 }
