@@ -189,7 +189,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  background-image: var(--bg-button);
+  background-color: var(--bg-button);
   background-size: 140% auto;
 }
 
