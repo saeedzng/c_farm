@@ -312,7 +312,7 @@ function App() {
                             </div>
                           </div>
                           <div className="">
-                            <button className="action-button" onClick={handleWithdrawClick}>Withdraw To Wallet</button>
+                            <button className="action-button" style={{marginBottom : "25px"}} onClick={handleWithdrawClick}>Withdraw To Wallet</button>
                           </div>
                           {/* Withdrawal Dialog */}
                           {isDialogVisible && (
