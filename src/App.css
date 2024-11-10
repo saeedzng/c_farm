@@ -1,45 +1,44 @@
 :root { 
-  --bg-gradient-light: linear-gradient(to bottom, #3a027b, #000000); /* Light mode gradient */ 
-  --bg-gradient-dark: linear-gradient(to bottom, #3a027b, #000000); /* Dark mode gradient */
-  --bg-color-light: #333; /* Light mode background color */ 
-  --bg-color-dark: #333; /* Dark mode background color */
-  --text-color-light: #ffffff; /* Black for light mode */ 
-  --text-color-dark: #ffffff; /* White for dark mode */
-  --border-color-light: #2b1b56; /* Light grey for light mode */
-  --border-color-dark: #2b1b56; /* Dark grey for dark mode */ 
-  --border-button-light: #c8b7f9; /* Light grey for light mode */
-  --border-button-dark: #c8b7f9; /* Dark grey for dark mode */ 
-  --hover-color-light: #575757; /* Light background for hover in light mode */ 
-  --hover-color-dark: #575757; /* Dark background for hover in dark mode */
+  --bg-gradient-light: linear-gradient(to bottom, #3a027b, #000000);
+  --bg-gradient-dark: linear-gradient(to bottom, #3a027b, #000000);
+  --bg-color-light: #333;
+  --bg-color-dark: #333;
+  --text-color-light: #ffffff;
+  --text-color-dark: #ffffff;
+  --border-color-light: #2b1b56;
+  --border-color-dark: #2b1b56;
+  --border-button-light: #c8b7f9;
+  --border-button-dark: #c8b7f9;
+  --hover-color-light: #575757;
+  --hover-color-dark: #575757;
   --bg-button-light: #3a027b;
   --bg-button-dark: #3a027b;
   --bg-body-light: #000000;
   --bg-body-dark: #000000;
+}
 
- }
-
- @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --bg-gradient: var(--bg-gradient-dark); /* Use dark mode gradient */
-    --bg-color: var(--bg-color-dark); /* Use dark mode background color */
-    --text-color: var(--text-color-dark); /* Use dark mode text color */
+    --bg-gradient: var(--bg-gradient-dark);
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
     --border-color: var(--border-color-dark); 
     --hover-color: var(--hover-color-dark);
     --bg-button: var(--bg-button-dark);
-    --border-button: var(--border-button-dark); 
+    --border-button: var(--border-button-dark);
     --bg-body: var(--bg-body-dark);
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-gradient: var(--bg-gradient-light); /* Use light mode gradient */
-    --bg-color: var(--bg-color-light); /* Use light mode background color */
-    --text-color: var(--text-color-light); /* Use light mode text color */
+    --bg-gradient: var(--bg-gradient-light);
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
     --border-color: var(--border-color-light); 
     --hover-color: var(--hover-color-light);
     --bg-button: var(--bg-button-light);
-    --border-button: var(--border-button-light); 
+    --border-button: var(--border-button-light);
     --bg-body: var(--bg-body-light);
   }
 }
@@ -47,12 +46,12 @@
 #root {
   align-items: center;
   text-align: center;
-  font-size: 4vw; /* Scaled font size */
+  font-size: 4vw;
 }
 
 body {
   background-color: var(--bg-body);
-  height: 100vh; /* Ensure the body takes up the full height of the viewport */
+  height: 100vh;
   width: 100vw;
   color:white;
 }
@@ -66,7 +65,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1vh 2vw; /* Padding around the container */
+  padding: 1vh 2vw;
 }
 
 .left {
@@ -82,136 +81,133 @@ body {
 }
 
 .wrapper {
-  width: calc(100vw - 4vw); /* Adjust width to account for the border */
-  height: calc(100vh - 4vh); /* Adjust height to account for the border */
+  width: calc(100vw - 4vw);
+  height: calc(100vh - 4vh);
   align-items: center;
-  padding: 0; /* Remove padding if not needed */
+  padding: 0;
   text-align: center;
-  font-size: 3vw; /* Scaled font size */
+  font-size: 3vw;
 }
 
 .top-section {
   background: var(--bg-gradient);
-  border-radius: 10px; /* Rounded edges */
-  padding: 0.5vw; /* Remove padding if not needed */
-  padding-bottom: 10px; /* Space below menu */
+  border-radius: 10px;
+  padding: 0.5vw;
+  padding-bottom: 10px;
   margin-bottom: 1vh;
 }
 
 .down-section {
   background: var(--bg-gradient);
-  border-radius: 10px; /* Rounded edges */
-  padding: 0.5vw; /* Remove padding if not needed */
+  border-radius: 10px;
+  padding: 0.5vw;
   min-height: 50vh;
 }
 
 .menu {
   background-color: var(--bg-color);
   overflow: hidden;
-  padding: 1vh 0; /* Scaled padding */
-  border-radius: 2vw; /* Scaled border radius */
-  margin-bottom: 20px; /* Space between menu and content below */
+  padding: 1vh 0;
+  border-radius: 2vw;
+  margin-bottom: 20px;
 }
 
 .menu ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Make the menu horizontal */
-  justify-content: space-around; /* Space items evenly */
-  flex-direction: row-reverse; /* Align items from right to left */
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
 }
 
 .menu ul li {
-  display: inline; /* Ensure items are inline */
+  display: inline;
 }
 
 .menu ul li button, .menu ul li > * {
   display: inline-block;
   color: var(--text-color);
   text-align: center;
-  padding: 2vh 3vw; /* Bigger padding for menu items */
+  padding: 2vh 3vw;
   text-decoration: none;
   background-color: var(--bg-color);
   border: none;
-  border-radius: 2vw; /* Scaled border radius */
-  vertical-align: middle; /* Align items vertically in the middle */
-  font-size: 2.5vw; /* Bigger font size for menu items */
+  border-radius: 2vw;
+  vertical-align: middle;
+  font-size: 2.5vw;
 }
 
 .menu ul li button:hover, .menu ul li > *:hover {
-  background-color: var(--hover-color); /* Change background color on hover */
+  background-color: var(--hover-color);
 }
 
 .card {
-  padding: 4vh 2vw; /* Scaled padding */
+  padding: 4vh 2vw;
 }
 
 .read-the-docs {
   color: var(--text-color);
-  font-size: 2vw; /* Scaled font size */
+  font-size: 2vw;
 }
 
 .logo {
-  height: 19vh; /* Adjust the size as needed */
-  margin-left: 10px; /* Add spacing between the logo and TonConnect button */
+  height: 19vh;
+  margin-left: 10px;
 }
 
 .three-dot-menu {
   cursor: pointer;
-  font-size: 2.2vw; /* Adjust size as needed */
+  font-size: 2.2vw;
   color: var(--text-color);
   padding: 2.2vw;
-  margin-bottom: 10px; /* Add space below the button */
+  margin-bottom: 10px;
 }
-
 
 .help-content {
   background-color: var(--bg-color);
   color: var(--text-color);
-  border-radius: 10px; /* Rounded corners */
-  padding: 5px; /* Increased padding around content */
-  position: absolute; /* Position it absolutely */
-  z-index: 10; /* Ensure it appears above other elements */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
-  text-align: left; /* Justify text to the left */
-  margin-top: 10px; /* Add space above the menu content */
-  border: 1px solid var(--border-color); /* Tiny border around each image */
-  width: 95%;
+  border-radius: 10px;
+  padding: 5px;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  margin-top: 10px;
+  border: 1px solid var(--border-color);
+  width: 90%;
   margin-bottom: 25px;
 }
-
 
 .detail-content {
   background-color: var(--bg-color);
   color: var(--text-color);
-  border-radius: 10px; /* Rounded corners */
-  padding: 5px; /* Increased padding around content */
-  position: absolute; /* Position it absolutely */
-  z-index: 10; /* Ensure it appears above other elements */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
-  margin-top: 10px; /* Add space above the menu content */
-  border: 1px solid var(--border-color); /* Tiny border around each image */
-  width: 95%;
+  border-radius: 10px;
+  padding: 5px;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  border: 1px solid var(--border-color);
+  width: 90%;
   margin-bottom: 25px;
 }
 
-
 .menu-content div {
-   margin-bottom: 8px; /* Space between items */
+  margin-bottom: 8px;
 }
 
 .menu-content .Hint {
-   font-size: smaller; /* Smaller font size for details */
-   opacity: 0.9; /* Slightly transparent for a softer look */
+  font-size: smaller;
+  opacity: 0.9;
 }
 
 .action-button {
-  width: 46%; /* Slightly less than 50% to account for spacing */
-  height: 50px; /* Fixed height */
+  width: 46%;
+  height: 50px;
   font-size: 16px;
   color: var(--text-color);
-  border: 0.5px solid  var(--border-button);
+  border: 0.5px solid var(--border-button);
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
@@ -224,29 +220,29 @@ body {
 }
 
 .image-row {
-  display: flex; /* Use flexbox for horizontal layout */
-  justify-content: space-between; /* Space between the images */
-  width: 100%; /* Full width of the container */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 10px;
 }
 
 .image-container {
-  flex: 1; /* Each image container takes equal space */
-  text-align: center; /* Center text below images */
-  margin: 0; /* Remove default margin */
-  border: 1px solid var(--border-color); /* Tiny border around each image */
-  border-radius: 4px; /* Optional: rounded corners for the border */
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
 }
 
 .wallet-image {
-  width: 90%; /* Set image width to half of its container */
-  height: auto; /* Maintain aspect ratio */
+  width: 90%;
+  height: auto;
 }
 
 .image-value {
-  font-size: 3vw; /* Responsive font size */
+  font-size: 3vw;
   font-weight: bold;
-  margin-top: 5px; /* Space above value */
+  margin-top: 5px;
   margin-bottom: 10px;
 }
 
@@ -257,25 +253,24 @@ body {
 .button-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px; /* Space between button rows */
+  margin-bottom: 10px;
 }
 
 .button-row-single {
   display: flex;
-  justify-content: center; /* Center the button horizontally */
-  margin-bottom: 25px; /* Space between button rows */
+  justify-content: center;
+  margin-bottom: 25px;
 }
-
 
 .buy-row {
-  padding: 5px; /* Increased padding around content */
+  padding: 5px;
   border: 1px solid var(--border-color);
-  border-radius: 4px; /* Optional: rounded corners for the border */
-  margin-bottom: 10px; /* Space between button rows */
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-.buy-label{
-  padding-bottom: 15px; /* Increased padding around content */
+.buy-label {
+  padding-bottom: 15px;
 }
 
 .dialog-overlay {
@@ -284,7 +279,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--bg-color); /* Semi-transparent background */
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,13 +294,13 @@ body {
 
 .input-container {
   display: flex;
-  align-items: center; /* Align items vertically */
+  align-items: center;
   justify-content: center;
   margin-bottom: 10px;
 }
 
 .input-container input {
-  margin: 0 10px; /* Space between buttons and input */
+  margin: 0 10px;
 }
 
 .dialog-buttons {
@@ -314,52 +309,50 @@ body {
 }
 
 .offchain-data {
-  padding: 5px; /* Increased padding around content */
+  padding: 5px;
   border: 1px solid var(--border-color);
-  border-radius: 4px; /* Optional: rounded corners for the border */
-  margin-bottom: 10px; /* Space between button rows */
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-/* Responsive adjustments for horizontal menu */
 @media (max-width: 768px) {
   #root {
-    font-size: 5vw; /* Further reduce font size for mobile */
+    font-size: 5vw;
   }
 
   .menu ul {
-    flex-direction: row-reverse; /* Align items from right to left on mobile */
+    flex-direction: row-reverse;
   }
 
   .menu ul li {
-    display: inline-block; /* Ensure items are inline on mobile */
-    margin: 0 1vw; /* Add margin to increase space between items */
+    display: inline-block;
+    margin: 0 1vw;
   }
 
   .menu ul li button, .menu ul li > * {
-    padding: 1.5vh 2.5vw; /* Bigger padding for mobile */
+    padding: 1.5vh 2.5vw;
     border-radius: 2vw;
-    font-size: 3.5vw; /* Bigger font size for menu items on mobile */
+    font-size: 3.5vw;
   }
 
   .logo {
-    height: 8vh; /* Scaled height */
+    height: 8vh;
   }
 
   .Hint {
-    font-size: 3vw; /* Scaled font size */
-    overflow-wrap: break-word; /* Ensure long addresses wrap properly */
+    font-size: 3vw;
+    overflow-wrap: break-word;
   }
 
   .three-dot-menu {
-    font-size: 7vw; /* Larger dots on mobile */
+    font-size: 7vw;
   }
 
   .menu-content {
-    font-size:small; /* Adjust font size for mobile */
+    font-size:small;
   }
 
   .action-button {
-    font-size: 14px; /* Smaller font size on mobile */
+    font-size: 14px;
   }
 }
-

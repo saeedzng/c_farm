@@ -47,18 +47,17 @@ function App() {
   }, [isdeployed]);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, withdraw_to_owner,
-    ch_number, first_buy, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order,is_deployed,
+    ch_number, first_buy, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order, is_deployed,
   } = useWalletContract(Address.parse(getTonAddress()));
 
   useEffect(() => {
-    // Check if wallet_contract_address is available
     if (is_deployed === 1) {
       setIsDataLoaded(true);
       setWalletisloaded('true')
     } else {
       setIsDataLoaded(false);
     }
-  }, [is_deployed]); // Dependency array to run effect on address change
+  }, [is_deployed]);
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
@@ -82,7 +81,7 @@ function App() {
       } else {
         send_buy_chicken_by_eggs(chickenCount);
       }
-      setShowDialog(false); // Close dialog after purchase
+      setShowDialog(false);
     } else {
       WebApp.showAlert("Please enter a valid number of chickens.");
     }
@@ -114,20 +113,19 @@ function App() {
   const handleWithdrawClick = () => {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
     setIsDialogVisible(true);
-    setWithdrawAmount(''); // Reset amount when opening dialog
+    setWithdrawAmount('');
   };
 
   const handleWithdraw = () => {
-    // Ensure amountToWithdraw is defined and a valid number
     const amountToWithdraw = withdrawAmount === 'all'
       ? (wallet_contract_balance ? (wallet_contract_balance) : (0))
       : (withdrawAmount ? (Number(withdrawAmount) * 1000000000) : (0));
 
     if (amountToWithdraw > (0) && amountToWithdraw <= (wallet_contract_balance ? (wallet_contract_balance) : (0))) {
-      withdraw_to_owner(amountToWithdraw - 100); // Call the withdrawal function with BigInt
-      setIsDialogVisible(false); // Close dialog after withdrawal
+      withdraw_to_owner(amountToWithdraw - 100);
+      setIsDialogVisible(false);
     } else {
-      alert("Please enter a valid amount."); // Error handling
+      alert("Please enter a valid amount.");
     }
   };
 
@@ -157,22 +155,18 @@ function App() {
             <h1>Welcome to Chicken Farm</h1>
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
-              <div >
-                {/* <button className='action-button' onClick={async () => {
-                  await sendDeployByMaster(address(referal_address));
-                  setIsdeployed(true); // Set deployed state only after successful approval
-                }}>Deploy Wallet Contract</button><br />     */}
+              <div className="button-container">
                 <div className="button-row" style={{ marginTop: '30px' }} >
                   <button className="action-button" onClick={toggleHelp}> Help </button>
-                  {(!isdeployed || getwalletisloaded() == "false" ) && (
+                  {(!isdeployed || getwalletisloaded() == "false") && (
                     <button className='action-button' onClick={async () => {
                       await sendDeployByMaster(address(referal_address));
-                      setIsdeployed(true); // Set deployed state only after successful approvale
+                      setIsdeployed(true);
                     }}>
                       Create Contract
                     </button>
                   )}
-                  {(isdeployed && getwalletisloaded()== "true") && (
+                  {(isdeployed && getwalletisloaded() == "true") && (
                     <button className="action-button" onClick={toggleDetails}> Details </button>
                   )}
                 </div>
@@ -192,7 +186,6 @@ function App() {
                     <div>{wc_addressss?.toString()}</div>
                   </div>
                 )}
-                {/* <div className="three-dot-menu" onClick={toggleMenu}>&#x2022;&#x2022;&#x2022;</div> */}
                 {showHelp && (
                   <div className="help-content">
                     <p>1. First, log in with a wallet for authentication.</p>
@@ -220,7 +213,6 @@ function App() {
                     <p>Error 101: You are not the owner of the contract.</p>
                     <p>Error 102: Your balance is not enough.</p>
                     <p>Error 103: You have less than one egg.</p>
-
 
                   </div>
                 )}
@@ -349,7 +341,7 @@ function App() {
                                   value={chickenCount}
                                   onChange={(e) => setChickenCount(Number(e.target.value))}
                                   min="1"
-                                  style={{ width: '50%' }} // Set width to half of parent
+                                  style={{ width: '50%' }}
                                 />
                                 <button onClick={increaseCount}>+</button>
                               </div>
