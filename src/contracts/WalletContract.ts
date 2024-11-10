@@ -8,6 +8,7 @@ export type WalletContractConfig = {
     eggs_number: number;
     last_calc: number;
     first_buy: number;
+    is_deployed:number;
 };
 
 export function walletContractConfigToCell(config: WalletContractConfig): Cell {
@@ -19,6 +20,7 @@ export function walletContractConfigToCell(config: WalletContractConfig): Cell {
         .storeUint(config.eggs_number, 32)
         .storeUint(config.last_calc, 32)
         .storeUint(config.first_buy, 32)
+        .storeUint(config.is_deployed, 32)
         .endCell();
 }
 
@@ -85,6 +87,7 @@ export class WalletContract implements Contract {
             eggs_number: stack.readNumber(),
             last_calc: stack.readNumber(),
             first_buy: stack.readNumber(),
+            is_deployed: stack.readNumber(),
         };
     }
 

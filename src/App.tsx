@@ -47,18 +47,18 @@ function App() {
   }, [isdeployed]);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, withdraw_to_owner,
-    ch_number, first_buy, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order
+    ch_number, first_buy, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order,is_deployed,
   } = useWalletContract(Address.parse(getTonAddress()));
 
   useEffect(() => {
     // Check if wallet_contract_address is available
-    if (wallet_referal_address) {
+    if (is_deployed === 1) {
       setIsDataLoaded(true);
       setWalletisloaded('true')
     } else {
       setIsDataLoaded(false);
     }
-  }, [wallet_referal_address]); // Dependency array to run effect on address change
+  }, [is_deployed]); // Dependency array to run effect on address change
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;

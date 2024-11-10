@@ -18,6 +18,7 @@ export function useWalletContract(UserAddress: Address) {
     eggs_number: number;
     last_calc: number;
     first_buy: number;
+    is_deployed:number;
   }>();
   const [balance, setBalance] = useState<null | number>(0);
   const walletContract = useAsyncInitialize(async () => {
@@ -40,6 +41,7 @@ export function useWalletContract(UserAddress: Address) {
         eggs_number: val.eggs_number,
         last_calc: val.last_calc,
         first_buy: val.first_buy,
+        is_deployed: val.is_deployed,
       });
       setBalance(balance.number);
       // await sleep(150000); // sleep 15 seconds and poll value again
