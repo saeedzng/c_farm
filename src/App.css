@@ -56,6 +56,11 @@ body {
   width: 100vw;
 }
 
+.ton-button-class{
+  background-color: black;
+  color: white;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -204,7 +209,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  background-color: var(--bg-button);
+  background-image: linear-gradient(to bottom, #3a027b, #000000);
   background-size: 140% auto;
 }
 

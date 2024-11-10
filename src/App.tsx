@@ -137,7 +137,7 @@ function App() {
             <img src="./logo.png" alt="Logo" className="logo" />
           </div>
           <div className="right">
-            <TonConnectButton />
+            <TonConnectButton className="ton-button-class" />
           </div>
         </div>
         <nav className="menu">
