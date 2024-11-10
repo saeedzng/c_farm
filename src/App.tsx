@@ -157,12 +157,12 @@ function App() {
             <h1>Welcome to Chicken Farm</h1>
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
-              <div style={{ marginTop: '20px' }}>
+              <div >
                 {/* <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
                 }}>Deploy Wallet Contract</button><br />     */}
-                <div className="button-row">
+                <div className="button-row" style={{ marginTop: '30px' }} >
                   <button className="action-button" onClick={toggleHelp}> Help </button>
                   {(!isdeployed || !getwalletisloaded()) && (
                     <button className='action-button' onClick={async () => {
