@@ -172,7 +172,7 @@ function App() {
                       Create Contract
                     </button>
                   )}
-                  {(isdeployed && getwalletisloaded()) && (
+                  {(isdeployed && getwalletisloaded()== "true") && (
                     <button className="action-button" onClick={toggleDetails}> Details </button>
                   )}
                 </div>
