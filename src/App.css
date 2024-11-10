@@ -52,9 +52,8 @@
 
 body {
   background-color: var(--bg-body);
-  color: white; /* Ensure the text is readable against the black background */
-  margin: 0;
   height: 100vh; /* Ensure the body takes up the full height of the viewport */
+  width: 100vw;
 }
 
 .header {
