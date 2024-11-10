@@ -254,11 +254,11 @@ function App() {
           <div>
             <div className="status-indicator">
               {isDataLoaded ? (
-                <div style={{ color: 'green' }}>
+                <div style={{ color: 'green' ,margin: '5px' }}>
                   <span>🟢</span>  connected
                 </div>
               ) : (
-                <div style={{ color: 'red' }}>
+                <div style={{ color: 'red', margin: '5px' }}>
                   <span>🔴</span>  offline
                 </div>
               )}
