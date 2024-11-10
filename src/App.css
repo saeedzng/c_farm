@@ -101,6 +101,7 @@ body {
   background: var(--bg-gradient);
   border-radius: 10px; /* Rounded edges */
   padding: 0.5vw; /* Remove padding if not needed */
+  min-height: 50vh;
 }
 
 .menu {

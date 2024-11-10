@@ -1,5 +1,5 @@
 import "./App.css";
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress,THEME,TonConnectUI } from "@tonconnect/ui-react";
 import { useMasterContract } from "./hooks/useMasterContract";
 import { useWalletContract } from "./hooks/useWalletContract";
 import { useTonConnect } from "./hooks/useTonConnect";
@@ -7,8 +7,14 @@ import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
 
-declare global { interface Window { Telegram: any; } }
 
+declare global { interface Window { Telegram: any; } }
+const tonConnectUI = new TonConnectUI()
+tonConnectUI.uiOptions = {
+  uiPreferences: {
+      theme: THEME.DARK
+  }
+};
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
