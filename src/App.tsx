@@ -109,6 +109,7 @@ function App() {
   const [withdrawAmount, setWithdrawAmount] = useState('');
 
   const handleWithdrawClick = () => {
+    if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
     setIsDialogVisible(true);
     setWithdrawAmount(''); // Reset amount when opening dialog
   };
