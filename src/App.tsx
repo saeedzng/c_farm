@@ -52,7 +52,7 @@ function App() {
 
   useEffect(() => {
     // Check if wallet_contract_address is available
-    if (wallet_contract_balance) {
+    if (ch_number) {
       setIsDataLoaded(true);
       setWalletisloaded('true')
     } else {
