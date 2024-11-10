@@ -52,13 +52,13 @@ function App() {
 
   useEffect(() => {
     // Check if wallet_contract_address is available
-    if (ch_number) {
+    if (wallet_referal_address) {
       setIsDataLoaded(true);
       setWalletisloaded('true')
     } else {
       setIsDataLoaded(false);
     }
-  }, [wallet_contract_balance]); // Dependency array to run effect on address change
+  }, [wallet_referal_address]); // Dependency array to run effect on address change
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
