@@ -3,6 +3,8 @@
   --bg-gradient-dark: linear-gradient(to bottom, #3a027b, #000000); /* Dark mode gradient */
   --bg-color-light: #ffffff; /* Light mode background color */ 
   --bg-color-dark: #333; /* Dark mode background color */
+  --text-color-light: #000000; /* Black for light mode */ 
+  --text-color-dark: #ffffff; /* White for dark mode */
  }
 
 #root {
@@ -76,7 +78,7 @@ align-items: center;
 
 .menu ul li button, .menu ul li > * {
   display: inline-block;
-  color: white;
+  color: var(--text-color);
   text-align: center;
   padding: 2vh 3vw; /* Bigger padding for menu items */
   text-decoration: none;
@@ -96,7 +98,7 @@ align-items: center;
 }
 
 .read-the-docs {
-  color: #888;
+  color: var(--text-color);
   font-size: 2vw; /* Scaled font size */
 }
 
@@ -108,7 +110,7 @@ align-items: center;
 .three-dot-menu {
   cursor: pointer;
   font-size: 2.2vw; /* Adjust size as needed */
-  color: #fff; /* White color for the dots */
+  color: var(--text-color);
   padding: 2.2vw;
   margin-bottom: 10px; /* Add space below the button */
 }
@@ -116,7 +118,7 @@ align-items: center;
 
 .help-content {
   background-color: var(--bg-color);
-  color: #fff; /* White text color */
+  color: var(--text-color);
   border-radius: 10px; /* Rounded corners */
   padding: 5px; /* Increased padding around content */
   position: absolute; /* Position it absolutely */
@@ -130,7 +132,7 @@ align-items: center;
 
 .detail-content {
   background-color: var(--bg-color);
-  color: #fff; /* White text color */
+  color: var(--text-color);
   border-radius: 10px; /* Rounded corners */
   padding: 5px; /* Increased padding around content */
   position: absolute; /* Position it absolutely */
@@ -154,7 +156,7 @@ align-items: center;
   width: 46%; /* Slightly less than 50% to account for spacing */
   height: 50px; /* Fixed height */
   font-size: 16px;
-  color: white;
+  color: var(--text-color);
   border: 0.5px solid  #fff;
   border-radius: 8px;
   cursor: pointer;
@@ -311,6 +313,7 @@ align-items: center;
   :root {
     --bg-gradient: var(--bg-gradient-dark); /* Use dark mode gradient */
     --bg-color: var(--bg-color-dark); /* Use dark mode background color */
+    --text-color: var(--text-color-dark); /* Use dark mode text color */
   }
 }
 
@@ -318,5 +321,6 @@ align-items: center;
   :root {
     --bg-gradient: var(--bg-gradient-light); /* Use light mode gradient */
     --bg-color: var(--bg-color-light); /* Use light mode background color */
+    --text-color: var(--text-color-light); /* Use light mode text color */
   }
 }
