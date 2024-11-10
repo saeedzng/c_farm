@@ -9,10 +9,13 @@
   --border-color-dark: #2b1b56; /* Dark grey for dark mode */ 
   --border-button-light: #e0dede; /* Light grey for light mode */
   --border-button-dark: #c8b7f9; /* Dark grey for dark mode */ 
-  --hover-color-light: #f0bdfa; /* Light background for hover in light mode */ 
+  --hover-color-light: #b9b9b9; /* Light background for hover in light mode */ 
   --hover-color-dark: #575757; /* Dark background for hover in dark mode */
   --bg-button-light: #9449e8;
   --bg-button-dark: #3a027b;
+  --bg-body-light: #f0bdfa;
+  --bg-body-dark: #000000;
+
  }
 
  @media (prefers-color-scheme: dark) {
@@ -24,6 +27,7 @@
     --hover-color: var(--hover-color-dark);
     --bg-button: var(--bg-button-dark);
     --border-button: var(--border-button-dark); 
+    --bg-body: var(--bg-body-dark);
   }
 }
 
@@ -36,6 +40,7 @@
     --hover-color: var(--hover-color-light);
     --bg-button: var(--bg-button-light);
     --border-button: var(--border-button-light); 
+    --bg-body: var(--bg-body-light);
   }
 }
 
@@ -43,6 +48,13 @@
   align-items: center;
   text-align: center;
   font-size: 4vw; /* Scaled font size */
+}
+
+body {
+  background-color: var(--bg-body);
+  color: white; /* Ensure the text is readable against the black background */
+  margin: 0;
+  height: 100vh; /* Ensure the body takes up the full height of the viewport */
 }
 
 .header {
