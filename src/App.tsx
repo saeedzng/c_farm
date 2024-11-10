@@ -244,7 +244,7 @@ function App() {
               let impoDate: Date = new Date;
               if (first_buy) { impoDate = new Date(first_buy) }
               WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
-                + isdeployed + "+" + first_buy + "+" + Date()))
+                + isdeployed + "+" + first_buy + "+" + getwalletisloaded()))
             }}>show alert</button><br />
           </div>
         )}
