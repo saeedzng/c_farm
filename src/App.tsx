@@ -164,7 +164,7 @@ function App() {
                 }}>Deploy Wallet Contract</button><br />     */}
                 <div className="button-row" style={{ marginTop: '30px' }} >
                   <button className="action-button" onClick={toggleHelp}> Help </button>
-                  {(!isdeployed || !getwalletisloaded()) && (
+                  {(!isdeployed || getwalletisloaded() == "false" ) && (
                     <button className='action-button' onClick={async () => {
                       await sendDeployByMaster(address(referal_address));
                       setIsdeployed(true); // Set deployed state only after successful approvale
