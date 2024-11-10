@@ -1,4 +1,5 @@
 :root { 
+  background-color: black;
   --bg-gradient-light: linear-gradient(to bottom, #9449e8, #efdbf3); /* Light mode gradient */ 
   --bg-gradient-dark: linear-gradient(to bottom, #3a027b, #000000); /* Dark mode gradient */
   --bg-color-light: #ffffff; /* Light mode background color */ 
