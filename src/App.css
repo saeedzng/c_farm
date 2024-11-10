@@ -5,11 +5,35 @@
   --bg-color-dark: #333; /* Dark mode background color */
   --text-color-light: #000000; /* Black for light mode */ 
   --text-color-dark: #ffffff; /* White for dark mode */
-  --border-color-light: #cccccc; /* Light grey for light mode */
+  --border-color-light: #2b2626; /* Light grey for light mode */
   --border-color-dark: #2b1b56; /* Dark grey for dark mode */ 
   --hover-color-light: #f0f0f0; /* Light background for hover in light mode */ 
   --hover-color-dark: #575757; /* Dark background for hover in dark mode */
+  --bg-button-light: #9449e8;
+  --bg-button-dark: #3a027b;
  }
+
+ @media (prefers-color-scheme: dark) {
+  :root {
+    --bg-gradient: var(--bg-gradient-dark); /* Use dark mode gradient */
+    --bg-color: var(--bg-color-dark); /* Use dark mode background color */
+    --text-color: var(--text-color-dark); /* Use dark mode text color */
+    --border-color: var(--border-color-dark); 
+    --hover-color: var(--hover-color-dark);
+    --bg-button: var(--bg-button-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-gradient: var(--bg-gradient-light); /* Use light mode gradient */
+    --bg-color: var(--bg-color-light); /* Use light mode background color */
+    --text-color: var(--text-color-light); /* Use light mode text color */
+    --border-color: var(--border-color-light); 
+    --hover-color: var(--hover-color-light);
+    --bg-button: var(--bg-button-light);
+  }
+}
 
 #root {
   align-items: center;
@@ -165,7 +189,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  background-image: var(--bg-gradient);
+  background-image: var(--bg-button);
   background-size: 140% auto;
 }
 
@@ -313,22 +337,3 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-gradient: var(--bg-gradient-dark); /* Use dark mode gradient */
-    --bg-color: var(--bg-color-dark); /* Use dark mode background color */
-    --text-color: var(--text-color-dark); /* Use dark mode text color */
-    --border-color: var(--border-color-dark); 
-    --hover-color: var(--hover-color-dark);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-gradient: var(--bg-gradient-light); /* Use light mode gradient */
-    --bg-color: var(--bg-color-light); /* Use light mode background color */
-    --text-color: var(--text-color-light); /* Use light mode text color */
-    --border-color: var(--border-color-light); 
-    --hover-color: var(--hover-color-light);
-  }
-}
