@@ -1,5 +1,5 @@
 import "./App.css";
-import { TonConnectButton, useTonAddress,THEME,TonConnectUI } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 import { useMasterContract } from "./hooks/useMasterContract";
 import { useWalletContract } from "./hooks/useWalletContract";
 import { useTonConnect } from "./hooks/useTonConnect";
@@ -7,14 +7,15 @@ import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
 
-
 declare global { interface Window { Telegram: any; } }
 
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
+  function setWalletisloaded(walletisloaded: string) { localStorage.setItem("walletisloaded", walletisloaded); }
   function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "EQA1Qws02ObwfjGcUltv4ucZaxcmWcIjS4SAtMj8ynMDwy-j"; }
   function getDeployed() { const Deployed = localStorage.getItem("deployed"); return Deployed ? Deployed : "false"; }
+  function getwalletisloaded() { const walletisloaded = localStorage.getItem("walletisloaded"); return walletisloaded ? walletisloaded : "false"; }
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
   const owner_address = useTonAddress();
@@ -23,13 +24,6 @@ function App() {
   const [showHelp, setShowHelp] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-
-  const tonConnectUI = new TonConnectUI()
-tonConnectUI.uiOptions = {
-  uiPreferences: {
-      theme: THEME.DARK
-  }
-};
 
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
@@ -60,6 +54,7 @@ tonConnectUI.uiOptions = {
     // Check if wallet_contract_address is available
     if (wallet_contract_balance) {
       setIsDataLoaded(true);
+      setWalletisloaded('true')
     } else {
       setIsDataLoaded(false);
     }
@@ -165,12 +160,12 @@ tonConnectUI.uiOptions = {
               <div>
                 <>
                   <div className="button-row-single">
-                    {(!isdeployed || !isDataLoaded) && (
+                    {(!isdeployed || !getwalletisloaded()) && (
                       <button className='action-button' onClick={async () => {
                         await sendDeployByMaster(address(referal_address));
                         setIsdeployed(true); // Set deployed state only after successful approvale
                       }}>
-                        Start Contract
+                        Create Contract
                       </button>
                     )}
                   </div>
