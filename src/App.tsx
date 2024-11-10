@@ -258,8 +258,8 @@ function App() {
               <div>
                 {isdeployed === true ? (
                   <>
-                    {isDataLoaded === true ? (
-                      <>
+                    {/* {isDataLoaded === true ? (
+                      <> */}
                         <div className="image-row">
                           <div className="image-container">
                             <img src="./hen.png" alt="Chicken" className="wallet-image" />
@@ -353,10 +353,10 @@ function App() {
                           </div>
                         )}
                       </>
-                    )
-                      : (<p>Please Reload The Page.</p>)
-                    }
-                  </>
+                  //   )
+                  //     : (<p>Please Reload The Page.</p>)
+                  //   }
+                  // </>
                 ) : (<p>Please create a wallet contract first.</p>)}
               </div>
             ) : (<p>Please Log in To Continue</p>)}
