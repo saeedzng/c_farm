@@ -54,6 +54,7 @@ body {
   background-color: var(--bg-body);
   height: 100vh; /* Ensure the body takes up the full height of the viewport */
   width: 100vw;
+  color:white;
 }
 
 .ton-button-class{

@@ -9,12 +9,7 @@ import WebApp from "@twa-dev/sdk";
 
 
 declare global { interface Window { Telegram: any; } }
-const tonConnectUI = new TonConnectUI()
-tonConnectUI.uiOptions = {
-  uiPreferences: {
-      theme: THEME.DARK
-  }
-};
+
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
@@ -28,6 +23,13 @@ function App() {
   const [showHelp, setShowHelp] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+  const tonConnectUI = new TonConnectUI()
+tonConnectUI.uiOptions = {
+  uiPreferences: {
+      theme: THEME.DARK
+  }
+};
 
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
@@ -143,7 +145,7 @@ function App() {
             <img src="./logo.png" alt="Logo" className="logo" />
           </div>
           <div className="right">
-            <TonConnectButton className="ton-button-class" />
+            <TonConnectButton />
           </div>
         </div>
         <nav className="menu">
