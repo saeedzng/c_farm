@@ -157,26 +157,24 @@ function App() {
             <h1>Welcome to Chicken Farm</h1>
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
-              <div>
-                <>
-                  <div className="button-row-single">
-                    {(!isdeployed || !getwalletisloaded()) && (
-                      <button className='action-button' onClick={async () => {
-                        await sendDeployByMaster(address(referal_address));
-                        setIsdeployed(true); // Set deployed state only after successful approvale
-                      }}>
-                        Create Contract
-                      </button>
-                    )}
-                  </div>
-                </>
+              <div style={{ marginTop: '20px' }}>
                 {/* <button className='action-button' onClick={async () => {
                   await sendDeployByMaster(address(referal_address));
                   setIsdeployed(true); // Set deployed state only after successful approval
                 }}>Deploy Wallet Contract</button><br />     */}
                 <div className="button-row">
                   <button className="action-button" onClick={toggleHelp}> Help </button>
-                  <button className="action-button" onClick={toggleDetails}> Details </button>
+                  {(!isdeployed || !getwalletisloaded()) && (
+                    <button className='action-button' onClick={async () => {
+                      await sendDeployByMaster(address(referal_address));
+                      setIsdeployed(true); // Set deployed state only after successful approvale
+                    }}>
+                      Create Contract
+                    </button>
+                  )}
+                  {(isdeployed && getwalletisloaded()) && (
+                    <button className="action-button" onClick={toggleDetails}> Details </button>
+                  )}
                 </div>
                 {showDetails && (
                   <div className="detail-content">
@@ -254,7 +252,7 @@ function App() {
           <div>
             <div className="status-indicator">
               {isDataLoaded ? (
-                <div style={{ color: 'green' ,margin: '5px' }}>
+                <div style={{ color: 'green', margin: '5px' }}>
                   <span>🟢</span>  connected
                 </div>
               ) : (
@@ -312,7 +310,7 @@ function App() {
                             </div>
                           </div>
                           <div className="">
-                            <button className="action-button" style={{marginBottom : "25px"}} onClick={handleWithdrawClick}>Withdraw To Wallet</button>
+                            <button className="action-button" style={{ marginBottom: "25px" }} onClick={handleWithdrawClick}>Withdraw To Wallet</button>
                           </div>
                           {/* Withdrawal Dialog */}
                           {isDialogVisible && (
