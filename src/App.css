@@ -6,7 +6,9 @@
   --text-color-light: #000000; /* Black for light mode */ 
   --text-color-dark: #ffffff; /* White for dark mode */
   --border-color-light: #2b2626; /* Light grey for light mode */
-  --border-color-dark: #c8b7f9; /* Dark grey for dark mode */ 
+  --border-color-dark: #bca7f8; /* Dark grey for dark mode */ 
+  --border-button-light: #2b2626; /* Light grey for light mode */
+  --border-button-dark: #c8b7f9; /* Dark grey for dark mode */ 
   --hover-color-light: #f0f0f0; /* Light background for hover in light mode */ 
   --hover-color-dark: #575757; /* Dark background for hover in dark mode */
   --bg-button-light: #9449e8;
@@ -21,6 +23,7 @@
     --border-color: var(--border-color-dark); 
     --hover-color: var(--hover-color-dark);
     --bg-button: var(--bg-button-dark);
+    --border-button: var(--border-button-dark); 
   }
 }
 
@@ -32,6 +35,7 @@
     --border-color: var(--border-color-light); 
     --hover-color: var(--hover-color-light);
     --bg-button: var(--bg-button-light);
+    --border-button: var(--border-button-light); 
   }
 }
 
@@ -185,7 +189,7 @@
   height: 50px; /* Fixed height */
   font-size: 16px;
   color: var(--text-color);
-  border: 0.5px solid  var(--border-color);
+  border: 0.5px solid  var(--border-button);
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
