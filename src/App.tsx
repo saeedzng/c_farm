@@ -171,6 +171,7 @@ function App() {
                     <button className="action-button" onClick={toggleHelp}> Help </button>
                     {(!isdeployed || getwalletisloaded() == "false") && (
                       <button className='action-button' onClick={async () => {
+                        if (master_contract_balance) { WebApp.showAlert("You Are Offline , Please reload the page"); return; }
                         await sendDeployByMaster(address(referal_address));
                         setIsdeployed(true);
                       }}>
