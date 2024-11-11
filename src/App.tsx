@@ -293,7 +293,7 @@ function App() {
                             </div>
                             <div className="button-row">
                               <button className="action-button" onClick={() => handleDialogOpen('ton')}>From Wallet</button>
-                              <button className="action-button" onClick={() => buyhensbyeggs}>From Eggs</button>
+                              <button className="action-button" onClick={ buyhensbyeggs}>From Eggs</button>
                             </div>
                           </div>
                           <div className="buy-row">
