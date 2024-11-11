@@ -53,14 +53,6 @@ export class WalletContract implements Contract {
         });
     }
 
-    async send_sell_chicken_order(provider: ContractProvider, via: Sender, value: bigint, chicken_to_sell: number) {
-        await provider.internal(via, {
-            value,
-            sendMode: SendMode.PAY_GAS_SEPARATELY,
-            body: beginCell().storeUint(2, 32).storeUint(chicken_to_sell, 32).endCell(),
-        });
-    }
-
     async send_recive_eggs_order(provider: ContractProvider, via: Sender, value: bigint) {
         await provider.internal(via, {
             value,

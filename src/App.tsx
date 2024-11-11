@@ -34,7 +34,7 @@ function App() {
     setIsdeployed(deployedValue);
   }, []);
 
-  const { master_contract_address, sendDeployByMaster, master_contract_balance, wc_addressss } = useMasterContract(
+  const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
     Address.parse("0QDbP6nFnSSS1dk9EHL5G_bYG0cIqPBwv1eje7uOGiVZcno8"),
     Address.parse(referal_address)
   );
@@ -47,7 +47,7 @@ function App() {
   }, [isdeployed]);
 
   const { wallet_contract_address, wallet_contract_balance, wallet_owner_address, wallet_referal_address, withdraw_to_owner,
-    ch_number, first_buy, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order, is_deployed,
+    ch_number, send_buy_chicken_order, send_buy_chicken_by_eggs, send_recive_eggs_order, is_deployed,
   } = useWalletContract(Address.parse(getTonAddress()));
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function App() {
   const toggleDetails = () => { setShowDetails(!showDetails); setShowHelp(false); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
-  const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); // State to track action type
+  const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); 
 
   const handleDialogOpen = (type: 'ton' | 'egg') => {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
@@ -75,7 +75,7 @@ function App() {
   };
 
   const buyhensbyeggs = () =>   {
-    if (realeggnumber < 3) { WebApp.showAlert("You need at least 30 egg to buy hen."); return; }
+    if (realeggnumber < 30) { WebApp.showAlert("You need at least 30 egg to buy hen."); return; }
     handleDialogOpen('egg')
   }
 
@@ -106,7 +106,7 @@ function App() {
   function warningloweggs() {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
     if (showchickennumber < 1) { WebApp.showAlert("Without hens, you won't receive eggs."); return; }
-    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.',
+    WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each request incurs a fee about 0.003 tons.',
       function (result) {
         if (result) {
           runreciveeggs();
@@ -115,6 +115,7 @@ function App() {
   }
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState('');
+  const [MwithdrawAmount , setMwithdrawAmount] = useState ('');
 
   const handleWithdrawClick = () => {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
@@ -183,9 +184,9 @@ function App() {
                 </div>
                 {showDetails && (
                   <div className="detail-content">
-                    <div><p>Owner Address</p></div>
+                    <div><p>Loged in address</p></div>
                     <div>{owner_address}</div>
-                    <div><p>Referral address</p></div>
+                    <div><p>Address from link</p></div>
                     <div>{referal_address}</div>
                     <div><p>Wallet Address</p></div>
                     <div>{wallet_contract_address}</div>
@@ -234,22 +235,15 @@ function App() {
         )}
         {page_n === 1 && (
           <div>
-            <h1>Master Contract</h1>
             <b>Master contract Address</b>
-            <div className='Hint'>{master_contract_address}</div>
+            <div>{master_contract_address}</div>
             <b>Master contract Balance</b>
-            {master_contract_balance && <div className='Hint'>{fromNano(master_contract_balance)} ton</div>}
+            {master_contract_balance && <div className='Hint'>{fromNano(master_contract_balance)} ton</div>}<br />
+            <p>master has mint {total_supply} chicken </p><br/>
             <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />
-            <button className='action-button' onClick={() => {
-              setIsdeployed(true);
-              setPageN(2);
-            }}>set and Open Wallet Contract</button><b></b>
-            <button className='action-button' onClick={() => {
-              let impoDate: Date = new Date;
-              if (first_buy) { impoDate = new Date(first_buy) }
-              WebApp.showAlert((impoDate + " + " + Date() + " + " + getDeployed() + " + "
-                + isdeployed + "+" + first_buy + "+" + getwalletisloaded()))
-            }}>show alert</button><br />
+            <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
+            <button className='action-button' onClick={() => {send_withdraw_order(Number(MwithdrawAmount))}}>withdraw</button><br />
+            <button className='action-button' onClick={() => { }}>show alert</button><br />
           </div>
         )}
         {page_n === 2 && (

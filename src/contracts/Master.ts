@@ -29,11 +29,11 @@ export class Master implements Contract {
         return new Master(contractAddress(workchain, init), init);
     }
 
-    async sendDeploy(provider: ContractProvider, via: Sender, value: bigint) {
+    async send_withdrawal_order(provider: ContractProvider, via: Sender, value: bigint , withdraw_amount:number) {
         await provider.internal(via, {
             value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,
-            body: beginCell().endCell(),
+            body: beginCell().storeUint(2, 32).storeUint(withdraw_amount, 32).endCell(),
         });
     }
 
@@ -48,7 +48,8 @@ export class Master implements Contract {
     async getData(provider: ContractProvider) {
         const { stack } = await provider.get("get_contract_owner_address", []);
         return {
-            owner_sender: stack.readAddress(),
+            admin_address: stack.readAddress(),
+            total_supply:stack.readNumber(),
         };
     }
 
