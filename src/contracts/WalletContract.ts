@@ -37,14 +37,6 @@ export class WalletContract implements Contract {
         return new WalletContract(contractAddress(workchain, init), init);
     }
 
-    async sendDeploy(provider: ContractProvider, via: Sender, value: bigint) {
-        await provider.internal(via, {
-            value,
-            sendMode: SendMode.PAY_GAS_SEPARATELY,
-            body: beginCell().endCell(),
-        });
-    }
-
     async send_buy_chicken_order(provider: ContractProvider, via: Sender, value: bigint, chicken_to_buy: number) {
         await provider.internal(via, {
             value,
