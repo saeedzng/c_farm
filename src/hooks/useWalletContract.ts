@@ -51,11 +51,11 @@ export function useWalletContract(UserAddress: Address) {
   }, [walletContract]);
 
   return {
-    wallet_contract_address: walletContract?.address.toString({ bounceable: false, testOnly: true }),
+    wallet_contract_address: walletContract?.address.toString(),
     wallet_contract_balance: balance,
-    wallet_owner_address: contractData?.owner_address?.toString({ bounceable: false, testOnly: true }),
-    wallet_referal_address: contractData?.referal_address?.toString({ bounceable: false, testOnly: true }),
-    wallet_master_address: contractData?.master_address?.toString({ bounceable: false, testOnly: true }),
+    wallet_owner_address: contractData?.owner_address?.toString(),
+    wallet_referal_address: contractData?.referal_address?.toString(),
+    wallet_master_address: contractData?.master_address?.toString(),
     ...contractData,
     send_buy_chicken_order: (chicken_to_buy: number) => {
       return walletContract?.send_buy_chicken_order(sender, toNano((chicken_to_buy * 0.1) + 0.01), chicken_to_buy);
@@ -63,9 +63,6 @@ export function useWalletContract(UserAddress: Address) {
     send_buy_chicken_by_eggs: (chicken_to_buy: number) => {
       return walletContract?.send_buy_chicken_order(sender, toNano(0.01), chicken_to_buy);
     },
-    // send_sell_chicken_order: (chicken_to_sell: number) => {
-    //   return walletContract?.send_sell_chicken_order(sender, toNano(0.01), chicken_to_sell);
-    // },
     send_recive_eggs_order: () => {
       return walletContract?.send_recive_eggs_order(sender, toNano(0.01));
     },

@@ -22,7 +22,7 @@ export function useMasterContract(wowner_address : Address , wreferal_address : 
   const masterContract = useAsyncInitialize(async () => {
     if (!client) return;
     const contract = new Master(
-      Address.parse("EQCJQvWNYiR8nxRGuS1S0nzCDhRsf68mCNutVmAswL3JPeqj") // replace with your master address 
+      Address.parse("EQAoo766sNaGi3dPP-3uI6VeNw9Ejk41q8i7IEFSd0DYz7Rt") // replace with your master address 
     );
     return client.open(contract) as OpenedContract<Master>;
   }, [client]);
@@ -43,7 +43,7 @@ export function useMasterContract(wowner_address : Address , wreferal_address : 
   }, [masterContract]);
   
   return {
-    master_contract_address: masterContract?.address.toString({bounceable: false, testOnly: true}),
+    master_contract_address: masterContract?.address.toString(),
     master_contract_balance: balance,
     ...future_user_wallet_address,
     ...contractData,

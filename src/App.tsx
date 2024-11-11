@@ -297,7 +297,7 @@ function App() {
                               <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
                               <button className="action-button" onClick={() => {
                                 if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
-                                if (showchickennumber <= 0) { WebApp.showAlert("You will not get referal reward if you dont have hens."); return; }
+                                if (showchickennumber <= 0) { WebApp.showAlert("Without hens, you won't receive referral rewards."); return; }
                                 const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
                                 navigator.share({
                                   title: 'Chicken Farm Wallet Contract',
