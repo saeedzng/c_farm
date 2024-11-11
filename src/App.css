@@ -49,12 +49,12 @@
   font-size: 4vw;
 }
 
-/* body {
+body {
   background-color: var(--bg-body);
   height: 100vh;
   width: 100vw;
   color:white;
-} */
+}
 
 .ton-button-class{
   background-color: black;
@@ -279,7 +279,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--bg-color);
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
