@@ -13,7 +13,7 @@ function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
   function setWalletisloaded(walletisloaded: string) { localStorage.setItem("walletisloaded", walletisloaded); }
-  function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "EQA1Qws02ObwfjGcUltv4ucZaxcmWcIjS4SAtMj8ynMDwy-j"; }
+  function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"; }
   function getDeployed() { const Deployed = localStorage.getItem("deployed"); return Deployed ? Deployed : "false"; }
   function getwalletisloaded() { const walletisloaded = localStorage.getItem("walletisloaded"); return walletisloaded ? walletisloaded : "false"; }
   const [page_n, setPageN] = useState(0);
@@ -129,7 +129,6 @@ function App() {
     }
   };
 
-
   return (
     <div className="wrapper">
       <div className="top-section">
@@ -156,19 +155,24 @@ function App() {
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
               <div className="button-container">
-                <div className="button-row" style={{ marginTop: '30px' }} >
-                  <button className="action-button" onClick={toggleHelp}> Help </button>
-                  {(!isdeployed || getwalletisloaded() == "false") && (
-                    <button className='action-button' onClick={async () => {
-                      await sendDeployByMaster(address(referal_address));
-                      setIsdeployed(true);
-                    }}>
-                      Create Contract
-                    </button>
-                  )}
-                  {(isdeployed && getwalletisloaded() == "true") && (
-                    <button className="action-button" onClick={toggleDetails}> Details </button>
-                  )}
+                <div className="buy-row">
+                  <div className="buy-label">
+                    <label>* Wait for confirm each transaction in your wallet then refresh the app *</label>
+                  </div>
+                  <div className="button-row" style={{ marginTop: '30px' }} >
+                    <button className="action-button" onClick={toggleHelp}> Help </button>
+                    {(!isdeployed || getwalletisloaded() == "false") && (
+                      <button className='action-button' onClick={async () => {
+                        await sendDeployByMaster(address(referal_address));
+                        setIsdeployed(true);
+                      }}>
+                        Create Contract
+                      </button>
+                    )}
+                    {(isdeployed && getwalletisloaded() == "true") && (
+                      <button className="action-button" onClick={toggleDetails}> Details </button>
+                    )}
+                  </div>
                 </div>
                 {showDetails && (
                   <div className="detail-content">
