@@ -61,12 +61,12 @@ function App() {
   }, [is_deployed]);
 
   useEffect(() => {
-    if (!wallet_contract_balance) {
+    if (!master_contract_balance) {
       setIsMDataLoaded(false);
     } else {
       setIsMDataLoaded(true);
     }
-  }, [wallet_contract_balance]);
+  }, [master_contract_balance]);
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 33333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
