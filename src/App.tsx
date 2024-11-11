@@ -333,7 +333,7 @@ function App() {
                                     />
                                   </label>
                                 </div>
-                                <div className="dialog-buttons">
+                                <div className="dialog-buttons" style={{marginTop : "10px"}}>
                                   <button onClick={() => setIsDialogVisible(false)}>Cancel</button>
                                   <button onClick={handleWithdraw}>Withdraw</button>
                                 </div>
