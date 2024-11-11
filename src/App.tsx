@@ -62,9 +62,9 @@ function App() {
 
   useEffect(() => {
     if (!wallet_contract_balance) {
-      setIsMDataLoaded(true);
-    } else {
       setIsMDataLoaded(false);
+    } else {
+      setIsMDataLoaded(true);
     }
   }, [wallet_contract_balance]);
 
