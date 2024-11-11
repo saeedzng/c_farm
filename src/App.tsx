@@ -24,6 +24,7 @@ function App() {
   const [showHelp, setShowHelp] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isMDataLoaded, setIsMDataLoaded] = useState(false);
 
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
@@ -58,6 +59,14 @@ function App() {
       setIsDataLoaded(false);
     }
   }, [is_deployed]);
+
+  useEffect(() => {
+    if (!wallet_contract_balance) {
+      setIsMDataLoaded(true);
+    } else {
+      setIsMDataLoaded(false);
+    }
+  }, [wallet_contract_balance]);
 
   const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 33333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
@@ -159,6 +168,17 @@ function App() {
       <div className="down-section" >
         {page_n === 0 && (
           <>
+                      <div className="status-indicator">
+              {isMDataLoaded ? (
+                <div style={{ color: 'green', margin: '5px' }}>
+                  <span>🟢</span>  connected
+                </div>
+              ) : (
+                <div style={{ color: 'red', margin: '5px' }}>
+                  <span>🔴</span>  offline
+                </div>
+              )}
+            </div>
             <h1>Welcome to Chicken Farm</h1>
             {!connected && <p>Please Log in To Continue</p>}
             {connected && (
