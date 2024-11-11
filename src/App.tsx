@@ -74,12 +74,16 @@ function App() {
     setShowDialog(true);
   };
 
+  const buyhensbyeggs = () =>   {
+    if (realeggnumber < 3) { WebApp.showAlert("You need at least 30 egg to buy hen."); return; }
+    handleDialogOpen('egg')
+  }
+
   const confirmPurchase = () => {
     if (chickenCount > 0) {
       if (actionType === 'ton') {
         send_buy_chicken_order(chickenCount);
       } else {
-        if (realeggnumber < 3) { WebApp.showAlert("You need at least 30 egg to buy hen."); return; }
         send_buy_chicken_by_eggs(chickenCount);
       }
       setShowDialog(false);
@@ -289,7 +293,7 @@ function App() {
                             </div>
                             <div className="button-row">
                               <button className="action-button" onClick={() => handleDialogOpen('ton')}>From Wallet</button>
-                              <button className="action-button" onClick={() => handleDialogOpen('egg')}>From Eggs</button>
+                              <button className="action-button" onClick={() => buyhensbyeggs}>From Eggs</button>
                             </div>
                           </div>
                           <div className="buy-row">
