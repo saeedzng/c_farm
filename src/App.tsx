@@ -59,7 +59,7 @@ function App() {
     }
   }, [is_deployed]);
 
-  const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 3333333 : 0;
+  const realeggnumber: number = wallet_contract_balance ? wallet_contract_balance / 33333333 : 0;
   const showbalance: number = wallet_contract_balance ? wallet_contract_balance / 1000000000 : 0;
   const showchickennumber: number = ch_number ? ch_number : 0;
   const toggleHelp = () => { setShowHelp(!showHelp); setShowDetails(false); };
