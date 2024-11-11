@@ -49,7 +49,7 @@ export class Master implements Contract {
         const { stack } = await provider.get("get_contract_owner_address", []);
         return {
             admin_address: stack.readAddress(),
-           
+            total_sup:stack.readNumber(),          
         };
     }
 
