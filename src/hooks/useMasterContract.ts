@@ -12,7 +12,7 @@ export function useMasterContract(wowner_address : Address , wreferal_address : 
 
   const client = useTonClient();
   const { sender } = useTonConnect();
-  const [contractData, setContractData] = useState<null | { owner_address: Address ; total_supply:number; }>();
+  const [contractData, setContractData] = useState<null | { owner_address: Address ; }>();
   const [balance, setBalance] = useState<null | number>(0);
   const masterContract = useAsyncInitialize(async () => {
     if (!client) return;
@@ -30,7 +30,7 @@ export function useMasterContract(wowner_address : Address , wreferal_address : 
       const val = await masterContract.getData();
       const balance = await masterContract.getBalance();
       const wc = await masterContract.getWalletAddress(wowner_address, wreferal_address);
-      setContractData({ owner_address: val.admin_address , total_supply : val.total_supply, });
+      setContractData({ owner_address: val.admin_address ,  });
       setBalance(balance.number);
       setFuture_user_wallet_address({ wc_addressss: wc.wallet_contract_address });
     }
