@@ -157,7 +157,7 @@ function App() {
               <div className="button-container">
                 <div className="buy-row">
                   <div className="buy-label">
-                    <label>* Wait for confirm each transaction in your wallet then refresh the app *</label>
+                    <label>Wait for confirm each transaction in your wallet then refresh the app</label>
                   </div>
                   <div className="button-row" style={{ marginTop: '30px' }} >
                     <button className="action-button" onClick={toggleHelp}> Help </button>
@@ -194,7 +194,7 @@ function App() {
                   <div className="help-content">
                     <p>1. First, log in with a wallet for authentication.</p>
                     <p>2. Each transaction on the TON platform incurs a fee of about 0.01 TON.</p>
-                    <p>3. Reload the app 30 seconds after each transaction to see updates.</p>
+                    <p>3. Wait for confirm each transaction in your wallet then refresh the app.</p>
                     <p>4. Deploy a smart contract to start using the app.</p>
                     <p>5. The wallet that pays for the contract deployment becomes the contract owner.</p>
                     <p>6. You can buy hens with TON from your wallet, earning one egg per day per hen.</p>
@@ -212,6 +212,7 @@ function App() {
                     <p>16. When a level one referral team member buys hens, you get 25% of their purchase.</p>
                     <p>17. When a level two referral team member buys hens, you get 10% of their purchase.</p>
                     <p>18. When a level three referral team member buys hens, you get 5% of their purchase.</p>
+                    <p>19. If you don't have any chickens, you will not receive referral rewards.</p>
 
                     <h3>Errors</h3>
                     <p>Error 101: You are not the owner of the contract.</p>
@@ -296,6 +297,7 @@ function App() {
                               <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
                               <button className="action-button" onClick={() => {
                                 if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
+                                if (showchickennumber <= 0) { WebApp.showAlert("You will not get referal reward if you dont have hens."); return; }
                                 const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
                                 navigator.share({
                                   title: 'Chicken Farm Wallet Contract',
