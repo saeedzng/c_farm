@@ -79,6 +79,7 @@ function App() {
       if (actionType === 'ton') {
         send_buy_chicken_order(chickenCount);
       } else {
+        if (realeggnumber < 3) { WebApp.showAlert("You need at least 30 egg to buy hen."); return; }
         send_buy_chicken_by_eggs(chickenCount);
       }
       setShowDialog(false);
@@ -100,6 +101,7 @@ function App() {
   };
   function warningloweggs() {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
+    if (showchickennumber < 1) { WebApp.showAlert("Without hens, you won't receive eggs."); return; }
     WebApp.showConfirm('Transactions under one egg (0.033 tons) will fail to avoid extra fees. Avoid confirming likely-to-fail transactions. Each transaction incurs a fee about 0.002 tons.',
       function (result) {
         if (result) {
@@ -112,6 +114,7 @@ function App() {
 
   const handleWithdrawClick = () => {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
+    if (realeggnumber < 1) { WebApp.showAlert("You need at least one egg to make a withdrawal."); return; }
     setIsDialogVisible(true);
     setWithdrawAmount('');
   };
@@ -297,7 +300,7 @@ function App() {
                               <button className="action-button" onClick={warningloweggs}>Get Earned Eggs</button>
                               <button className="action-button" onClick={() => {
                                 if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
-                                if (showchickennumber <= 0) { WebApp.showAlert("Without hens, you won't receive referral rewards."); return; }
+                                if (showchickennumber < 1) { WebApp.showAlert("Without hens, you won't receive referral rewards."); return; }
                                 const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
                                 navigator.share({
                                   title: 'Chicken Farm Wallet Contract',
