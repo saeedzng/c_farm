@@ -31,17 +31,17 @@ function App() {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
+      setOwner_address(useTonAddress());
     }
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
   }, []);
 
-  useEffect(() => {
-// const owner_address = useTonAddress();
-    if (connected) {
-      setOwner_address(useTonAddress());
-    }
-  }, [connected]);
+  // useEffect(() => {
+  //   if (connected) {
+  //     setOwner_address(useTonAddress());
+  //   }
+  // }, [connected]);
 
   const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
     Address.parse(owner_address),
