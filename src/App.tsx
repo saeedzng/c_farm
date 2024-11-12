@@ -29,26 +29,23 @@ function App() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [isMDataLoaded, setIsMDataLoaded] = useState(false);
 
-  const bbbbbb = useTonAddress()
-
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
     }
-    // if (getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ" && connected){
-    //   setOwnerTonAddress(bbbbbb);
-    // }
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
   }, []);
 
   
   useEffect(() => {
-    if (bbbbbb) {
+    if (connected) {
+      const bbbbbb = useTonAddress()
       setOwnerTonAddress(bbbbbb);
+      window.location.reload();
     }
-  }, [bbbbbb]);
+  }, [connected]);
 
   const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
     Address.parse(getOwnerTonAddress()),
@@ -204,7 +201,7 @@ function App() {
                   </div>
                   <div className="button-row" style={{ marginTop: '30px' }} >
                     <button className="action-button" onClick={toggleHelp}> Help </button>
-                    {(!isdeployed || getwalletisloaded() == "false") && (
+                    {(!isdeployed || getwalletisloaded() === "false") && (
                       <button className='action-button' onClick={async () => {
                         if (!master_contract_balance) { WebApp.showAlert("You Are Offline , Please reload the page"); return; }
                         await sendDeployByMaster(address(referal_address));
@@ -213,7 +210,7 @@ function App() {
                         Create Contract
                       </button>
                     )}
-                    {(isdeployed && getwalletisloaded() == "true") && (
+                    {(isdeployed && getwalletisloaded() === "true") && (
                       <button className="action-button" onClick={toggleDetails}> Details </button>
                     )}
                   </div>
@@ -279,7 +276,7 @@ function App() {
             <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
             <button className='action-button' onClick={() => {send_withdraw_order(Number(MwithdrawAmount))}}>withdraw</button><br />
-            <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
+            <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress() + "---" + useTonAddress()) }}>show alert</button><br />
           </div>
         )}
         {page_n === 2 && (
