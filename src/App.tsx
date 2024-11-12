@@ -34,7 +34,7 @@ function App() {
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
     }
-    if (getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ" && connected){
+    if (getOwnerTonAddress() === referal_address && connected){
       setOwnerTonAddress(useTonAddress());
     }
     const deployedValue = getDeployed() === "true";
