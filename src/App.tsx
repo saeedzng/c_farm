@@ -35,6 +35,7 @@ function App() {
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
   }, []);
+
   useEffect(() => {
 // const owner_address = useTonAddress();
     if (connected) {
@@ -43,7 +44,7 @@ function App() {
   }, [connected]);
 
   const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
-    Address.parse(useTonAddress()),
+    Address.parse(owner_address),
     Address.parse(referal_address)
   );
 
