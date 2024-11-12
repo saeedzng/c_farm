@@ -40,7 +40,7 @@ function App() {
 
   const bbbbbb = useTonAddress()
   useEffect(() => {
-    if (connected) {
+    if (connected && getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ") {
       
       setOwnerTonAddress(bbbbbb);
       window.location.reload();
