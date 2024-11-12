@@ -33,6 +33,8 @@ function App() {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
+    }
+    if (getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ" && connected){
       setOwnerTonAddress(useTonAddress());
     }
     const deployedValue = getDeployed() === "true";
