@@ -44,7 +44,7 @@ function App() {
   }, [connected]);
 
   const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
-    Address.parse(owner_address),
+    Address.parse("0QDbP6nFnSSS1dk9EHL5G_bYG0cIqPBwv1eje7uOGiVZcno8"),
     Address.parse(referal_address)
   );
 
