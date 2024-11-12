@@ -38,10 +38,10 @@ function App() {
     setIsdeployed(deployedValue);
   }, []);
 
-  
+  const bbbbbb = useTonAddress()
   useEffect(() => {
     if (connected) {
-      const bbbbbb = useTonAddress()
+      
       setOwnerTonAddress(bbbbbb);
       window.location.reload();
     }
@@ -276,7 +276,7 @@ function App() {
             <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
             <button className='action-button' onClick={() => {send_withdraw_order(Number(MwithdrawAmount))}}>withdraw</button><br />
-            <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress() + "---" + useTonAddress()) }}>show alert</button><br />
+            <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
           </div>
         )}
         {page_n === 2 && (
