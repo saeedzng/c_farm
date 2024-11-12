@@ -29,19 +29,21 @@ function App() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [isMDataLoaded, setIsMDataLoaded] = useState(false);
 
+  const bbbbbb = useTonAddress()
+
   useEffect(() => {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
     }
     if (getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ" && connected){
-      setOwnerTonAddress(useTonAddress());
+      setOwnerTonAddress(bbbbbb);
     }
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
   }, []);
 
-  const bbbbbb = useTonAddress()
+  
   // useEffect(() => {
   //   if (connected) {
   //     setOwner_address(useTonAddress());
