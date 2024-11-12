@@ -11,9 +11,11 @@ declare global { interface Window { Telegram: any; } }
 
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
+  function setOwnerTonAddress(ownertonAddress: string) { localStorage.setItem("ownertonAddress", ownertonAddress); }
   function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
   function setWalletisloaded(walletisloaded: string) { localStorage.setItem("walletisloaded", walletisloaded); }
   function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"; }
+  function getOwnerTonAddress() { const ownertonAddress = localStorage.getItem("ownertonAddress"); return ownertonAddress ? ownertonAddress : "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ"; }
   function getDeployed() { const Deployed = localStorage.getItem("deployed"); return Deployed ? Deployed : "false"; }
   function getwalletisloaded() { const walletisloaded = localStorage.getItem("walletisloaded"); return walletisloaded ? walletisloaded : "false"; }
 
@@ -21,7 +23,7 @@ function App() {
   const { connected } = useTonConnect();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  const [owner_address, setOwner_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
+  // const [owner_address, setOwner_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [showHelp, setShowHelp] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -31,7 +33,7 @@ function App() {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
-      setOwner_address(walletAddressFromUrl);
+      setOwnerTonAddress(walletAddressFromUrl);
     }
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
@@ -44,7 +46,7 @@ function App() {
   // }, [connected]);
 
   const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
-    Address.parse(owner_address),
+    Address.parse(getOwnerTonAddress()),
     Address.parse(referal_address)
   );
 
@@ -214,7 +216,7 @@ function App() {
                 {showDetails && (
                   <div className="detail-content">
                     <div><p>Loged in address</p></div>
-                    <div>{owner_address}</div>
+                    <div>{getOwnerTonAddress()}</div>
                     <div><p>Address from link</p></div>
                     <div>{referal_address}</div>
                     <div><p>Wallet Address</p></div>
