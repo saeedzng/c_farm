@@ -34,7 +34,7 @@ function App() {
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
     }
-    if (getOwnerTonAddress() === referal_address && connected){
+    if (getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ" && connected){
       setOwnerTonAddress(useTonAddress());
     }
     const deployedValue = getDeployed() === "true";
@@ -276,7 +276,7 @@ function App() {
             <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
             <button className='action-button' onClick={() => {send_withdraw_order(Number(MwithdrawAmount))}}>withdraw</button><br />
-            <button className='action-button' onClick={() => { }}>show alert</button><br />
+            <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress()) }}>show alert</button><br />
           </div>
         )}
         {page_n === 2 && (
