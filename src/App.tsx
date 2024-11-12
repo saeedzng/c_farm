@@ -43,7 +43,6 @@ function App() {
   useEffect(() => {
     if (connected && getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ") {     
       setOwnerTonAddress(bbbbbb);
-      setPageNumber("1")
       window.location.reload();
     }
   }, [connected]);
@@ -68,6 +67,7 @@ function App() {
     if (is_deployed === 1) {
       setIsDataLoaded(true);
       setWalletisloaded('true')
+      setPageNumber("2")
     } else {
       setIsDataLoaded(false);
     }
