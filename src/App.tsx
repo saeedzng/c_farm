@@ -1,5 +1,5 @@
 import "./App.css";
-import { TonConnectButton, /* useTonAddress */ } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 import { useMasterContract } from "./hooks/useMasterContract";
 import { useWalletContract } from "./hooks/useWalletContract";
 import { useTonConnect } from "./hooks/useTonConnect";
@@ -33,7 +33,7 @@ function App() {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
-      setOwnerTonAddress(walletAddressFromUrl);
+      setOwnerTonAddress(useTonAddress());
     }
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
