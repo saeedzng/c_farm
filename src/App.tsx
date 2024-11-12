@@ -36,19 +36,19 @@ function App() {
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
     }
-    if (getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ" && connected){
-      setOwnerTonAddress(bbbbbb);
-    }
+    // if (getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ" && connected){
+    //   setOwnerTonAddress(bbbbbb);
+    // }
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
   }, []);
 
   
-  // useEffect(() => {
-  //   if (connected) {
-  //     setOwner_address(useTonAddress());
-  //   }
-  // }, [connected]);
+  useEffect(() => {
+    if (bbbbbb) {
+      setOwnerTonAddress(bbbbbb);
+    }
+  }, [bbbbbb]);
 
   const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
     Address.parse(getOwnerTonAddress()),
