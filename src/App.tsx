@@ -11,19 +11,20 @@ declare global { interface Window { Telegram: any; } }
 
 function App() {
   function setTonAddress(tonAddress: string) { localStorage.setItem("tonAddress", tonAddress); }
-  function setOwnerTonAddress(ownertonAddress: string) { localStorage.setItem("ownertonAddress", ownertonAddress); }
-  function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
-  function setWalletisloaded(walletisloaded: string) { localStorage.setItem("walletisloaded", walletisloaded); }
   function getTonAddress() { const tonAddress = localStorage.getItem("tonAddress"); return tonAddress ? tonAddress : "0QDAz5XMJoGW3TJE8a6QwreoTTGjPcPGvAOWm_yD1_k-SyUO"; }
+  function setOwnerTonAddress(ownertonAddress: string) { localStorage.setItem("ownertonAddress", ownertonAddress); }
   function getOwnerTonAddress() { const ownertonAddress = localStorage.getItem("ownertonAddress"); return ownertonAddress ? ownertonAddress : "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ"; }
+  function setDeployed(Deployed: string) { localStorage.setItem("deployed", Deployed); }
   function getDeployed() { const Deployed = localStorage.getItem("deployed"); return Deployed ? Deployed : "false"; }
+  function setWalletisloaded(walletisloaded: string) { localStorage.setItem("walletisloaded", walletisloaded); }
   function getwalletisloaded() { const walletisloaded = localStorage.getItem("walletisloaded"); return walletisloaded ? walletisloaded : "false"; }
+  function setPageNumber(PageNumber: string) { localStorage.setItem("PageNumber", PageNumber); }
+  function getPageNumber() { const PageNumber = localStorage.getItem("PageNumber"); return PageNumber ? PageNumber : "0"; }
 
-  const [page_n, setPageN] = useState(0);
+  const [page_n, setPageN] = useState(Number(getPageNumber()));
   const { connected } = useTonConnect();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
-  // const [owner_address, setOwner_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [showHelp, setShowHelp] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -40,9 +41,9 @@ function App() {
 
   const bbbbbb = useTonAddress()
   useEffect(() => {
-    if (connected && getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ") {
-      
+    if (connected && getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ") {     
       setOwnerTonAddress(bbbbbb);
+      setPageNumber("1")
       window.location.reload();
     }
   }, [connected]);
