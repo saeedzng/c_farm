@@ -31,7 +31,7 @@ function App() {
     const walletAddressFromUrl = window.Telegram.WebApp.initDataUnsafe.start_param;
     if (walletAddressFromUrl) {
       setReferal_address(walletAddressFromUrl);
-      setOwner_address(useTonAddress());
+      setOwner_address(walletAddressFromUrl);
     }
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
