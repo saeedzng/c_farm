@@ -19,9 +19,9 @@ function App() {
 
   const [page_n, setPageN] = useState(0);
   const { connected } = useTonConnect();
-  const owner_address = useTonAddress();
   const [isdeployed, setIsdeployed] = useState<boolean>(false);
   const [referal_address, setReferal_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
+  const [owner_address, setOwner_address] = useState("EQDkzMK31Gn9nad9m1jnhEXXl8nKHJCf4006iyP6lSNyGs2C");
   const [showHelp, setShowHelp] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -35,6 +35,12 @@ function App() {
     const deployedValue = getDeployed() === "true";
     setIsdeployed(deployedValue);
   }, []);
+  useEffect(() => {
+// const owner_address = useTonAddress();
+    if (connected) {
+      setOwner_address(useTonAddress());
+    }
+  }, [connected]);
 
   const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
     Address.parse(useTonAddress()),
