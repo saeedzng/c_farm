@@ -335,7 +335,7 @@ function App() {
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
             <button className='action-button' onClick={() => { send_withdraw_order(Number(MwithdrawAmount)) }}>withdraw</button><br />
             <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
-            <button className="action-button" onClick={async () => {handleShare }}>Share Referal</button>
+            <button className="action-button" onClick={handleShare}>Share Referal</button>
           </div>
         )}
         {page_n === 2 && (
