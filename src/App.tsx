@@ -165,14 +165,14 @@ function App() {
 
   // Handle share functionality
   const handleShare = () => {
-      if (!isDataLoaded) {
-          WebApp.showAlert("You Are Offline");
-          return;
-      }
-      if (showchickennumber < 1) {
-          WebApp.showAlert("Without hens, you won't receive referral rewards.");
-          return;
-      }
+      // if (!isDataLoaded) {
+      //     WebApp.showAlert("You Are Offline");
+      //     return;
+      // }
+      // if (showchickennumber < 1) {
+      //     WebApp.showAlert("Without hens, you won't receive referral rewards.");
+      //     return;
+      // }
 
       if (!wallet_contract_address) {
           WebApp.showAlert("Wallet contract address is not available.");
@@ -180,7 +180,7 @@ function App() {
       }
 
       const walletContractAddress = encodeURIComponent(wallet_contract_address);
-      const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${walletContractAddress}&text=Check%20out%20this%20wallet%20contract%20address!`;
+      const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${walletContractAddress}`;
 
       // Check if navigator.share is supported
       if (navigator.share) {
