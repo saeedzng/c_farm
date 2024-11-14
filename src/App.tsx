@@ -278,13 +278,17 @@ function App() {
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
             <button className='action-button' onClick={() => {send_withdraw_order(Number(MwithdrawAmount))}}>withdraw</button><br />
             <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
-            <button className="action-button" onClick={() => {
-                                const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-                                navigator.share({
-                                  title: 'Chicken Farm Wallet Contract',
-                                  text: 'Check out this wallet contract address!',
-                                  url: telegramShareUrl,
-                                });
+            <button className="action-button" onClick={ async () => {
+                                 const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+                                try {
+                                  await navigator.share({
+                                      title: 'Chicken Farm Wallet Contract',
+                                      text: 'Check out this wallet contract address!',
+                                      url: telegramShareUrl,
+                                  });
+                              } catch (error) {
+                                  console.error('Error sharing:', error);
+                              };
                               }}>Share Referal</button>
           </div>
         )}
