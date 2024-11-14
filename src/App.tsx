@@ -161,14 +161,14 @@ function App() {
   };
 
     const handleShare = () => {
-        if (!isDataLoaded) {
-            WebApp.showAlert("You Are Offline");
-            return;
-        }
-        if (showchickennumber < 1) {
-            WebApp.showAlert("Without hens, you won't receive referral rewards.");
-            return;
-        }
+        // if (!isDataLoaded) {
+        //     WebApp.showAlert("You Are Offline");
+        //     return;
+        // }
+        // if (showchickennumber < 1) {
+        //     WebApp.showAlert("Without hens, you won't receive referral rewards.");
+        //     return;
+        // }
 
         if (!wallet_contract_address) {
             WebApp.showAlert("Wallet contract address is not available.");
