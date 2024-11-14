@@ -173,7 +173,7 @@ function App() {
         <nav className="menu">
           <ul>
             <li><button onClick={() => setPageN(2)}>Wallet</button></li>
-            <li><button onClick={() => setPageN(1)}>Master Contract</button></li>
+            {/* <li><button onClick={() => setPageN(1)}>Master Contract</button></li> */}
             <li><button onClick={() => setPageN(0)}>Home</button></li>
           </ul>
         </nav>
@@ -278,6 +278,16 @@ function App() {
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
             <button className='action-button' onClick={() => {send_withdraw_order(Number(MwithdrawAmount))}}>withdraw</button><br />
             <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
+            <button className="action-button" onClick={() => {
+                                if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
+                                if (showchickennumber < 1) { WebApp.showAlert("Without hens, you won't receive referral rewards."); return; }
+                                const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+                                navigator.share({
+                                  title: 'Chicken Farm Wallet Contract',
+                                  text: 'Check out this wallet contract address!',
+                                  url: telegramShareUrl,
+                                });
+                              }}>Share Referal</button>
           </div>
         )}
         {page_n === 2 && (
