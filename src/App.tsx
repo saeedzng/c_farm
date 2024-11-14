@@ -7,6 +7,7 @@ import { fromNano, address, Address } from "ton-core";
 import { useState, useEffect } from 'react';
 import WebApp from "@twa-dev/sdk";
 
+
 declare global { interface Window { Telegram: any; } }
 
 function App() {
@@ -280,9 +281,18 @@ function App() {
             <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
             <button className="action-button" onClick={async () => {
                   const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${wallet_contract_address}`;
-              window.open(telegramShareUrl, '_blank');
+                  if (navigator.share) { 
+                    try { 
+                      await navigator.share({ 
+                        title: 'Chicken Farm Wallet Contract', 
+                        text: 'Check out this wallet contract address!', 
+                        url: telegramShareUrl, });
+                         alert('Content shared successfully!'); 
+                        } catch (error) { 
+                          alert('Error sharing content:' + error); 
+                        } } else { 
+                          alert('Sharing is not supported on this browser. Please copy the link: ' + telegramShareUrl); }
             }}>Share Referal</button>
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-share-url="https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}"></script>
           </div>
         )}
         {page_n === 2 && (
