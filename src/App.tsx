@@ -282,6 +282,7 @@ function App() {
                   const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${wallet_contract_address}`;
               window.open(telegramShareUrl, '_blank');
             }}>Share Referal</button>
+            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-share-url="https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}"></script>
           </div>
         )}
         {page_n === 2 && (
