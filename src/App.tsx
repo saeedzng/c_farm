@@ -282,8 +282,6 @@ function App() {
                                  const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
                                 try {
                                   await navigator.share({
-                                      title: 'Chicken Farm Wallet Contract',
-                                      text: 'Check out this wallet contract address!',
                                       url: telegramShareUrl,
                                   });
                               } catch (error) {
