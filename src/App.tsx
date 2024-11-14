@@ -180,7 +180,7 @@ function App() {
       }
 
       const walletContractAddress = encodeURIComponent(wallet_contract_address);
-      const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${walletContractAddress}`;
+      const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${walletContractAddress}`;
 
       // Check if navigator.share is supported
       if (navigator.share) {
@@ -188,15 +188,7 @@ function App() {
               title: 'Chicken Farm Wallet Contract',
               text: 'Check out this wallet contract address!',
               url: telegramShareUrl,
-          })
-          .then(() => {
-              console.log('Shared successfully');
-          })
-          .catch((error) => {
-              console.error('Error sharing:', error);
-              showFallback(telegramShareUrl); // Show fallback only on error
-          });
-      } else {
+          })} else {
           showFallback(telegramShareUrl); // Show fallback for unsupported browsers
       }
   };
