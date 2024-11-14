@@ -188,6 +188,7 @@ function App() {
     setShowShareDialog(true);
   };
   const copyToClipboard = () => {
+    alert("Link copied to clipboard!");
     navigator.clipboard.writeText(shareUrl)
       .then(() => {
         alert("Link copied to clipboard!");
