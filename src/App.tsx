@@ -41,13 +41,13 @@ function App() {
 
   const bbbbbb = useTonAddress()
   useEffect(() => {
-    if (connected && getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ") {     
+    if (connected && getOwnerTonAddress() === "EQD5NGKTMzYxuADCN2Q5d_CnTcVcMc9kBWoq7nX2YNZyZMzZ") {
       setOwnerTonAddress(bbbbbb);
       window.location.reload();
     }
   }, [connected]);
 
-  const { master_contract_address, total_supply ,sendDeployByMaster,send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
+  const { master_contract_address, total_supply, sendDeployByMaster, send_withdraw_order, master_contract_balance, wc_addressss } = useMasterContract(
     Address.parse(getOwnerTonAddress()),
     Address.parse(referal_address)
   );
@@ -88,7 +88,7 @@ function App() {
   const toggleDetails = () => { setShowDetails(!showDetails); setShowHelp(false); };
   const [showDialog, setShowDialog] = useState(false);
   const [chickenCount, setChickenCount] = useState(1);
-  const [actionType, setActionType] = useState<'ton' | 'egg'>('ton'); 
+  const [actionType, setActionType] = useState<'ton' | 'egg'>('ton');
 
   const handleDialogOpen = (type: 'ton' | 'egg') => {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
@@ -96,7 +96,7 @@ function App() {
     setShowDialog(true);
   };
 
-  const buyhensbyeggs = () =>   {
+  const buyhensbyeggs = () => {
     if (realeggnumber < 30) { WebApp.showAlert("You need at least 30 egg to buy hen."); return; }
     handleDialogOpen('egg')
   }
@@ -137,7 +137,7 @@ function App() {
   }
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState('');
-  const [MwithdrawAmount , setMwithdrawAmount] = useState ('');
+  const [MwithdrawAmount, setMwithdrawAmount] = useState('');
 
   const handleWithdrawClick = () => {
     if (!isDataLoaded) { WebApp.showAlert("You Are Offline"); return; }
@@ -181,7 +181,7 @@ function App() {
       <div className="down-section" >
         {page_n === 0 && (
           <>
-                      <div className="status-indicator">
+            <div className="status-indicator">
               {isMDataLoaded ? (
                 <div style={{ color: 'green', margin: '5px' }}>
                   <span>🟢</span>  connected
@@ -273,21 +273,15 @@ function App() {
             <div>{master_contract_address}</div>
             <b>Master contract Balance</b>
             {master_contract_balance && <div className='Hint'>{fromNano(master_contract_balance)} ton</div>}<br />
-            <p>master has mint {total_supply} chicken </p><br/>
+            <p>master has mint {total_supply} chicken </p><br />
             <button className="action-button" onClick={() => localStorage.clear()}>delete local storage</button><br />
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
-            <button className='action-button' onClick={() => {send_withdraw_order(Number(MwithdrawAmount))}}>withdraw</button><br />
-            <button className='action-button' onClick={() => {WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
-            <button className="action-button" onClick={ async () => {
-                                 const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-                                try {
-                                  await navigator.share({
-                                      url: telegramShareUrl,
-                                  });
-                              } catch (error) {
-                                  console.error('Error sharing:', error);
-                              };
-                              }}>Share Referal</button>
+            <button className='action-button' onClick={() => { send_withdraw_order(Number(MwithdrawAmount)) }}>withdraw</button><br />
+            <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
+            <button className="action-button" onClick={async () => {
+              const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+              window.open(telegramShareUrl, '_blank');
+            }}>Share Referal</button>
           </div>
         )}
         {page_n === 2 && (
@@ -331,7 +325,7 @@ function App() {
                             </div>
                             <div className="button-row">
                               <button className="action-button" onClick={() => handleDialogOpen('ton')}>From Wallet</button>
-                              <button className="action-button" onClick={ buyhensbyeggs}>From Eggs</button>
+                              <button className="action-button" onClick={buyhensbyeggs}>From Eggs</button>
                             </div>
                           </div>
                           <div className="buy-row">
@@ -371,7 +365,7 @@ function App() {
                                     />
                                   </label>
                                 </div>
-                                <div className="dialog-buttons" style={{marginTop : "10px"}}>
+                                <div className="dialog-buttons" style={{ marginTop: "10px" }}>
                                   <button onClick={() => setIsDialogVisible(false)}>Cancel</button>
                                   <button onClick={handleWithdraw}>Withdraw</button>
                                 </div>
