@@ -165,14 +165,14 @@ function App() {
 
   // Handle share functionality
   const handleShare = () => {
-      // if (!isDataLoaded) {
-      //     WebApp.showAlert("You Are Offline");
-      //     return;
-      // }
-      // if (showchickennumber < 1) {
-      //     WebApp.showAlert("Without hens, you won't receive referral rewards.");
-      //     return;
-      // }
+      if (!isDataLoaded) {
+          WebApp.showAlert("You Are Offline");
+          return;
+      }
+      if (showchickennumber < 1) {
+          WebApp.showAlert("Without hens, you won't receive referral rewards.");
+          return;
+      }
 
       if (!wallet_contract_address) {
           WebApp.showAlert("Wallet contract address is not available.");
@@ -194,10 +194,10 @@ function App() {
           })
           .catch((error) => {
               console.error('Error sharing:', error);
-              showFallback(telegramShareUrl);
+              showFallback(telegramShareUrl); // Show fallback only on error
           });
       } else {
-          showFallback(telegramShareUrl);
+          showFallback(telegramShareUrl); // Show fallback for unsupported browsers
       }
   };
 
@@ -343,6 +343,7 @@ function App() {
             <button className='action-button' onClick={() => { send_withdraw_order(Number(MwithdrawAmount)) }}>withdraw</button><br />
             <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
             <button className="action-button" onClick={handleShare}>Share Referal</button>
+            {/* Share Dialog */}
             {/* Share Dialog */}
             {showShareDialog && (
                 <div className="dialog-overlay">
