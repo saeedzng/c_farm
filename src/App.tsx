@@ -173,7 +173,7 @@ function App() {
         <nav className="menu">
           <ul>
             <li><button onClick={() => setPageN(2)}>Wallet</button></li>
-            {/* <li><button onClick={() => setPageN(1)}>Master Contract</button></li> */}
+            <li><button onClick={() => setPageN(1)}>Master Contract</button></li>
             <li><button onClick={() => setPageN(0)}>Home</button></li>
           </ul>
         </nav>
