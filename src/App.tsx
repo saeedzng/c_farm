@@ -193,7 +193,7 @@ function App() {
      document.body.appendChild(tempTextarea); 
      tempTextarea.select(); document.execCommand("copy"); 
      document.body.removeChild(tempTextarea); 
-     alert("Link copied to clipboard!");
+     WebApp.showAlert("Link copied to clipboard!");
   };
   const closeShareDialog = () => {
     setShowShareDialog(false);
