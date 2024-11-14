@@ -160,6 +160,62 @@ function App() {
     }
   };
 
+    const handleShare = () => {
+        if (!isDataLoaded) {
+            WebApp.showAlert("You Are Offline");
+            return;
+        }
+        if (showchickennumber < 1) {
+            WebApp.showAlert("Without hens, you won't receive referral rewards.");
+            return;
+        }
+
+        if (!wallet_contract_address) {
+            WebApp.showAlert("Wallet contract address is not available.");
+            return;
+        }
+
+        const walletContractAddress = encodeURIComponent(wallet_contract_address); // Ensure it's URL-encoded
+        const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${walletContractAddress}&text=Check%20out%20this%20wallet%20contract%20address!`;
+
+        // Check if navigator.share is supported
+        if (navigator.share) {
+            navigator.share({
+                title: 'Chicken Farm Wallet Contract',
+                text: 'Check out this wallet contract address!',
+                url: telegramShareUrl,
+            })
+            .then(() => {
+                console.log('Shared successfully');
+            })
+            .catch((error) => {
+                console.error('Error sharing:', error);
+                showFallback(telegramShareUrl);
+            });
+        } else {
+            showFallback(telegramShareUrl);
+        }
+    };
+
+    const showFallback = (shareUrl: string) => {  // Explicitly typing shareUrl as string
+        WebApp.showAlert("Your browser does not support sharing. Please copy the link below and share it manually.");
+        
+        // Create a temporary input to copy the link
+        const tempInput = document.createElement("input");
+        tempInput.value = shareUrl;
+        document.body.appendChild(tempInput);
+        
+        // Select and copy the link
+        tempInput.select();
+        document.execCommand("copy");
+        
+        // Remove the temporary input after copying
+        document.body.removeChild(tempInput);
+        
+        // Optionally, display the link to the user
+        alert(`Link copied: ${shareUrl}`);
+    };
+
   return (
     <div className="wrapper">
       <div className="top-section">
@@ -279,20 +335,7 @@ function App() {
             <input type="text" value={MwithdrawAmount} onChange={(e) => setMwithdrawAmount(e.target.value)}></input><br />
             <button className='action-button' onClick={() => { send_withdraw_order(Number(MwithdrawAmount)) }}>withdraw</button><br />
             <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
-            <button className="action-button" onClick={async () => {
-                  const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
-                  if (navigator.share) { 
-                    try { 
-                      await navigator.share({ 
-                        title: 'Chicken Farm Wallet Contract', 
-                        text: 'Check out this wallet contract address!', 
-                        url: telegramShareUrl, });
-                         alert('Content shared successfully!'); 
-                        } catch (error) { 
-                          alert('Error sharing content:' + error); 
-                        } } else { 
-                          alert('Sharing is not supported on this browser. Please copy the link: ' + telegramShareUrl); }
-            }}>Share Referal</button>
+            <button className="action-button" onClick={async () => {handleShare }}>Share Referal</button>
           </div>
         )}
         {page_n === 2 && (
