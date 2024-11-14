@@ -188,14 +188,12 @@ function App() {
     setShowShareDialog(true);
   };
   const copyToClipboard = () => {
-    alert("Link copied to clipboard!");
-    navigator.clipboard.writeText(shareUrl)
-      .then(() => {
-        alert("Link copied to clipboard!");
-      })
-      .catch(err => {
-        console.error('Failed to copy: ', err);
-      });
+    const tempTextarea = document.createElement("textarea");
+     tempTextarea.value = shareUrl; 
+     document.body.appendChild(tempTextarea); 
+     tempTextarea.select(); document.execCommand("copy"); 
+     document.body.removeChild(tempTextarea); 
+     alert("Link copied to clipboard!");
   };
   const closeShareDialog = () => {
     setShowShareDialog(false);
@@ -328,7 +326,7 @@ function App() {
                 <div className="dialog-content">
                   <h2>Your browser does not support sharing.</h2>
                   <p>Please copy the link below and share it manually:</p>
-                  <input type="text" value={shareUrl} readOnly />
+                  <label>{shareUrl}</label>
                   <div className="dialog-buttons">
                     <button onClick={copyToClipboard}>Copy Link</button>
                     <button onClick={closeShareDialog}>Close</button>
