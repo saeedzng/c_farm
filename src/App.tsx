@@ -160,10 +160,11 @@ function App() {
     }
   };
 
-  const [showModal, setShowModal] = useState(false);
+  const [showShareDialog, setShowShareDialog] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
-    // Handle share functionality
-    const handleShare = () => {
+
+  // Handle share functionality
+  const handleShare = () => {
       // if (!isDataLoaded) {
       //     WebApp.showAlert("You Are Offline");
       //     return;
@@ -200,10 +201,10 @@ function App() {
       }
   };
 
-  // Show fallback modal
+  // Show fallback share dialog
   const showFallback = (url: string) => {
       setShareUrl(url); // Set the share URL to be copied
-      setShowModal(true); // Show the modal
+      setShowShareDialog(true); // Show the share dialog
   };
 
   // Copy link to clipboard
@@ -217,9 +218,9 @@ function App() {
           });
   };
 
-  // Close modal
-  const closeModal = () => {
-      setShowModal(false);
+  // Close share dialog
+  const closeShareDialog = () => {
+      setShowShareDialog(false);
   };
 
   return (
@@ -342,16 +343,16 @@ function App() {
             <button className='action-button' onClick={() => { send_withdraw_order(Number(MwithdrawAmount)) }}>withdraw</button><br />
             <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
             <button className="action-button" onClick={handleShare}>Share Referal</button>
-                       {/* Modal for sharing fallback */}
-                       {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
+            {/* Share Dialog */}
+            {showShareDialog && (
+                <div className="dialog-overlay">
+                    <div className="dialog-content">
                         <h2>Your browser does not support sharing.</h2>
                         <p>Please copy the link below and share it manually:</p>
                         <input type="text" value={shareUrl} readOnly />
-                        <div className="modal-buttons">
+                        <div className="dialog-buttons">
                             <button onClick={copyToClipboard}>Copy Link</button>
-                            <button onClick={closeModal}>Close</button>
+                            <button onClick={closeShareDialog}>Close</button>
                         </div>
                     </div>
                 </div>
