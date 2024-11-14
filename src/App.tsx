@@ -162,57 +162,42 @@ function App() {
 
   const [showShareDialog, setShowShareDialog] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
-
-  // Handle share functionality
   const handleShare = () => {
-      // if (!isDataLoaded) {
-      //     WebApp.showAlert("You Are Offline");
-      //     return;
-      // }
-      // if (showchickennumber < 1) {
-      //     WebApp.showAlert("Without hens, you won't receive referral rewards.");
-      //     return;
-      // }
-
-      if (!wallet_contract_address) {
-          WebApp.showAlert("Wallet contract address is not available.");
-          return;
-      }
-
-      const walletContractAddress = encodeURIComponent(wallet_contract_address);
-      const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${walletContractAddress}`;
-
-      // Check if navigator.share is supported
-      if (navigator.share) {
-          navigator.share({
-              title: 'Chicken Farm Wallet Contract',
-              text: 'Check out this wallet contract address!',
-              url: telegramShareUrl,
-          })} else {
-          showFallback(telegramShareUrl); // Show fallback for unsupported browsers
-      }
+    // if (!isDataLoaded) {
+    //     WebApp.showAlert("You Are Offline");
+    //     return;
+    // }
+    // if (showchickennumber < 1) {
+    //     WebApp.showAlert("Without hens, you won't receive referral rewards.");
+    //     return;
+    // }
+    const walletAddress = wallet_contract_address ? wallet_contract_address : wc_addressss?.toString();
+    const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${walletAddress}`;  
+    if (navigator.share) {
+      navigator.share({
+        title: 'Chicken Farm Wallet Contract',
+        text: 'Check out this wallet contract address!',
+        url: telegramShareUrl,
+      })
+    } else {
+      showFallback(telegramShareUrl);
+    }
   };
-
-  // Show fallback share dialog
   const showFallback = (url: string) => {
-      setShareUrl(url); // Set the share URL to be copied
-      setShowShareDialog(true); // Show the share dialog
+    setShareUrl(url);
+    setShowShareDialog(true);
   };
-
-  // Copy link to clipboard
   const copyToClipboard = () => {
-      navigator.clipboard.writeText(shareUrl)
-          .then(() => {
-              alert("Link copied to clipboard!");
-          })
-          .catch(err => {
-              console.error('Failed to copy: ', err);
-          });
+    navigator.clipboard.writeText(shareUrl)
+      .then(() => {
+        alert("Link copied to clipboard!");
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
   };
-
-  // Close share dialog
   const closeShareDialog = () => {
-      setShowShareDialog(false);
+    setShowShareDialog(false);
   };
 
   return (
@@ -338,17 +323,17 @@ function App() {
             {/* Share Dialog */}
             {/* Share Dialog */}
             {showShareDialog && (
-                <div className="dialog-overlay">
-                    <div className="dialog-content">
-                        <h2>Your browser does not support sharing.</h2>
-                        <p>Please copy the link below and share it manually:</p>
-                        <input type="text" value={shareUrl} readOnly />
-                        <div className="dialog-buttons">
-                            <button onClick={copyToClipboard}>Copy Link</button>
-                            <button onClick={closeShareDialog}>Close</button>
-                        </div>
-                    </div>
+              <div className="dialog-overlay">
+                <div className="dialog-content">
+                  <h2>Your browser does not support sharing.</h2>
+                  <p>Please copy the link below and share it manually:</p>
+                  <input type="text" value={shareUrl} readOnly />
+                  <div className="dialog-buttons">
+                    <button onClick={copyToClipboard}>Copy Link</button>
+                    <button onClick={closeShareDialog}>Close</button>
+                  </div>
                 </div>
+              </div>
             )}
           </div>
         )}
