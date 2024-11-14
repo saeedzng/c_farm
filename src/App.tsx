@@ -160,61 +160,67 @@ function App() {
     }
   };
 
+  const [showModal, setShowModal] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
+    // Handle share functionality
     const handleShare = () => {
-        // if (!isDataLoaded) {
-        //     WebApp.showAlert("You Are Offline");
-        //     return;
-        // }
-        // if (showchickennumber < 1) {
-        //     WebApp.showAlert("Without hens, you won't receive referral rewards.");
-        //     return;
-        // }
+      // if (!isDataLoaded) {
+      //     WebApp.showAlert("You Are Offline");
+      //     return;
+      // }
+      // if (showchickennumber < 1) {
+      //     WebApp.showAlert("Without hens, you won't receive referral rewards.");
+      //     return;
+      // }
 
-        if (!wallet_contract_address) {
-            WebApp.showAlert("Wallet contract address is not available.");
-            return;
-        }
+      if (!wallet_contract_address) {
+          WebApp.showAlert("Wallet contract address is not available.");
+          return;
+      }
 
-        const walletContractAddress = encodeURIComponent(wallet_contract_address); // Ensure it's URL-encoded
-        const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${walletContractAddress}&text=Check%20out%20this%20wallet%20contract%20address!`;
+      const walletContractAddress = encodeURIComponent(wallet_contract_address);
+      const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${walletContractAddress}&text=Check%20out%20this%20wallet%20contract%20address!`;
 
-        // Check if navigator.share is supported
-        if (navigator.share) {
-            navigator.share({
-                title: 'Chicken Farm Wallet Contract',
-                text: 'Check out this wallet contract address!',
-                url: telegramShareUrl,
-            })
-            .then(() => {
-                console.log('Shared successfully');
-            })
-            .catch((error) => {
-                console.error('Error sharing:', error);
-                showFallback(telegramShareUrl);
-            });
-        } else {
-            showFallback(telegramShareUrl);
-        }
-    };
+      // Check if navigator.share is supported
+      if (navigator.share) {
+          navigator.share({
+              title: 'Chicken Farm Wallet Contract',
+              text: 'Check out this wallet contract address!',
+              url: telegramShareUrl,
+          })
+          .then(() => {
+              console.log('Shared successfully');
+          })
+          .catch((error) => {
+              console.error('Error sharing:', error);
+              showFallback(telegramShareUrl);
+          });
+      } else {
+          showFallback(telegramShareUrl);
+      }
+  };
 
-    const showFallback = (shareUrl: string) => {  // Explicitly typing shareUrl as string
-        WebApp.showAlert("Your browser does not support sharing. Please copy the link below and share it manually.");
-        
-        // Create a temporary input to copy the link
-        const tempInput = document.createElement("input");
-        tempInput.value = shareUrl;
-        document.body.appendChild(tempInput);
-        
-        // Select and copy the link
-        tempInput.select();
-        document.execCommand("copy");
-        
-        // Remove the temporary input after copying
-        document.body.removeChild(tempInput);
-        
-        // Optionally, display the link to the user
-        alert(`Link copied: ${shareUrl}`);
-    };
+  // Show fallback modal
+  const showFallback = (url: string) => {
+      setShareUrl(url); // Set the share URL to be copied
+      setShowModal(true); // Show the modal
+  };
+
+  // Copy link to clipboard
+  const copyToClipboard = () => {
+      navigator.clipboard.writeText(shareUrl)
+          .then(() => {
+              alert("Link copied to clipboard!");
+          })
+          .catch(err => {
+              console.error('Failed to copy: ', err);
+          });
+  };
+
+  // Close modal
+  const closeModal = () => {
+      setShowModal(false);
+  };
 
   return (
     <div className="wrapper">
@@ -336,6 +342,20 @@ function App() {
             <button className='action-button' onClick={() => { send_withdraw_order(Number(MwithdrawAmount)) }}>withdraw</button><br />
             <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
             <button className="action-button" onClick={handleShare}>Share Referal</button>
+                       {/* Modal for sharing fallback */}
+                       {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h2>Your browser does not support sharing.</h2>
+                        <p>Please copy the link below and share it manually:</p>
+                        <input type="text" value={shareUrl} readOnly />
+                        <div className="modal-buttons">
+                            <button onClick={copyToClipboard}>Copy Link</button>
+                            <button onClick={closeModal}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
           </div>
         )}
         {page_n === 2 && (
