@@ -279,7 +279,7 @@ function App() {
             <button className='action-button' onClick={() => { send_withdraw_order(Number(MwithdrawAmount)) }}>withdraw</button><br />
             <button className='action-button' onClick={() => { WebApp.showAlert(getOwnerTonAddress() + "---" + bbbbbb) }}>show alert</button><br />
             <button className="action-button" onClick={async () => {
-              const telegramShareUrl = `https://t.me/Ch_farm_bot/ChickenFarm?startapp=${wallet_contract_address}`;
+                  const telegramShareUrl = `https://t.me/share/url?url=https%3A%2F%2Ft.me%2FCh_farm_bot%2FChickenFarm%3Fstartapp%3D${wallet_contract_address}`;
               window.open(telegramShareUrl, '_blank');
             }}>Share Referal</button>
           </div>
